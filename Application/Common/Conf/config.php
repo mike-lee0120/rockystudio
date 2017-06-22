@@ -50,10 +50,10 @@ $_config = array(
 
     // Session设置
     'VAR_SESSION_ID'       => 'session_id',
-    'SESSION_OPTIONS'      => array(
-        'expire' => 864000,
-        'type'   => 'Sql',
-    ),
+//    'SESSION_OPTIONS'      => array(
+//        'expire' => 864000,
+//        'type'   => 'Sql',
+//    ),
 
     // 全局过滤配置
     'DEFAULT_FILTER'       => '', //TP默认为htmlspecialchars
