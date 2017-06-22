@@ -1,0 +1,122 @@
+<extend name="$_home_public_layout"/>
+
+<block name="style">
+    <style position="page" type="text/css">
+        pre.prettyprint {
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            background-color: #f7f7f7;
+            border: 0;
+            border-radius: 3px;
+            font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace
+        }
+        .page-content {
+            padding-bottom: 43px !important;
+        }
+    </style>
+</block>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="{:U('Forum/Index/index')}" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">帖子详情</div>
+            <div class="right"></div>
+        </div>
+    </div>
+
+    <div class="page no-toolbar" data-page="{$_page_name}">
+        <div class="page-content">
+            <div class="content-block no-margin">
+                <div class="content-block-inner" style="min-height: 200px;">
+                    <p>{$info.title}</p>
+                    {$info.content}
+                </div>
+            </div>
+
+            <!-- 楼层回复 -->
+            <div class="list-block media-list no-margin">
+                <ul>
+                    <volist name="info.comment_list" id="vo">
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media">
+                                    <img src="{$vo.user.avatar_url}" style='border-radius: 50px;width: 50px;'>
+                                </div>
+                                <div class="item-inner">
+                                    <div style="font-size: 15px;color: #8e8e93;">
+                                        <div style="font-size: 12px;">
+                                            <span>
+                                                <span>{$vo.user.nickname}</span>
+                                                <notempty name="vo.pid">
+                                                    <span class="reply">
+                                                        <span class="text-muted small"> 回复 </span>
+                                                        <span>{$vo.parent_comment_nickname}</span>
+                                                    </span>
+                                                </notempty>
+                                            </span>
+                                            <span class="pull-right">{$vo.create_time_format}</span>
+                                        </div>
+                                        <div>
+                                            {$vo.content}
+                                            <a href="javascript:void(0);" class="reply-action pull-right" comment_id="{$vo.id}" nickname="{$vo.user.nickname}">回复</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+
+            <!-- 分页 -->
+            <?php if($page): ?>
+                <div>
+                    <div class="content-block-inner">
+                        <ul class="pagination">{$page}</ul>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <!-- 发送消息 -->
+        <present name="_user_auth">
+            <div class="toolbar messagebar" style="transform: translate3d(0, 0%, 0);-webkit-transform: translate3d(0, 0%, 0);">
+                <form action="{:U('Forum/Comment/add')}" class="post-reply-form">
+                    <div class="toolbar-inner">
+                        <input type="hidden" name="pid" value="0">
+                        <input name="data_id" class="hidden" value="{$info.id}">
+                        <textarea name="content" class="new-comment-text" placeholder="回帖是一种美德"></textarea>
+                        <a href="#" class="link external ajax-post refresh" target-form="post-reply-form">发送</a>
+                    </div>
+                </form>
+            </div>
+        <else />
+            <div class="toolbar messagebar text-center p-t-sm" style="transform: translate3d(0, 0%, 0);-webkit-transform: translate3d(0, 0%, 0);">
+                要回复问题请先
+                <a href="{:U('User/User/login', '', true, true)}">登录</a>
+                或
+                <a href="{:U('User/User/register', '', true, true)}">注册</a>
+            </div>
+        </present>
+    </div>
+</block>
+
+<block name="toolbar"></block>
+
+<block name="script">
+    <script position="page" type="text/javascript">
+        $(function(){
+            $(document).on('click', '.reply-action', function() {
+                $('input[name=pid]').val($(this).attr('comment_id'));
+                $('.new-comment-text').focus().attr('placeholder', '回复'+$(this).attr('nickname'));
+            });
+        });
+    </script>
+</block>

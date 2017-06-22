@@ -1,0 +1,67 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="{:U('/user', '', true, true)}" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">{$meta_title}</div>
+            <div class="right"></div>
+        </div>
+    </div>
+
+    <div class="page no-toolbar {$_page_name}" data-page="{$_page_name}">
+        <div class="page-content">
+            <div class="list-block media-list m-t m-b-0">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">会员类型</div>
+                                    <div class="item-after">{$vip_info.type_info.title}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">到期时间</div>
+                                    <div class="item-after">{$vip_info.expire_format}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">我的特权</div>
+                                </div>
+                                <div style="margin-top: 5px; font-size: 12px; color: rgb(119, 119, 119);">{$vip_info.type_info.content}</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="list-block media-list m-t">
+                <ul>
+                    <li>
+                        <a class="item-content" href="{:U('Vip/Order/upgrade')}">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">升级会员</div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</block>

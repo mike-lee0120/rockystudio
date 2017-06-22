@@ -1,0 +1,1146 @@
+/* 重载bootstrap部分 */
+em{font-style: normal;}
+input[type="radio"], input[type="checkbox"]{margin:0;}
+input[type="radio"]:focus, input[type="checkbox"]:focus{outline: none;}
+label{margin:0;font-weight: normal;}
+form{margin:0;}
+select, input[type="file"]{line-height: 28px;}
+select{width: auto;}
+.tooltip{z-index: 9999;}
+.alert{margin-bottom:0px;padding:5px 14px;background: #fcfddb;border: 1px solid #f9f2a7;}
+.alert-danger, .alert-error{position: relative;margin-bottom:10px;background: #f2dede;border: 1px solid #eed3d7;}
+.tab-content{padding-bottom:20px;}
+.form-horizontal .control-label, .form-horizontal .controls{height: 30px;line-height: 30px;padding-top:0;}
+.badge{padding:2px 6px;margin-left: 5px;background: #ccc;}
+.badge.badge-info{background: #499ef3;}
+.badge.badge-important{background: #ff3333;}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td{border-bottom-width:1px;}
+.disabled, .disabled a{cursor: default;}
+/* modal */
+.modal-backdrop, .modal-backdrop.fade.in{filter:alpha(opacity=20);opacity: 0.2; }
+/* 重载bootstrap按钮 */
+.btn:active, .btn.active{box-shadow: none;}
+.btn-mini{min-width: 64px;min-width:44px\0;height:24px;padding:0 10px;line-height:24px;font-weight: normal;font-size:12px;}
+.btn-normal{min-width:76px;min-width:56px\0;height:34px;padding:0 10px;line-height: 34px;font-size: 14px;}
+.btn-large{min-width:120px;min-width:100px\0;height:38px;padding:0 10px;line-height:38px;font-size:14px;}
+.close{font-size: 18px;}
+.btn-success, .btn-gray.active{border: none !important;background-color: #5bbf5a;color: #fff;}
+.btn-success:hover, .btn-gray.active:hover{background-color: #38b836 !important;color: #fff !important;}
+.btn-success:active, .btn-success:focus{background-color: #32a831 !important;}
+.btn-success.active{background-color: #eee;color: #999;box-shadow: none;}
+.btn-success.active:hover{background-color: #e6e6e6 !important;color: #999 !important;}
+.btn-success.active:active, .btn-success.active:focus{background-color: #d9d9d9 !important;color: #999;}
+.btn-primary{border: none !important;background-color: #59b0ff;}
+.btn-primary:hover{background-color: #4daaff;}
+.btn-primary:active, .btn-primary:focus{background-color: #1a90ff;}
+.btn-gray{border: none !important;background-color: #eee;color: #999;}
+.btn-gray:hover{background-color: #e6e6e6;color: #999;}
+.btn-gray:active, .btn-gray:focus{background-color: #d9d9d9;}
+.btn.follow b{position:relative;top:-1px;font-size: 12px;font-weight: normal;}
+.btn.follow em{position:relative;top:-1px;margin:0 3px;font-size: 12px;}
+.btn.follow.btn-gray em, .btn.follow.btn-gray.active em, .btn.follow.btn-success.active em{color: #e0e0e0;}
+.btn.follow.btn-success em{color: #78c779;}
+.form-control{padding: 6px;resize:none;box-shadow: none;border-color: #ccc;}
+.form-control:focus{border-color:#499ef3 !important;box-shadow: none;}
+.btn-group.open .lyask-dropdown, .lyask-feed-list .more-operate.open .lyask-dropdown, .lyask-question-detail .more-operate.open .lyask-dropdown, .lyask-article-list .lyask-item .mod-footer .more-operate.open .lyask-dropdown{display: block;}
+
+/* 公共部分 */
+html{height: 100%;}
+body{margin: 0;height: 100%;font-size:14px; line-height:160%;color: #666;background: #F1F1F1;}
+body, input, button, select, textarea, h1, h2, h3, h4, h5, h6{font-family:'Helvetica Neue', 'STHeiti', '微软雅黑', 'Microsoft YaHei', Helvetica,Arial,sans-serif;}
+ul, ol{margin:0;padding:0;list-style:none;}
+h1, h2, h3, h4, h5, h6{margin-top:0;font-size:100%;line-height: 1.7;}
+dd{margin-left: 10px;}
+a{cursor: pointer;color: #3399ff;}
+a:hover{text-decoration: none;color: #499ef3;}
+a:focus{outline: none !important;}
+table td{vertical-align: middle !important;}
+.lyask-wecenter{margin:0 auto;}/*兼容2.5*/
+.lyask-padding10{padding:10px;}
+.lyask-content-wrap{margin:0 15px 15px;background-color: #fff;border:1px solid #e6e6e6;border-radius:4px;}
+.lyask-main-content{padding:0 0 20px;border-right:1px solid #e6e6e6;}
+.lyask-side-bar{margin-left:-1px;padding:20px;border-left: 1px solid #e6e6e6;}
+.lyask-mod .mod-head h4, .lyask-mod .mod-head h4 a{font-size:14px;}
+.lyask-back-top{position:fixed;display:none;padding:0 5px;right:20px;bottom:20px;background-color: #d9d9d9;border-radius: 3px;}
+.lyask-back-top .icon-up{display:block;padding:10px;color: #a6a6a6;font-size: 20px;}
+.lyask-back-top:hover{background-color: #d0d0d0;}
+.lyask-text-align-justify{text-align: justify;}
+.text-color-999{font-size: 12px;color: #999;}
+.font-size-12{font-size: 12px;}
+.lyask-hide-txt{overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+.lyask-placeholder{color: #999 !important;}
+.lyask-dropdown-menu li:first-child, .dropdown-menu li.first, .lyask-comment-list li:first-child, .lyask-edit-comment-box .lyask-file-upload-box, .lyask-li-border-bottom li:first-child{border-top:none;}
+.lyask-dropdown-list li.user a img, .lyask-question-tags, .lyask-mod.topic-nav ul > li > p a, .lyask-mod.topic-nav ul > li > a, .lyask-border-radius-5, .lyask-border-radius-5 img, .lyask-load-more-content, .lyask-user-name img, .lyask-topic-name img, .lyask-topic-name span, .lyask-topic-img img, .lyask-dropdown-menu img, .lyask-login-register a img, .lyask-login-register .lyask-user-head img, .lyask-dropdown, .category dl dt img, .category .span12 > ul > li, .lyask-mod.side-nav ul li a, .topic-edit-notes li, .lyask-notopic-sort, .lyask-comment-box, .lyask-topic-detail-title .mod-body img, .lyask-topic-search, .lyask-mod-topic-edit-box .mod-head .img, .lyask-inbox-read .mod-footer li .lyask-item, .lyask-inbox .mod-footer li .lyask-user-img img, .lyask-invite-list ul li img, .lyask-mod-search-result .lyask-item .lyask-user-img img, .lyask-mod-search-result .lyask-item .lyask-topic-img img, .lyask-mod-search-result .lyask-search-result-tags, .lyask-file-uploader dl, .lyask-card-tips, .lyask-card-tips .mod-head .img img, .lyask-first-login .lyask-complete-data .side-bar img, .lyask-first-login .lyask-first-login-suggest-list .lyask-topic-img img, .lyask-first-login .lyask-first-login-suggest-list .img img, .lyask-first-login .lyask-first-login-suggest-list li > span, .lyask-replay-box .mod-body, .lyask-publish-box .lyask-publish-title .dropdown .dropdown-toggle, .markitup-box code, #markItUpPreviewFrames code, .lyask-publish-title.active input, #lcw-loading, .lyask-user-nav > a img{border-radius: 4px;}
+.category dl, .lyask-mod.new-announce{border-radius: 10px;}
+.lyask-publish-title .dropdown .dropdown-toggle, .lyask-publish-title .dropdown .dropdown-toggle a{border-radius: 0 5px 5px 0;}
+.lyask-nav-main li:first-child a.active{border-radius:10px 0 0 0;}
+.lyask-close{font-size: 16px;}
+.inline-block{display: inline-block;}
+.lyask-global-tips{margin-bottom: 30px;}
+.autosize{max-height: 800px;overflow-y:scroll !important;}
+/* 加载更多 */
+.lyask-load-more-content{position:relative;overflow: hidden;height: 34px;line-height: 34px;margin: 20px 20px 0;background-color: #fafafa;text-align: center;cursor: pointer;color: #999;}
+a.lyask-load-more-content{display: block;}
+.lyask-load-more-content > a{display: inline;}
+.lyask-load-more-content:hover{background: #499ef3;color: #fff;}
+.lyask-load-more-content:hover a, .lyask-load-more-content:hover span{background-color:#499ef3;color: #fff;}
+.lyask-load-more-content.loading{background-image: url(img/ajax-loader.gif);background-repeat:no-repeat;background-position:center center;background-color: #f6f6f6;}
+.lyask-load-more-content.loading span{font-size: 0px;}
+.lyask-load-more-content.loading img{opacity: 1;}
+.lyask-load-more-content.disabled{background-color: #fff;border:1px solid #f5f5f5;}
+.lyask-load-more-content.disabled:hover span{background-color: transparent;color: #999;}
+.lyask-load-more-content.warmming{display:none;background:#f4fbff;border:1px solid #cbe1f0;font-size: 12px;}
+.lyask-load-more-content .lyask-alert-box{position: absolute;right: 10px;top:0;}
+/* 话题编辑box */
+.lyask-edit-topic{float:left;display:inline-block;font-size: 12px;cursor: pointer;}
+.lyask-edit-topic-box{display:none;position:relative;}
+.lyask-edit-topic-box input, .lyask-edit-topic-box > a{margin:0 10px 10px 0;}
+.lyask-edit-topic-box input{width: 250px !important;}
+.lyask-edit-topic-box .btn-large{min-width: 0px;}
+.lyask-edit-topic-box p{padding:0 10px;}
+/* 分类小标签 */
+.lyask-user-name, .lyask-topic-name{font-size:12px;line-height:20px;font-weight:normal;}
+.lyask-user-name img, .lyask-topic-name img{width: 40px;height: 40px;}
+.lyask-topic-bar{margin:20px 20px 0;}
+.lyask-topic-bar .close{display: none;}
+.lyask-topic-bar.active .topic-tag .text{border-radius: 4px 0 0 4px;}
+.lyask-topic-bar.active .topic-tag .close{display: inline-block;}
+.lyask-topic-bar .topic-tag{float: left;margin:0 10px 10px 0;}
+.topic-tag a{float: left;}
+.topic-tag .text{display:inline-block;height:20px;line-height:16px;padding:2px 5px;background-color:#99cfff;font-size:12px;color: #fff;border-radius: 4px;}
+.topic-tag .text:hover, .topic-tag .text:active, .topic-tag .close:hover, .topic-tag .close:active{background-color: #339dff;}
+.topic-tag .close{width: 20px;height: 20px;background-color: #66b7ff;text-align: center;line-height:20px;color: #fff;font-size: 10px;opacity: 1;filter:alpha(opacity=100);border-radius: 0 4px 4px 0;}
+/* tabs切换样式 */
+.lyask-nav-tabs{position:relative;z-index:1;height:63px;margin:0;padding: 30px 20px 0;border-color: #e6e6e6;}
+.lyask-nav-tabs.active > li{float: right;}
+.lyask-nav-tabs > li{margin:0 4px 0 0;font-size: 14px;}
+.lyask-nav-tabs > li > a{line-height:30px;padding:0 13px;background-color: #fff;border: none;cursor: pointer;}
+.lyask-nav-tabs > li > a:hover{border:none;border-bottom:2px solid #3399ff;background-color: #fff;color: #333;}
+.lyask-nav-tabs > li.active a{line-height:30px;background-color: #fff;border:none;border-bottom:2px solid #3399ff;font-weight: bold;color: #333;}
+.lyask-nav-tabs > li.active a:hover, .lyask-nav-tabs > li.active a:focus, .lyask-nav-tabs > li > a:focus{border:none;border-bottom:2px solid #3399ff;background-color: #fff;}
+.lyask-nav-tabs h2{position:absolute;top:16px;left:20px;margin:0;font-size:20px;}
+/* 自定义tab切换 */
+.lyask-tabs{height:38px;line-height:38px;padding:0 20px;border-bottom: 1px solid #e6e6e6;text-align: center;}
+.lyask-tabs li.active a{color: #333;font-weight: bold;}
+.lyask-tabs ul li{display:inline;}
+.lyask-tabs ul li a{margin:0 10px;}
+/* 全局loading样式 */
+#lcw-loading{position:fixed;top:50%;left:50%;background:#000;width: 40px;height: 40px;margin: 0 0 0 -20px;z-index: 10001;opacity: 0.75;filter: alpha(opacity=75);}
+#lcw-loading-box{width:40px;height:40px;background-image: url('../../common/loading.png');}
+.lyask-loading{display:inline-block;height:16px;width:16px;background:url("img/ajax-loader.gif") no-repeat;}
+#lcw-loading-mini-box{width: 16px;height: 16px;margin:0 auto;background-image: url('../../common/loading-mini.png');}
+/* 全局通用下拉列表 */
+.lyask-dropdown{display:none;position:absolute;left:0;top:105%;z-index:9999;width:100%;min-width:100px;background: #fff;border:1px solid #ccc;box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);}
+.lyask-dropdown.pull-right{left: auto;right: 0;}
+.lyask-dropdown p{padding:5px 10px;margin:0;}
+.lyask-dropdown .lyask-dropdown-list li{position:relative;height:42px;line-height:42px;padding:0 10px !important;border-top: 1px solid #f0f0f0;cursor: pointer;text-align: left;font-size: 14px;}
+.lyask-dropdown .lyask-dropdown-list li:first-child{border-top: none;}
+.lyask-dropdown .lyask-dropdown-list li:hover, .lyask-dropdown .lyask-dropdown-list li.active{background-color: #f0f0f0;}
+.lyask-dropdown .lyask-dropdown-list li a{display:block;color: #666;}
+.lyask-dropdown .lyask-dropdown-list li.topic a{display: inline;}
+.lyask-dropdown .lyask-dropdown-list li.topic .topic-tag a{margin-top: 10px;color: #fff;}
+.lyask-dropdown .lyask-dropdown-list li.question b{line-height: 30px;}
+.lyask-dropdown .lyask-dropdown-list li.question .icon-bestbg{display: none;margin:15px 5px 0 0;color: #69b5ff;}
+.lyask-dropdown .lyask-dropdown-list li.question.active{background-color: #fff;}
+.lyask-dropdown .lyask-dropdown-list li.question.active .icon-bestbg{display: inline-block;}
+.lyask-dropdown .lyask-dropdown-list li.user a img{width: 24px;height: 24px;margin-right: 5px;}
+.lyask-dropdown .lyask-dropdown-list li.user a span{display:inline-block;max-width:180px;margin-left:10px;color: #999;vertical-align: top;}
+.lyask-question-redirect-box .lyask-dropdown .lyask-dropdown-list{max-height: 336px;overflow-y:auto;}
+.lyask-publish-title .lyask-dropdown .lyask-dropdown-list{max-height: 210px;overflow-y:auto;}
+.lyask-edit-topic-box .lyask-dropdown .lyask-dropdown-list{max-height: 296px;overflow-y: auto;}
+/* 分享下拉 */
+.lyask-dropdown.shareout{top: 100%;width: 130px;}
+.lyask-dropdown.shareout i{width: 24px;height: 24px;display:inline-block;font-size: 16px;color: #fff !important;text-align: center;line-height: 24px;border-radius: 4px;}
+.lyask-dropdown.shareout i.icon-weibo{background-color: #ff6161;}
+.lyask-dropdown.shareout i.icon-qzone{background-color: #ffc333;}
+.lyask-dropdown.shareout i.icon-wechat{background-color: #73db42;}
+/* 编辑器附件下拉 */
+.lyask-editor-dropdown li a{white-space:nowrap;overflow: hidden;}
+.lyask-editor-dropdown img{margin-right: 5px;}
+
+/* 翻页 */
+.page-control{text-align: center;}
+.pagination{margin:20px 0 0;}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{background-color: #499ef3;color: #fff;border-color: #499ef3;}
+.pagination > li > a, .pagination > li > span{background-color: #fafafa;color: #999;border-color: #e6e6e6;}
+/* 字体icon & icon */
+.icon-tips{display:block;width: 6px;height: 6px;border-radius: 6px;background-color: #ff5428;}
+.icon-inverse{display:inline-block;height: 20px;padding:0 5px;line-height:20px;background-color: #ccc;color: #fff;text-align: center;border-radius: 4px;font-size: 12px;}
+.icon-inverse i{top:0 !important;margin:0;color: #fff;font-size: 12px !important;}
+.icon-inverse.follow{background-color: #f5f5f5;color: #b3b3b3;}
+.icon-inverse.follow:hover{color: #499ef3;}
+.icon-inverse.follow.active:before{content: "\e636";color: #58b957;}
+.icon-wechat, .icon-phone, .icon-reply, .icon-prestige, .icon-score, .icon-agree, .icon-comment, .icon-share, .icon-edit, .icon-invite, .icon-report, .icon-fold, .icon-best, .icon-favor, .icon-thank, .icon-cog, .icon-off, .icon-down, .icon-mobile-phone, .icon-envelope, .icon-check, .icon-attach{margin-right: 2px;color: #999;font-size: 16px;}
+.icon-v{color: #a3d700;font-size: 16px;}
+.icon-v.i-ve{color: #ffca3f;}
+.icon-down.active:before{content:"\e634";}
+.icon-add-alt{font-size: 18px;margin-right: 10px;}
+.i-private-replay-triangle{width: 8px;height: 10px;background: url('img/icon-angle-right.png') no-repeat;}
+.lyask-table th{background-color: #fafafa !important;border-bottom: none !important;}
+
+/* email未验证提示 */
+.lyask-email-verify{height:38px;line-height:38px;background-color: #fff07b;border-bottom: 1px solid #d9cda7;color: #988328;}
+
+/* 顶部 */
+.lyask-top-menu-wrap{position:relative;z-index:999;width:100%;min-height:50px;background-color:#3399ff;}
+.lyask-container-wrap{margin-top: 0px;}
+.lyask-logo, .lyask-search-box, .lyask-top-nav{position:relative;float: left;}
+.lyask-publish-btn, .lyask-user-nav, .lyask-top-notification{position:relative;float: right;margin:10px 0 10px 10px;}
+.lyask-logo{height:40px;margin:7px 5px 0 0;}
+.lyask-logo a{display:block;height: 40px;padding: 10px;background:url('img/logo.png') no-repeat;}
+.lyask-logo h1{height:32px;line-height:32px;margin:2px 20px 2px 0;font-size:32px;color: #fff;}
+.lyask-logo .logo {margin-top: -5px;width: 80px;height: 30px;}
+.lyask-publish-btn{width:80px;}
+.lyask-publish-btn a{display:block;width:80px;height: 32px;line-height: 32px;font-size: 14px;text-align: center;border-radius: 3px;}
+.lyask-publish-btn i{vertical-align:-2px;margin-right: 10px;font-size: 16px;}
+.lyask-publish-btn:hover #header_publish{border-radius: 4px 4px 0 0;}
+.lyask-publish-btn:hover .dropdown-list{display: block;}
+.lyask-publish-btn .dropdown-list{position: absolute;display: none;}
+.lyask-publish-btn .dropdown-list a{background-color: #4dabff;border-radius: 0;color: #fff;}
+.lyask-publish-btn .dropdown-list a:hover{background-color: #339dff;}
+.lyask-publish-btn .dropdown-list ul li:last-child a{border-radius: 0 0 4px 4px;}
+.lyask-top-nav{margin:0;border: none;}
+.lyask-top-nav .icon-bar{background-color: #fff;font-size: 0;}
+.lyask-top-nav > nav > ul > li > a{padding:16px;color: #fff;}
+.lyask-top-nav > nav > ul > li > a.active{background: #5cadff;font-weight: bold;}
+.lyask-top-nav > nav > ul > li > a:hover, .lyask-top-nav > nav > ul > li > a:focus{background: #4dabff;}
+.lyask-top-nav > nav > ul > li > a i{position:relative;top:2px;font-size: 16px;}
+.lyask-top-nav > nav > ul > li > a i.icon-home{top: 1px;}
+.lyask-top-nav > nav > ul > li:hover .dropdown-list{display: block;}
+.lyask-top-nav > nav > ul > li .dropdown-list{display:none;position: absolute;right:0;width:80px;}
+.lyask-top-nav > nav > ul > li .dropdown-list ul li a{display:block;height: 42px;line-height: 42px;padding:0 10px;background: #4dabff;text-align: center;color: #fff;}
+.lyask-top-nav > nav > ul > li .dropdown-list ul li a:hover{background: #339dff;}
+.lyask-top-nav > nav > ul > li .dropdown-list ul li i{margin-right: 3px;vertical-align: -1px;font-size: 16px;}
+.lyask-top-nav > nav > ul > li .dropdown-list ul li:last-child a{border-radius: 0 0 4px 4px;}
+.lyask-top-nav .badge{position: absolute;top: 4px;right: 2px;}
+.lyask-top-nav ul li:hover .lyask-dropdown{display: block;}
+.lyask-top-nav .lyask-dropdown{display:none;top:100%;min-width:300px;border-top: none;border-radius: 0 0 4px 4px;}
+.lyask-top-nav .lyask-dropdown .more{font-size: 12px;}
+.lyask-top-nav .lyask-dropdown .close{display: none;}
+.lyask-top-nav .lyask-dropdown ul li{padding:5px 10px;border-top:1px solid #f5f5f5;}
+.lyask-top-nav .lyask-dropdown ul li:first-child{border-top: none;}
+.lyask-top-nav .lyask-dropdown ul li:hover{background: #f5faff;}
+.lyask-top-nav .lyask-dropdown ul li:hover .read{display: inline-block;}
+.lyask-top-nav .lyask-dropdown ul li p{margin: 0;padding:0;}
+.lyask-top-nav .lyask-dropdown ul li .message{display:inline-block;width: 260px;font-size: 12px;}
+.lyask-top-nav .lyask-dropdown ul li .read{display: none;}
+.lyask-top-nav .lyask-dropdown ul li:last-child{border-radius: 0 0 4px 4px;}
+.lyask-top-nav .lyask-dropdown .mod-footer a{display: block;height:40px;text-align: center;background-color: #fafafa;color: #999999;font-size: 12px;line-height:40px;border-radius: 0 0 4px 4px;border-top: 1px solid #f5f5f5;}
+.lyask-user-nav{margin:10px 0 0 10px;}
+.lyask-user-nav:hover .dropdown-list{display: block;}
+.lyask-user-nav img{width: 32px;height: 32px;}
+.lyask-user-nav .login{margin-right: 10px;}
+.lyask-user-nav .lyask-user-nav-dropdown{display:block;height: 42px;}
+.lyask-user-nav .lyask-user-nav-dropdown .badge{position: absolute;top: -8px;right: -8px;}
+.lyask-user-nav .dropdown-list{top:100%;width:110px;border-top:none;border-radius: 0 0 4px 4px;}
+.lyask-user-nav .dropdown-list ul li a i{vertical-align:-2px;margin-right: 5px;font-size: 16px;}
+.lyask-search-box{margin:10px 0;}
+.lyask-search-box input{width: 230px;height: 32px;padding-right:30px;border:none;}
+.lyask-search-box #global_search_btns{position: absolute;right: 5px;top: 6px;font-size: 18px;color: #999;}
+.lyask-search-box .lyask-dropdown{width: 355px;}
+.lyask-search-box .lyask-dropdown p{height: 38px;line-height: 38px;margin:0;padding:0 10px;font-weight: normal;border-bottom: 1px solid #f0f0f0;}
+.lyask-search-box .lyask-dropdown p.search{display: none;}
+.lyask-search-box .lyask-dropdown .mod-footer{height: 42px;line-height: 42px;background-color: #fafafa;}
+.lyask-search-box .lyask-dropdown .mod-footer .btn-success{margin:10px;}
+.lyask-search-box .lyask-dropdown .lyask-dropdown-list{max-height: 337px;overflow-y: scroll;border-bottom: 1px solid #f0f0f0;}
+.lyask-search-box .lyask-dropdown .lyask-dropdown-list li.question .lyask-hide-txt{width: 250px;}
+
+/* 分类 */
+.category{margin-bottom: 20px;}
+.category dl, .category dl dt, .category dl dd{float:left;}
+.category dl{position:relative;margin:10px 20px 10px 0;padding:15px;}
+.category dl:hover .lyask-dropdown, .category ul li:hover .lyask-dropdown, .category dl .lyask-dropdown ul li a{display:block;}
+.category dl:hover, .category .col-sm-12 > .active{background: #ebebeb;}
+.category dl dt, .category dl dt img{width: 50px;height: 50px;}
+.category dl dd{width:130px;overflow: hidden;}
+.category dl dd a{display: block;max-height: 20px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+.category dl dd span{display:block;height:36px;font-size: 12px;word-wrap:break-word;}
+.category dl .lyask-dropdown span, .category ul li .lyask-dropdown span{position:absolute;top:-10px;left:0;display: inline-block;width: 100%;height:10px;}
+.category .list > li{float: left;position:relative;height: 30px;line-height: 30px;margin:0 10px 10px 0;font-size:14px;text-align: center;cursor: pointer;border-radius: 5px;}
+.category .list > li > a{display:block;padding:0 10px;color:#17344A;}
+.category .list > li.active, .category .list > li:hover{background: #494a4b;}
+.category .list > li.active > a, .category .list > li:hover > a{color: #fff;}
+.category ul li .lyask-dropdown{width: 120px;}
+
+/* 发现页 */
+.lyask-explore-list{padding:0 20px;}
+
+/* 动态首页 */
+.common-head{padding:0 20px;border-bottom: 1px solid #e6e6e6;}
+.common-head h2{height:60px;line-height:60px;margin:0;font-size: 20px;color: #333;}
+.common-head h2 > i{margin-right: 10px;}
+.common-head .btn.pull-right{margin:18px 0 0 10px;}
+.common-head span{font-size: 12px;}
+.common-head span .btn{margin-left: 10px;}
+.common-head .badge{vertical-align: 3px;}
+.lyask-feed-list{padding:0 20px;}
+.lyask-feed-list .lyask-load-more-content{margin:20px 0;}
+.lyask-feed-list .lyask-item{position:relative;padding:14px 0;border-bottom: 1px solid #f5f5f5;}
+.lyask-feed-list .lyask-item:last-child{border-bottom:none;}
+.lyask-feed-list .lyask-item.active{margin:0 -20px;padding:14px 20px;background-color: #fffed1;}
+.lyask-feed-list .lyask-item .mod-head, .lyask-feed-list .lyask-item .mod-body, .lyask-feed-list .lyask-item .mod-footer{position: relative;width:100%;padding-left: 50px;}
+.lyask-feed-list .lyask-item .mod-head{z-index: 1;}
+.lyask-feed-list .lyask-item .mod-footer{min-height:28px;line-height: 28px;margin-top:10px;font-size: 12px;}
+.lyask-feed-list .lyask-item .lyask-user-img{position:absolute;left:0;top:3px;width: 40px;height: 40px;}
+.lyask-feed-list .lyask-item .lyask-user-img img{width: 40px;height: 40px;}
+.lyask-feed-list .lyask-item .close{display: none;}
+.lyask-feed-list .lyask-item:hover .more-operate, .lyask-feed-list .lyask-item:hover .mod-head span.pull-right{display:block;}
+.lyask-feed-list .lyask-item h4, .lyask-feed-list .lyask-item p{margin:0;}
+.lyask-feed-list .lyask-item .lyask-best-answer{position: absolute;right: 0;top: -14px;font-size: 12px;text-align: center;color: #69b5ff;}
+.lyask-feed-list .lyask-item .icon-bestbg{font-size: 40px;}
+.lyask-feed-list .lyask-user-name{color: #666;}
+.lyask-feed-list .meta i, .lyask-question-detail .meta i{font-size: 16px;vertical-align: -2px;}
+.lyask-feed-list .more-operate{display:none;line-height: 28px;}
+.lyask-feed-list .more-operate > a{float:left;height:28px;line-height:28px;margin-left:15px;font-size:12px;}
+.lyask-feed-list .more-operate > a:hover i, .lyask-question-detail .more-operate a:hover i, .lyask-feed-list .more-operate .btn-group > a:hover i, .lyask-article-content .lyask-feed-list .meta a:hover i, .lyask-article-list .lyask-item .mod-footer .more-operate a:hover i, .lyask-question-detail .meta a:hover i{color: #499ef3;}
+.lyask-feed-list .more-operate .btn-group{margin-left: 15px;}
+.lyask-feed-list .more-operate .btn-group .dropdown-toggle{box-shadow: none;}
+.lyask-feed-list .operate{display:inline-block;float:left;background-color: #f5f5f5;border-radius: 4px;}
+.lyask-feed-list .operate + .operate{margin-left: 5px;}
+.lyask-feed-list .operate a{float:left;height:28px;padding:0 10px;color: #999;line-height: 28px;text-decoration: none;}
+.lyask-feed-list .operate a + a{border-left: 1px solid #ebebeb;}
+.lyask-feed-list .operate a.agree{border-radius: 4px 0 0 4px;}
+.lyask-feed-list .operate a.disagree{border-radius: 0 4px 4px 0;}
+.lyask-feed-list .operate a:hover, .lyask-feed-list .operate a.active{background-color: #499ef3;color: #fff;}
+.lyask-feed-list .operate a:hover i, .lyask-feed-list .operate a.active i{color: #fff;}
+.lyask-feed-list .operate a.disabled{background-color: #fff;border:1px solid #f5f5f5;border-radius: 4px;}
+.lyask-feed-list .operate a.disabled:hover, .lyask-feed-list .operate a.disabled:hover i{color: #999;}
+.lyask-feed-list .operate .lyask-add-comment:hover, .lyask-feed-list .operate .lyask-add-comment.active{background-color: #499ef3;color: #fff;border-radius: 4px;}
+.lyask-feed-list .operate .lyask-add-comment.active i{color: #fff;}
+.lyask-feed-list .operate b{font-weight: 500;}
+.lyask-feed-list .lyask-upload-img-list{height: auto;overflow: hidden;margin:10px 0 0;}
+.lyask-feed-list .lyask-upload-img-list.active img{width: auto;height: auto;display:block;}
+
+/* 动态首页新通知提示box */
+.lyask-notification-box{padding-bottom: 20px;border-bottom: 1px solid #e6e6e6;}
+.lyask-notification-box .icon-tips{display: none;}
+.lyask-notification-box .mod-body, .lyask-notification-box .mod-footer{padding:0 20px;}
+.lyask-notification-box .mod-body ul li{position:relative;padding:10px 0;border-top:1px dotted #E2E2E2;line-height: 14px;}
+.lyask-notification-box .mod-body ul li:first-child{border-top: none;}
+.lyask-notification-box .mod-body ul li span{font-size: 12px;}
+.lyask-notification-box .mod-body ul li p{margin:0;line-height: 24px;}
+.lyask-notification-box .icon-tips{position: absolute;right: 0;}
+.lyask-notification-box .mod-body ul li .read{display: none;color: #999;}
+.lyask-notification-box .mod-body ul li .more{margin:5px 0 0 5px;font-size: 12px;}
+.lyask-notification-box .mod-body ul li:hover .read{display: block;}
+
+/* 侧边栏公共部分 */
+.lyask-side-bar .lyask-mod{padding:20px 0;border-top: 1px solid #e2e2e2;}
+.lyask-side-bar .lyask-mod:first-child{padding-top:0px;border-top: none;}
+.lyask-side-bar .lyask-mod .mod-head{padding-bottom:5px;}
+.lyask-side-bar .lyask-mod .mod-head a{font-size: 12px;}
+.lyask-side-bar .lyask-mod dl{height:auto;overflow:hidden;margin:10px 0;}
+.lyask-side-bar .lyask-mod h3{margin-bottom:0;}
+.lyask-side-bar .lyask-mod dt, .lyask-side-bar .lyask-mod dt img{width:32px;height:32px;}
+.lyask-side-bar .lyask-mod dd{width:160px;font-size:12px;}
+.lyask-side-bar .lyask-mod p{margin-bottom:0;}
+.lyask-side-bar .lyask-mod p.signature{max-height: 34px;overflow: hidden;color: #666;}
+.lyask-side-bar .lyask-mod ul li{padding:3px 0;}
+.lyask-mod.user-detail{padding-bottom: 10px;}
+.lyask-mod.user-detail .lyask-topic-bar{margin:0;}
+.lyask-mod.new-announce{margin-bottom:20px;padding:10px;background: #FCFDDB;border: 1px solid #F9F2A7 !important;}
+.lyask-mod.new-announce .mod-head h3{margin:0;}
+/* 导航条 */
+.lyask-mod.side-nav ul li a{display: block;padding-left:10px;line-height: 30px;color: #666;font-size: 14px;}
+.lyask-mod.side-nav ul li a:hover{background-color:#f5f5f5;}
+.lyask-mod.side-nav ul li a.active{background-color:#499ef3;color: #fff;}
+.lyask-mod.side-nav ul li a .badge{background-color: #ccc;}
+.lyask-mod.side-nav ul li a.active .badge{background-color: #fff;color: #499ef3;}
+.lyask-mod.side-nav ul li a.active i{color: #fff;}
+.lyask-mod.side-nav i{margin-right:10px;color: #999;font-size: 16px;vertical-align:-1px;}
+/* 用户列表 */
+.lyask-mod.question-status a img, .lyask-mod.topic-status a img{width:24px;height:24px;margin-bottom:5px;}
+/* 相关话题 */
+.lyask-mod.topic-about .lyask-topic-bar{margin:0;}
+.lyask-mod.topic-about .lyask-topic-name{display: inline-block;margin:0 4px 8px 0;}
+.lyask-mod.topic-about .lyask-edit-topic-box .lyask-dropdown{top: 38px;}
+.lyask-mod.topic-about .lyask-edit-topic-box input{width: 100% !important;}
+/* 话题修改记录 */
+.lyask-mod.topic-edit-notes .icon{cursor: pointer;}
+.lyask-mod.topic-edit-notes h3{padding-bottom: 0;}
+.lyask-mod.topic-edit-notes li{padding:5px !important;cursor: pointer;}
+.lyask-mod.topic-edit-notes li:hover{background: #ebebeb;}
+.lyask-mod.topic-edit-notes .icon-down{margin-top: 2px;}
+/* 话题编辑 */
+.lyask-topic-bar .lyask-topic-name{display:inline-block;margin:0 10px 5px 0;}
+/* 文章分类 */
+.lyask-mod.lyask-topic-recommend-list{margin: 20px 20px 0;padding: 10px;max-height: 176px;overflow: hidden; border: 1px solid #ddd;border-radius: 5px;background-color: #fafafa;}
+.lyask-mod.lyask-topic-recommend-list li{min-height:36px;padding: 7px 0;border-bottom: 1px dotted #e2e2e2;}
+.lyask-mod.lyask-topic-recommend-list .lyask-common-list{max-height: 112px;overflow: hidden;}
+.lyask-mod.lyask-topic-recommend-list .mod-footer a{margin-top:10px;font-size: 12px;}
+/* 邀请回复 */
+.lyask-mod.email-invite-replay .btn-success{margin-top:10px;}
+/* 发起 */
+.lyask-mod.publish-help .mod-body p, .lyask-mod.topic-edit-help .mod-body p{padding:10px 0;color: #999;}
+/* 用户列表页按擅长话题搜索 */
+.lyask-mod.people-sort .mod-body{position: relative;}
+.lyask-mod.people-sort .mod-body .icon-down{position: absolute;right: 8px;top: 10px;}
+
+/* 附件上传 */
+#upload-form{position: relative;width: 0;height: 0;opacity: 0;filter:alpha(opacity=0);}
+#upload-form .file-input{position:absolute;top:-7px;left:-12px;width: 80px;height: 34px;filter:alpha(opacity=0);cursor: pointer;}
+.lyask-upload-box #upload-form .file-input{position:absolute;top:-7px;left:-12px;width: 80px;height: 34px;filter:alpha(opacity=0);}
+.lyask-upload-box .upload-list{width:694px;height: auto;overflow: hidden;}
+.lyask-upload-box .upload-list li{position:relative;float: left;width: 216px;height: 115px;padding:15px 15px 15px 110px;margin:15px 15px 0 0;background: #f5faff;border:1px solid #dcedfa;border-radius: 5px;}
+.lyask-upload-box .upload-list li .img{position:absolute;left:10px;top:10px;width: 90px;height: 90px;background: url('img/ajax-loader.gif') center center no-repeat;text-align: center;line-height: 90px;border-radius: 5px;}
+.lyask-upload-box .upload-list li .img.error, .lyask-upload-box .upload-list li .img.file{background: none;}
+.lyask-upload-box .upload-list li .img .icon-file{font-size: 48px;vertical-align: middle;color: #aac6e1;}
+.lyask-upload-box .upload-list li .img .icon-delete{font-size: 24px;color: #ff6464;vertical-align: middle;}
+.lyask-upload-box .upload-list li .content p{margin:0;line-height: 16px;}
+.lyask-upload-box .upload-list li .title{height: 34px;overflow:hidden;word-wrap:break-word;font-size:12px;color: #666;}
+.lyask-upload-box .upload-list li .size{margin-bottom:10px !important;font-size: 12px;color: #999;}
+.lyask-upload-box .upload-list li .meta a{margin-right:5px;font-size: 13px;}
+.lyask-upload-box .upload-list li.error{border-color: #ff6464;}
+.lyask-upload-box .upload-list li.error .size{color: #ff6464;}
+
+/* 问题详情页 */
+.lyask-notopic-sort{margin:20px 20px 0;padding:5px 10px;background-color: #fafafa;font-size: 12px;}
+.lyask-notopic-sort .topic-tag .text{margin:0 3px;}
+.lyask-topic-bar .lyask-notopic-sort{margin:0;}
+.lyask-question-detail{margin-bottom:30px;padding:10px 20px 0;}
+.lyask-question-detail > .mod-head{position: relative;padding-bottom:14px;border-bottom:1px solid #f5f5f5;}
+.lyask-question-detail .mod-head h1{max-width:500px;margin:0;font-size:20px;line-height: 30px;}
+.lyask-question-detail .mod-head .operate{position: absolute;right: 0;top: 0;}
+.lyask-question-detail .mod-head .operate > a{margin:0 5px 0 0;}
+.lyask-question-detail .mod-head .operate .btn-group .btn{width:46px;height:34px;line-height: 20px;padding:0;font-size: 26px;box-shadow: none;}
+.lyask-question-detail .mod-head .operate .btn-group.open .btn{background-color:#499ef3;color: #fff;}
+.lyask-question-detail .mod-head .operate .btn-group .icon-cog{margin-right: 0px;color: #666;}
+.lyask-question-detail .mod-head .operate .lyask-dropdown {min-width: 120px;}
+.lyask-question-detail .mod-head .operate .dropdown-menu ul li{padding:5px 10px;}
+.lyask-question-detail .mod-head .operate .dropdown-menu ul li a{display: block;}
+.lyask-question-detail .mod-body:hover .more-operate{display: block;}
+.lyask-question-detail .content{padding:10px 0;}
+.lyask-question-detail .meta{min-height: 20px;line-height: 20px;font-size: 12px;}
+.lyask-question-detail .meta > span, .lyask-question-detail .meta > a, .lyask-question-detail .meta > div{margin-right:15px;}
+.lyask-question-detail .meta .badge-info{margin:0;}
+.lyask-question-detail .more-operate{position:relative;margin:0 !important;}
+.lyask-question-detail .more-operate > a, .lyask-question-detail .more-operate em{margin-left: 15px;}
+.lyask-question-detail .lyask-edit-topic-box .lyask-dropdown{width: 418px;}
+
+/* 回复编辑器 */
+.lyask-replay-box{margin:20px 0 0;padding:0 20px;}
+.lyask-replay-box form > .mod-head{position: relative;height:auto;overflow:hidden;min-height:32px;margin-bottom:10px;padding-left: 40px;line-height: 28px;}
+.lyask-replay-box .mod-head > .lyask-user-name{position: absolute;left: 0;top:0;}
+.lyask-replay-box .mod-head > .lyask-user-name img{width: 32px;height: 32px;}
+.lyask-replay-box .mod-head p{height: auto;overflow: hidden;margin:3px 0 0;}
+.lyask-replay-box .mod-head p label{margin-left: 10px;}
+.lyask-replay-box .mod-head p input{margin-right: 5px;position: relative;top:-1px;top:1px\0;}
+.lyask-replay-box .mod-body{position:relative;}
+.lyask-article-replay-box{position:relative;margin:20px 20px 0 0;padding-left: 60px;}
+.lyask-article-replay-box .mod-head{position:absolute;left:20px;}
+.lyask-article-replay-box .mod-head img{width: 32px;height: 32px;}
+.lyask-article-replay-box .mod-body{margin-bottom:10px;padding:0 !important;}
+.lyask-article-replay-box .mod-footer{padding:0 !important;}
+.lyask-article-replay-box .mod-footer input{width: 80px;}
+
+/* 新编辑器 */
+.cke_editable a{color: #666 !important;}
+.cke_chrome{padding:0 !important;}
+.cke_top{position: relative !important;}
+.cke_chrome, .cke_toolgroup{background: none !important;border:none !important;}
+.cke_contents{border:none !important;border-radius: 0px;}
+.cke_top{padding-top:0 !important;background-color:#f5f5f5 !important;border-bottom: 1px solid #e6e6e6 !important;}
+a.cke_button{padding:8px 10px !important;cursor: pointer !important;border-radius: 0px !important;}
+.cke_button_on, a.cke_button_disabled:active, a.cke_button_disabled:focus, a.cke_button_disabled:hover, a.cke_button_off:active, a.cke_button_off:focus, a.cke_button_off:hover{background-color: #ebebeb !important;}
+.cke_toolgroup{margin:0 !important;padding:0 !important;}
+.cke_editor_editor_reply_dialog{position: relative;z-index: 9999;}
+.cke_combo__fontsize{margin:3px 5px 0 5px !important;}
+.cke_combo__fontsize a{margin: 0 !important;}
+.cke_combopanel{height: 78px !important;}
+.cke_button_icon{margin:3px !important;font-family: 'icomoon' !important;speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;background-image: none !important;font-size: 16px !important;background: none !important;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+.cke_button__bold_icon:before {content: "\e63a";}
+.cke_button__italic_icon:before {content: "\e63b";}
+.cke_button__strike_icon:before {content: "\e65e";}
+.cke_button__underline_icon:before {content: "\e63c";}
+.cke_button__numberedlist_icon:before {content: "\e63e";}
+.cke_button__bulletedlist_icon:before {content: "\e63d";}
+.cke_button__blockquote_icon:before {content: "\e641";}
+.cke_button__pbckcode_icon:before {content: "\e642";}
+.cke_button__wecenterimage_icon:before {content: "\e63f";}
+.cke_button__wecenterimage_icon{margin-top: 4px\0 !important;}
+.cke_button__wecenterlink_icon:before {content: "\e61f";}
+.cke_button__wecentervideo_icon:before {content: "\e640";}
+.cke_button__wecenterattach_icon:before {content: "\e631";}
+.cke_button__wecenterattach_icon{margin-top: 2px !important;}
+.cke_button__source_icon:before {content: "\e609";}
+.cke_button__maximize{position: absolute !important;right: 0;top: 0;}
+.cke_button__maximize_icon:before {content: "\e65d";}
+.cke_button__removeformat_icon:before {content: "\e65f";}
+
+.lyask-editor-box .mod-head{border:1px solid #e6e6e6;border-radius: 4px;}
+.lyask-editor-box textarea{border: none;}
+.lyask-editor-box .mod-body{position:relative;margin-top: 15px;line-height: 28px;}
+.lyask-editor-box .mod-body #question_detail_message{line-height: 34px;}
+.lyask-editor-box .mod-body #answer_content_message{margin-right: 10px;}
+.lyask-editor-box .lyask-upload-tips, .lyask-replay-box .lyask-upload-tips{position: absolute;left: 100px;top: 3px;}
+.markitup-box{position:relative;z-index:1;line-height: 1.6;word-wrap: break-word !important;}
+.markitup-box .lyask-user-name{font-size: 14px;}
+.markitup-box p{padding: 5px;}
+.markitup-box em{font-style: italic;}
+.markitup-box img{max-width: 540px;margin:10px 0;}
+.markitup-box pre {margin:10px 0;padding: 16px;line-height: 20px;overflow: hidden; border: none; border-radius: 3px; background-color: #f7f7f7;font-size: 14px;font-family: monospace; white-space: pre-wrap;}
+blockquote {margin: 0 40px;padding: 0 15px;font-size: 14px;color: #777;border-left: 4px solid #ddd;}
+.markitup-box pre br, .markitup-box ul + br, .markitup-box ol + br {display: none;}
+.markitup-box b, .markitup-box strong {color: #333;}
+.markitup-box ol, .markitup-box ul, .markitup-box dl{padding: 0 40px;}
+.markitup-box ol{list-style: decimal;}
+.markitup-box ul{list-style: disc;}
+.markitup-box .lyask-upload-img-list img{margin: 10px 0;}
+
+/* 问题修改日志 */
+.lyask-question-edit .mod-head h2{font-size: 20px;}
+.lyask-question-edit .mod-head h2 span{font-size: 14px;}
+.lyask-question-edit .mod-body{padding:0 20px;}
+.lyask-question-edit .mod-body li{padding:15px 0;border-bottom: 1px dotted #e2e2e2;}
+.lyask-question-edit .mod-body .operate .btn{margin-left: 10px;}
+.lyask-question-edit ins{background: #edfce5;text-decoration: none;word-wrap:break-word;}
+.lyask-question-edit del{background: #f7d3d3;}
+/* 评论box */
+.lyask-question-detail .lyask-comment-box, .lyask-question-detail .lyask-invite-box, .lyask-question-detail .lyask-question-related-box{margin:10px 0;}
+.lyask-comment-box{position:relative;margin:10px auto;border:1px solid #e6e6e6;background-color: #fff;}
+.lyask-comment-box .lyask-comment-list{padding:15px 15px 0;border-bottom: 1px solid #f2f2f2;}
+.lyask-comment-box .lyask-comment-list .lyask-padding10{padding-top: 0;}
+.lyask-comment-box .lyask-comment-list a{color: #3399ff;}
+.lyask-comment-box form{padding:15px;background-color: #fafafa;}
+.lyask-comment-box textarea{height: 32px;margin:0;}
+.lyask-comment-box .lyask-comment-box-btn{display:none;height:auto;overflow:hidden;margin-top:10px;}
+.lyask-comment-box .lyask-comment-box-btn .btn{margin-left:10px;}
+.lyask-comment-box .lyask-comment-box-btn .btn.disbaled{pointer-events:none;}
+.lyask-comment-list li{position: relative;padding:15px 0 15px 42px;border-top:1px solid #f5f5f5;line-height: 22px;}
+.lyask-comment-list li:first-child{padding-top: 0;}
+.lyask-comment-list li > .lyask-user-name{position: absolute;left: 0;}
+.lyask-comment-list li > .lyask-user-name img{width: 32px;height: 32px;}
+.lyask-comment-list li p{margin:0;word-break:break-all;}
+
+/* 邀请box */
+.lyask-invite-box{position:relative;width:100%;margin:10px auto;border:1px solid #e6e6e6;border-radius: 4px;}
+.lyask-invite-box .mod-head{padding:15px;background-color: #fafafa;}
+.lyask-invite-box .mod-head .search-box{position:relative;margin:0 10px 0 0;}
+.lyask-invite-box .mod-head .invite-list{max-width:435px;height:32px;line-height: 32px;overflow:hidden;margin:0;font-size: 12px;}
+.lyask-invite-box .mod-head .invite-list img{width:24px;height: 24px;border-radius: 4px;}
+.lyask-invite-box .mod-head input{width: 240px;}
+.lyask-invite-box .mod-head .icon-search{position: absolute;right: 10px;top: 10px;}
+.lyask-invite-box .mod-body{padding:0 14px;margin-bottom:-1px;border-top: 1px solid #f2f2f2;}
+.lyask-invite-box .mod-body ul{max-height: 185px;overflow: hidden;}
+.lyask-invite-box .mod-body ul li{display:none;position:relative;float: left;width:50%;padding:14px 10px;border-bottom: 1px solid #e6e6e6;}
+.lyask-invite-box .mod-body ul li .main{padding-left: 40px;}
+.lyask-invite-box .mod-body ul li p{margin:3px 0 0 0;font-size: 13px;color: #999;}
+.lyask-invite-box .mod-body ul li p .topic-tag a{float: none;}
+.lyask-invite-box .mod-body ul li img{width: 30px;height: 30px;border-radius: 4px;}
+.lyask-invite-box .mod-body .btn-normal{width:60px;padding:2px 0;font-size: 12px;}
+.lyask-invite-box .mod-footer{height:34px;line-height:34px;margin-top:10px;padding:0 14px;}
+.lyask-invite-box .mod-footer a{display: inline-block;width: 28px;height: 24px;line-height:22px;background-color: #66b7ff;text-align: center;border-radius: 4px;color: #fff;}
+.lyask-invite-box .mod-footer .next{margin-left: 10px;}
+.lyask-invite-box .mod-footer a.active{background-color:#e6e6e6;cursor: default;}
+/* 附件列表  */
+.lyask-upload-file-list{margin-bottom: 10px;}
+.lyask-upload-file-list i{vertical-align: -2px;}
+/* 相关链接 */
+.lyask-question-related-box{position:relative;padding:10px;background-color:#f8f8f8;border:1px solid #e2e2e2;border-radius: 5px;}
+.lyask-question-related-box .mod-head{border: none;}
+.lyask-question-related-box .mod-head h2{margin:0;color: #666;}
+.lyask-question-related-box .mod-body input{width:90%;margin-right: 10px;}
+.lyask-question-related-list{margin:0 0 30px;}
+.lyask-question-related-list .mod-head{border:none;}
+.lyask-question-related-list .mod-head h3, .lyask-upload-file-list .mod-head h3{margin:0;color: #666;}
+.lyask-question-related-list .mod-body ul li a:hover{text-decoration: underline;}
+.lyask-question-related-list .mod-body ul li .text-color-999{font-size: 14px;}
+/* 问题列表公共模块 .lyask-common-list */
+.lyask-common-list{width:100%;height:auto;}
+.lyask-common-list > div + div{border-top:1px solid #f5f5f5;}
+.lyask-common-list .lyask-item{position:relative;z-index:0;;min-height:77px;padding:14px 0 14px 50px;}
+.lyask-common-list .lyask-item .icon-v, .lyask-feed-list .lyask-item .icon-v{position:absolute;left:-5px;top:-5px;width:18px;height:18px;background-color: #a3d700;color: #fff;text-align: center;line-height: 18px;font-size: 14px;border-radius: 4px;}
+.lyask-common-list .lyask-item .icon-v.i-ve, .lyask-feed-list .lyask-item .icon-v.i-ve{background-color: #ffca3f;color: #fff;}
+.lyask-common-list .lyask-item.article .markitup-box{max-height: 130px;overflow: hidden;}
+.lyask-common-list .lyask-item.article .lyask-upload-img-list{position: absolute;right: 10px;top: 0;width: 200px;}
+.lyask-common-list .lyask-item.article .lyask-upload-img-list img{max-width: 200px;}
+.lyask-common-list .lyask-item.article .more{font-size: 12px;}
+.lyask-common-list .lyask-item.article .inline-img{max-width:160px;max-height:80px;margin:5px 10px 0 0;}
+.lyask-common-list .lyask-item .lyask-question-content .lyask-user-name{color: #666;}
+/* 问题列表回复统计 */
+.lyask-common-list .lyask-question-content h4{margin:0 0 3px;padding-right:20px;font-size:14px;word-wrap:break-word;}
+.lyask-common-list .lyask-question-content > span, .lyask-common-list .lyask-question-content p span{font-size: 12px;font-weight: normal;color: #999;}
+.lyask-common-list .lyask-question-content .lyask-user-name img{max-width: 24px;}
+.lyask-common-list .lyask-question-content p{margin:0;color: #999;}
+.lyask-common-list .lyask-question-content .contribute{position:relative;margin-left: 20px;}
+.lyask-common-list .lyask-question-content .contribute span{position: absolute;right:0;top:-20px;}
+.lyask-common-list .lyask-question-content .contribute img{border-radius: 12px;}
+.lyask-common-list .lyask-question-content .lyask-topic-name{display:inline-block;margin:0 2px 3px;}
+/* 问题列表用户头像 */
+.lyask-common-list .lyask-item > .lyask-user-name{position:absolute;left:0;top:18px;}
+.lyask-common-list .lyask-question-content .lyask-user-name img{width: 24px;height: 24px;}
+/* 问题列表问题标签 */
+.lyask-question-tags{display: inline-block;padding:0 5px;height:20px;line-height:20px;background-color:#f2f2f2;font-size: 12px;color: #999;}
+.lyask-question-tags:hover{background-color:#ddd;color: #fff;}
+
+/* 文章广场 */
+.lyask-article-list .lyask-item{position: relative;margin-top:20px;padding:0 20px 20px 70px;border-bottom:1px solid #e1e1e1;}
+.lyask-article-list .lyask-item .lyask-topic-bar{margin:0;}
+.lyask-article-list .lyask-item .lyask-user-name{position: absolute;left: 20px;top: 0;}
+.lyask-article-list .lyask-item h2 a{color: #333;font-size: 20px;line-height: 26px;}
+.lyask-article-list .lyask-item h2 a:hover, .lyask-article-list .lyask-item .lyask-mod-footer span a:hover{color: #4d8bcd;}
+.lyask-article-list .lyask-item .mod-body{margin:10px 0;line-height: 24px;}
+.lyask-article-list .lyask-item .mod-body img{max-width:100%;margin-right: 10px;}
+.lyask-article-list .lyask-item .mod-body .content-wrap{overflow: hidden;}
+.lyask-article-list .lyask-item .mod-body .content-wrap .content .hide-content{max-height: 440px;overflow: hidden;}
+.lyask-article-list .lyask-item .mod-body .content-wrap .markitup-box img{max-width: 100% !important;}
+.lyask-article-list .lyask-item .mod-footer{position: relative;}
+.lyask-article-list .lyask-item .mod-footer .more-operate{color: #999;font-size: 12px;}
+.lyask-article-list .lyask-item .mod-footer span > a{margin-left:15px;}
+.lyask-article-list .lyask-item .mod-footer span a i{vertical-align: -2px;}
+.lyask-article-list .lyask-item .mod-footer span a:hover{color: #66b7ff;}
+.lyask-article-list .lyask-item .more{font-size: 12px;}
+
+/* 文章详情页 */
+.lyask-article-content .lyask-question-detail h1{max-width: 600px;}
+.lyask-article-content .lyask-question-detail .mod-body{margin-bottom: 20px;}
+.lyask-article-content .lyask-question-detail .mod-body > a{line-height: 38px;margin:0 0 0 15px !important;}
+.lyask-article-vote{border-radius: 4px;background-color: #f5f5f5;}
+.lyask-article-vote a{display:inline-block;float:left;height:38px;line-height:38px;padding:0 13px 0 15px;color: #9d9e9f;outline: none;}
+.lyask-article-vote a + a{border-left: 1px solid #e6e6e6;}
+.lyask-article-vote a:hover, .lyask-article-vote a.active{background-color: #499ef3;color: #fff;}
+.lyask-article-vote a.agree{border-radius: 4px 0 0 4px;}
+.lyask-article-vote a.disagree{border-radius: 0 4px 4px 0;}
+.lyask-article-vote a:hover i, .lyask-article-vote a.active i{color: #fff !important;}
+.lyask-article-vote i{margin:0;}
+.lyask-article-vote .agree i{vertical-align: 0;}
+.lyask-article-vote .agree b{margin-left: 5px;font-size: 16px;font-weight: 500;}
+.lyask-article-vote.disabled .agree{background-color: #fff !important;border:1px solid #f5f5f5;box-shadow:none;border-radius: 4px;text-decoration: none;}
+.lyask-article-vote.disabled .agree:hover b, .lyask-article-vote.disabled .agree:hover i{color: #999 !important;}
+.lyask-article-content .lyask-question-detail .meta{line-height: 38px;}
+.lyask-article-content .lyask-question-detail .mod-footer a img{width: 25px;height: 25px;margin-bottom:10px;border-radius: 15px;}
+.lyask-article-content .lyask-question-detail .mod-footer a.more-voters{display: inline-block;width: 25px;height: 25px;line-height:18px;border-radius: 15px;background-color: #f1f2f3;text-align: center;vertical-align: middle;color: #cdcecf;}
+.lyask-article-content .lyask-feed-list .lyask-user-img img{width: 32px;height: 32px;}
+.lyask-article-content .lyask-feed-list .meta a{margin-right: 15px;}
+.lyask-article-content .lyask-feed-list .mod-footer{margin:0;}
+.lyask-article-content .lyask-feed-list .lyask-article-replay-box{margin:10px 0 0;padding:0;}
+
+/* 发起问题页面 */
+.lyask-mod-publish{padding:0 20px 20px;}
+.lyask-mod-publish h3{margin-top:30px;}
+.lyask-publish-title{position: relative;}
+.lyask-publish-title.active input{width: 100%;}
+.lyask-publish-title input{width:78%;}
+.lyask-publish-title .dropdown{position: absolute;right: 0;top: 0;width: 20%;}
+.lyask-publish-title .dropdown.open .lyask-dropdown{display: block;}
+.lyask-publish-title .dropdown .dropdown-toggle{height:34px;line-height:34px;border: 1px solid #ccc;cursor: pointer;border-radius: 4px;}
+.lyask-publish-title .dropdown .dropdown-toggle span{display: inline-block;float: left;width: 80%;height:32px;padding-left: 10px;color: #777;line-height: 32px;}
+.lyask-publish-title .dropdown .dropdown-toggle a{display:inline-block;width:20%;height:32px;text-align: center;}
+.lyask-publish-title .dropdown i{margin:0;color: #ccc;}
+.lyask-mod-publish .lyask-topic-bar{margin:0;}
+.lyask-mod-publish > .mod-footer{margin-top:20px;text-align: right;}
+.lyask-mod-publish .mod-footer .lyask-anonymity{margin:0 20px;}
+.lyask-mod-publish .mod-footer .lyask-anonymity input{margin:4px 3px 0 0;}
+.lyask-auth-img{margin-bottom: 15px;}
+.lyask-auth-img input{width:76px;margin: 0 0 0 5px;}
+.lyask-auth-img img{height: 30px;}
+.lyask-mod-publish .lyask-edit-topic-box .lyask-dropdown-list{max-height: 252px;}
+/* 发起已有问题推荐 */
+.lyask-publish-suggest-question{margin-bottom: 10px;}
+.lyask-publish-suggest-question p{margin:0;padding:5px 10px;border-bottom: 1px solid #dcdcdc;}
+.lyask-publish-suggest-question ul li a{display:block;padding:5px 10px;border-bottom: 1px solid #dcdcdc;font-size: 12px;}
+.lyask-publish-suggest-question ul li a:hover{background-color: #f5faff;}
+
+/* 话题分类 */
+.lyask-topic-category{padding:0 20px;border-bottom: 1px solid #e6e6e6;}
+.lyask-topic-category ul{margin-top: 14px;}
+.lyask-topic-category ul li{float: left;margin:0 14px 14px 0;}
+.lyask-topic-category ul li a{display: block;padding:3px 5px;border: 1px solid #e6e6e6;border-radius: 4px;color: #666;}
+.lyask-topic-category ul li a:hover, .lyask-topic-category ul li a.active{background-color: #99cfff;color: #fff;border-color: #99cfff;}
+
+/* 热门话题列表 */
+.lyask-topic-list .mod-head{margin-bottom: 20px;}
+.lyask-topic-list .mod-head h2{font-size: 20px;}
+.lyask-topic-list .mod-body, .lyask-topic-list .mod-footer{padding: 0 20px;}
+.lyask-topic-list .lyask-item{position:relative;float:left;width:50%;min-height:90px;padding:20px 5px 20px 65px;border-bottom:1px solid #f5f5f5;}
+.lyask-topic-list .lyask-item .img{position: absolute;left: 5px;top: 20px;}
+.lyask-topic-list .lyask-item p + p{margin:5px 0 0;}
+.lyask-topic-list .lyask-item:last-child{border-bottom: 1px solid #f5f5f5;}
+.lyask-topic-list .lyask-notopic-sort{margin-top: 14px;}
+
+/* 话题侧边栏导航 */
+.lyask-mod.topic-nav{border-bottom: none !important;}
+.lyask-mod.topic-nav ul li a{display:block;padding:5px 0 5px 10px;color: #666;font-size: 14px;}
+.lyask-mod.topic-nav ul li a:hover, .lyask-mod.topic-nav ul li a.active{background: #2b77a8;color: #fff;}
+.lyask-mod.topic-nav ul li a:hover i, .lyask-mod.topic-nav ul li a.active i{color: #fff;}
+
+/* 话题详细页 */
+.lyask-topic-detail-title{min-height: 90px;padding:20px;}
+.lyask-topic-detail-title .mod-body{position: relative;padding:0 0 0 80px;}
+.lyask-topic-detail-title .mod-body img{position: absolute;left: 0;top: 0;}
+.lyask-topic-detail-title h2{margin:0;font-size:20px;}
+.lyask-topic-detail-title .lyask-topic-operate{position:absolute;right:0;top:0;text-align: right;}
+.lyask-topic-list-mod .lyask-nav-tabs .lyask-search-bar{position: absolute;right: 20px;bottom: 5px;width:240px;}
+.lyask-topic-list-mod .lyask-nav-tabs .lyask-search-bar input{height: 32px;padding-right: 30px !important;}
+.lyask-topic-list-mod .lyask-nav-tabs .lyask-search-bar .icon-search{position: absolute;right: 8px;top: 8px;font-size: 16px;}
+.lyask-topic-list-mod .lyask-nav-tabs .lyask-search-bar .lyask-dropdown-list{max-height: 336px;overflow-y:scroll;}
+.lyask-topic-list-mod .tab-pane .lyask-mod > .mod-body{padding:0 20px;}
+.lyask-topic-detail-about{padding:20px;}
+.lyask-topic-list-mod .markitup-box br {display: none;}
+/* 话题编辑页面 */
+.lyask-mod-topic-edit-box{padding:20px;}
+.lyask-mod-topic-edit-box > .mod-head{position: relative;margin:0 0 30px 0;padding:0 0 0 60px;}
+.lyask-mod-topic-edit-box .lyask-topic-bar{margin:0 0 0 10px;}
+.lyask-mod-topic-edit-box .mod-head .file-input{width: 50px;height: 20px;left: 0 !important;top: 30px !important;}
+.lyask-mod-topic-edit-box .mod-head .submit{display: none;}
+.lyask-mod-topic-edit-box .mod-head h3{font-size: 20px;line-height: 20px;}
+.lyask-mod-topic-edit-box .mod-head .img{position: absolute;left: 0;top: 0;width:50px;height:50px;text-align: center;}
+.lyask-mod-topic-edit-box .mod-head .img .mask{position:absolute;bottom:0;display: block;width: 50px;height: 20px;background: #000;opacity: 0.7;filter:alpha(opacity=70);border-radius: 0 0 4px 4px;}
+.lyask-mod-topic-edit-box .mod-head .img b{position: absolute;bottom: 0;display: block;width:50px;text-align: center;color: #fff;font-weight: normal;font-size: 12px;}
+.lyask-mod-topic-edit-box .mod-head .img .icon-edit{position: relative;top: 1px;margin:0;}
+.lyask-mod-topic-edit-box .mod-head .img form{z-index:1;}
+.lyask-mod-topic-edit-box .mod-head .img form .file-input{left: 25px !important;top: 20px !important;width: 20px;height: 20px;}
+.lyask-mod-topic-edit-box .mod-footer{position:relative;height:auto;overflow:hidden;margin-top:20px;}
+.lyask-mod.new-topic .lyask-topic-bar{margin:0;}
+/* 话题管理页面 */
+.lyask-mod-topic-manage{margin-top: 20px;}
+.lyask-mod-topic-manage dl{margin-bottom:40px;}
+.lyask-mod-topic-manage dl dt, .lyask-mod-topic-manage dl dd{line-height: 30px;}
+.lyask-mod-topic-manage dl dt{width: 110px;font-weight: normal;}
+.lyask-mod-topic-manage dl dd{width: 570px;margin-left: 120px;}
+.lyask-mod-topic-manage dl dd input[type="text"]{width:470px;}
+.lyask-mod-topic-manage .lyask-topic-bar{margin:5px 0 0 0;}
+.lyask-mod-topic-manage dl:first-child dd input{width: 183px;}
+.lyask-mod-topic-manage dl .topic-list{width: 470px;}
+.lyask-mod-topic-manage dl .topic-list label{float: left;margin:4px 14px 6px 0;line-height: 22px;}
+.lyask-mod-topic-manage dl .lyask-publish-title .dropdown{position: relative;left: 0;width: 40%;}
+.lyask-mod-topic-manage dl .lyask-publish-title .dropdown .dropdown-toggle{border-radius: 5px;}
+.lyask-mod-topic-manage dl .lyask-publish-title #question_contents{width: 80%;}
+.lyask-mod-topic-manage dl .lyask-publish-title #lcw-topic-tags-select{width:78%;height:30px;line-height:30px;margin:0;padding-left:10px;border:none;}
+
+/* 收藏页面 */
+.mod-favorite .lyask-topic-name span{background-color: #ccc;}
+.mod-favorite .lyask-tag-list{padding:10px 20px 0;border-bottom: 1px solid #e6e6e6;}
+.mod-favorite .lyask-tag-list .lyask-topic-bar{margin:0;}
+.mod-favorite .lyask-tag-list .topic-tag .text, .mod-favorite .lyask-feed-list .lyask-topic-bar .topic-tag .text{background-color: #ccc;}
+.mod-favorite .lyask-feed-list .lyask-topic-bar .topic-tag .close{background-color:#b3b3b3}
+.mod-favorite .lyask-feed-list .lyask-topic-bar{margin:0;}
+/* 私信 */
+.lyask-inbox .mod-footer{margin:0 20px;}
+.lyask-inbox-read h2 a{font-size: 12px;font-weight: normal;}
+.lyask-inbox-read .mod-body{position: relative;padding:15px 60px;}
+.lyask-inbox-read .mod-body .lyask-user-img{position: absolute;right: 20px;}
+.lyask-inbox-read .mod-body .lyask-user-img img{width: 32px;height: 32px;}
+.lyask-inbox-read .mod-body textarea{min-height: 100px;}
+.lyask-inbox-read .mod-body p{margin-top:10px;text-align: right;}
+.lyask-inbox-read .mod-footer{margin:0 0 20px;}
+.lyask-inbox-read .mod-footer li{position: relative;padding:15px 60px;}
+.lyask-inbox-read .mod-footer li .lyask-item{position:relative;padding:12px 15px;background: #fafafa;border:1px solid #e6e6e6;}
+.lyask-inbox-read .mod-footer li .lyask-item p:first-child{margin-bottom: 10px;}
+.lyask-inbox-read .mod-footer li .lyask-item p {word-wrap: break-word;}
+.lyask-inbox-read .mod-footer li .i-private-replay-triangle{position: absolute;right: -8px;top: 10px;border-left:1px solid #fafafa;}
+.lyask-inbox-read .mod-footer li .lyask-user-img{position:absolute;top:15px;right: 18px;}
+.lyask-inbox-read .mod-footer li .lyask-user-img img{width: 32px;height: 32px;}
+.lyask-inbox-read .mod-footer li.active .lyask-item{background: #f5fafe;border:1px solid #dcecf9;}
+.lyask-inbox-read .mod-footer li.active .lyask-user-img{left:18px;top:15px;}
+.lyask-inbox-read .mod-footer li.active .i-private-replay-triangle{background: url('img/icon-angle-left.png') no-repeat;left:-8px;border-left:none;border-right: 1px solid #f5fafe;}
+
+/* 通知 */
+.lyask-notifications-list{padding:0 20px;}
+.lyask-notifications-list ul li{position:relative;padding: 15px 0;line-height: 20px;border-top: 1px dotted #e2e2e2;}
+.lyask-notifications-list ul li:first-child{border-top: none;}
+.lyask-notifications-list ul li.active{font-weight: bold;color: #333;}
+.lyask-notifications-list ul li.active span{font-weight: normal;}
+.lyask-notifications-list ul li.active .icon-tips{display: block;}
+.lyask-notifications-list ul li p{margin:0;}
+.lyask-notifications-list ul li p.moreContent{margin:0 0 5px;}
+.lyask-notifications-list ul li .read, .lyask-notifications-list ul li .more{font-size: 12px;color: #999;font-weight: normal;}
+.lyask-notifications-list ul li .read{display:none;}
+.lyask-notifications-list ul li:hover .read{display: inline-block;}
+.lyask-notifications-list ul li .icon-tips{display:none;position: absolute;right: 0;top: 15px;}
+
+/* 邀请好友加入社区 */
+.lyask-mod-invite-friend .content{width: 400px;margin:0 auto;padding:40px 0;}
+.lyask-mod-invite-friend .content p{line-height:26px;margin-top:10px;text-align: right;}
+.lyask-mod-invite-friend .content p .btn{margin-left:10px;}
+.lyask-invite-list .mod-body{padding:0 20px;}
+.lyask-invite-list ul li{position: relative;padding:15px 0 25px 40px;border-bottom: 1px dotted #e2e2e2;}
+.lyask-invite-list ul li .img{position:absolute;left:0;top: 15px;}
+.lyask-invite-list ul li .img img{width: 32px;height: 32px;}
+.lyask-invite-list ul li p input{width: 386px;height: 30px;margin:10px 0;}
+
+/* 用户列表页 */
+.lyask-people-list{padding:0 20px;}
+.lyask-people-list .lyask-item{position: relative;padding:14px 0 14px 100px;border-top: 1px solid #f5f5f5;}
+.lyask-people-list .lyask-item:first-child{border-top: none;}
+.lyask-people-list .lyask-item .lyask-user-sort-count{position: absolute;left: 0;top: 15px;width:30px;color: #fff;text-align: center;}
+.lyask-people-list .lyask-item .lyask-user-sort-count i{position:absolute;left:0;top:0;color: #999;font-size: 30px;}
+.lyask-people-list .lyask-item .lyask-user-sort-count em{position: relative;z-index: 1;font-size: 16px;}
+.lyask-people-list .lyask-item .lyask-user-sort-count.active i{color: #ffc000;}
+.lyask-people-list .lyask-item .lyask-user-img{position: absolute;left: 40px;top:15px;}
+.lyask-people-list .lyask-item .operate{position: absolute;right: 0;top: 15px;text-align: center;}
+.lyask-people-list .lyask-item .operate .btn{display: block;margin-bottom: 5px;}
+.lyask-people-list .lyask-item .lyask-user-name{font-size: 14px;}
+.lyask-people-list .lyask-item p{margin:0;}
+.lyask-people-list .lyask-item .signature{max-width: 450px;}
+.lyask-people-list .lyask-item .meta{margin:3px 0;}
+.lyask-people-list .lyask-item .meta span{margin-right: 10px;}
+.lyask-people-list .lyask-item .lyask-topic-bar{margin:5px 0 0;}
+.lyask-people-list .lyask-item .lyask-topic-bar .topic-tag{margin:0 0 10px 10px;}
+
+/* 专题页面 */
+.lyask-feature-title{width: 930px;margin-bottom: 20px;}
+.lyask-feature-title .img{width:960px;height:240px;}
+.lyask-feature-title h2{padding-bottom: 10px;border-bottom: 1px solid #e2e2e2;font-size: 20px;}
+.lyask-feature-content h2{font-size: 20px;}
+.lyask-feature-content .lyask-common-list{padding:0 20px;}
+.lyask-feature-content .lyask-mod{margin-bottom: 30px;}
+
+/* 底部版权 */
+.lyask-footer{padding:30px 0 10px;font-size: 12px;text-align: center;}
+
+/* 搜索结果页面 */
+.lyask-mod-search-result .mod-body{padding:0 20px;}
+.lyask-mod-search-result .lyask-item{position: relative;padding:14px 106px 14px 65px;border-bottom: 1px solid #f5f5f5;}
+.lyask-mod-search-result .lyask-item.active{padding:10px 0;}
+.lyask-mod-search-result .lyask-item .lyask-user-img, .lyask-mod-search-result .lyask-item .lyask-topic-img{position: absolute;left: 0;top: 15px;}
+.lyask-mod-search-result .lyask-item .follow{position: absolute;right: 0;top: 10px;}
+.lyask-mod-search-result .lyask-item i{position: relative;top: 2px;}
+.lyask-mod-search-result .lyask-item p:last-child{margin:0;}
+.lyask-mod-search-result .lyask-item p > span{margin-right: 10px;}
+.lyask-mod-search-result .lyask-item .icon-bestbg{margin-right: 5px;font-size: 15px;color: #69b5ff;}
+.lyask-mod-search-result .text-color-666{font-size: 12px;}
+.lyask-mod-search-result .lyask-load-more-content{margin:20px 0 0;}
+
+/* 小卡片提示box */
+.lyask-card-tips{display:none;position:absolute;z-index:9999;width: 290px;background: #fff;border:1px solid #ccc;box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);}
+.lyask-card-tips .mod-head{position: relative;min-height:70px;padding: 10px 10px 0 70px;}
+.lyask-card-tips .mod-head p{margin: 0;}
+.lyask-card-tips .mod-head p span:first-child {margin-right: 15px;}
+.lyask-card-tips .mod-head .img{position: absolute;left: 10px;top: 10px;}
+.lyask-card-tips .mod-head .desc{max-height: 65px;overflow: hidden;margin-bottom: 10px;}
+.lyask-card-tips .mod-body{padding:0 10px;}
+.lyask-card-tips .mod-footer{padding:10px;background-color: #fafafa;border-top: 1px solid #e6e6e6;border-radius: 0 0 4px 4px;line-height: 34px;}
+.lyask-card-tips .mod-footer i{font-size: 16px;vertical-align: -2px;}
+.lyask-card-tips .icon-v{width:16px;height:16px;margin:2px 0 0 3px;background:url('img/icon-v.png') no-repeat \0;font-size: 0px\0;}
+.lyask-card-tips .icon-v.i-ve{background:url('img/icon-v-hover.png') no-repeat \0;}
+
+/* @用户下拉 */
+.content_cursor{position: absolute;z-index:-1;max-width:600px;font-size: 14px;font-family: "Helvetica Neue",Helvetica,Arial,'微软雅黑','Microsoft YaHei',sans-serif;word-wrap: break-word;opacity: 0;}
+.lyask-invite-dropdown{position:absolute;left:0;top:0;z-index:1010;min-width:160px;background: #fff;border:1px solid #e6e6e6;border-radius:2px;}
+.lyask-invite-dropdown li{padding:5px 10px;cursor: pointer;}
+.lyask-invite-dropdown li:hover, .lyask-invite-dropdown li.active{background: #f0f0f0;}
+.lyask-invite-dropdown li img{width: 30px;height: 30px;}
+.lyask-invite-dropdown li a{display: inline-block;height: 30px;line-height: 30px;padding-left:10px;cursor: pointer;}
+.lyask-invite-dropdown p{height: 26px;line-height: 26px;padding-left: 10px;margin:0;}
+
+/* bs弹窗 */
+.modal-content{background-color: #fafafa;border-color:#999;box-shadow: 0 20px 20px rgba(0, 0, 0, 0.3);}
+.alert-box .modal-header .close{margin:0;color: #9e9e9e;}
+.alert-box .modal-footer{padding-top:0;line-height: 34px;border-top: none;}
+.alert-box .modal-footer button{margin:0 0 0 20px;}
+.modal-dialog textarea, .modal-dialog input{margin-bottom: 10px;overflow: hidden;}
+.lyask-imageVideo-box .modal-dialog, .lyask-share-box .modal-dialog, .lyask-question-redirect-box .modal-dialog, .lyask-inbox .modal-dialog, .lyask-topic-edit-note-box .modal-dialog, .lyask-favorite-box .modal-dialog{width: 470px;}
+.lyask-imageVideo-box .modal-dialog p{width:95%;margin:0 auto;color: #999;}
+.lyask-publish-box .modal-dialog{width: 540px;}
+.lyask-publish-box .lyask-publish-title{margin-bottom: 10px;}
+.lyask-recommend-box .modal-dialog {width: 524px;}
+.lyask-recommend-box ul li {position: relative;float: left;width: 47%;height: 40px;margin: 0 10px 10px 0;background: #f0f0f0;border-radius: 4px;}
+.lyask-recommend-box ul li:hover{background-color: #e6e6e6;}
+.lyask-recommend-box h4 {color: #999;font-size: 14px;}
+.lyask-recommend-box ul {width: 505px;}
+.lyask-recommend-box ul li img {position: absolute; width: 32px;height: 32px;left: 4px;top: 4px;}
+.lyask-recommend-box ul li a {display:block;padding-left: 46px;cursor: pointer; line-height: 40px;font-size: 12px; color: #333;}
+.lyask-recommend-box ul li i {display: none;position: absolute;right: 0;top: 7px;width: 24px;height: 24px;color: #499ef3;;text-align: center;line-height: 24px;border-radius: 12px;font-size: 20px;}
+.lyask-recommend-box ul li.active i {display: block;}
+/* 警告提示box */
+.lyask-tips-box .modal-dialog, .lyask-confirm-box .modal-dialog{width: 370px;}
+.lyask-tips-box .modal-body{background: url(img/warmming.png) no-repeat right 5px;}
+.lyask-tips-box .modal-body p{margin: 10px 0;}
+/* 微信绑定弹窗box */
+.lyask-alert-img-box .modal-body{background:none;text-align: center;}
+.lyask-alert-img-box .modal-body img{max-width: 328px;}
+/* 私信弹窗 */
+.lyask-inbox .lyask-dropdown{top: auto;}
+
+/* 发起box */
+.lyask-publish-box input{width:170px !important;}
+.lyask-publish-box .modal-body{padding-bottom: 0px;}
+.lyask-publish-box #qp_captcha{height: 36px;margin-left: 10px;}
+.lyask-publish-box .lyask-publish-title .dropdown{width: 100%;background-color: #fff;}
+.lyask-publish-box .lyask-publish-title .dropdown .dropdown-toggle span{width: 90%;}
+.lyask-publish-box .lyask-publish-title .dropdown .dropdown-toggle a{width: 10%;}
+.lyask-publish-box .lyask-topic-bar{margin: 0;}
+.lyask-publish-box .dropdown, .lyask-question-drodpwon, .lyask-inbox form{position: relative;}
+/* 评论修改box */
+.lyask-edit-comment-box .cke_inner{border:1px solid #ddd;border-radius: 3px 3px 0 0;}
+.lyask-edit-comment-box .modal-dialog{width:745px;}
+.lyask-edit-comment-box .modal-body textarea{margin:0;border-radius: 10px 10px 0 0;}
+.lyask-edit-comment-box .lyask-file-upload-box{padding:20px;border:1px solid #ccc;border-top: none;border-radius: 0 0 3px 3px;}
+.lyask-edit-comment-box .modal-footer label{margin-left:5px;}
+/* 回复收藏box */
+.lyask-favorite-tag-list ul{width: 452px;height: auto;overflow: hidden;}
+.lyask-favorite-tag-list ul li{position:relative;float:left;width:47%;margin:0 10px 10px 0;}
+.lyask-favorite-tag-list ul li a{display: block;padding:15px;border:1px solid #ddd;border-radius: 4px;color: #666;background-color: #fff;}
+.lyask-favorite-tag-list ul li a:hover{background-color: #f5f5f5;}
+.lyask-favorite-tag-list ul li span{display:block;}
+.lyask-favorite-tag-list ul li i{display:none;position: absolute;right: 10px;top: 14px;width:24px;height:24px;background-color: #499ef3;color: #fff;text-align: center;line-height: 24px;border-radius: 12px;font-size: 20px;}
+.lyask-favorite-tag-list ul li.active i{display: block;}
+
+/* 用户初次登陆提示box */
+.lyask-first-login .modal-body{padding:0;}
+.lyask-first-login .mod-head h2{margin:0 0 25px;padding:30px 30px 0;font-size: 20px;}
+.lyask-first-login .mod-head ul{overflow: hidden;background-color: #f0f0f0;}
+.lyask-first-login .mod-head ul.active, .lyask-first-login .mod-head ul li.active{background: #99cfff;color: #fff;}
+.lyask-first-login .mod-head ul li.active i{display: block;}
+.lyask-first-login .mod-head ul li{position:relative;float: left;width: 199px;height:48px;line-height:48px;color: #999999;text-align: center;}
+.lyask-first-login .mod-head ul li:first-child{width: 200px;}
+.lyask-first-login .mod-head ul li i{position:absolute;top:0;right:-16px;display: none;width: 0;height: 0;border-top: 26px solid transparent;border-left: 16px solid #99cfff;border-bottom: 24px solid transparent;}
+.lyask-first-login .mod-footer{height:auto;overflow:hidden;padding:0 30px 25px;line-height: 44px;}
+.lyask-first-login .mod-footer .btn-success{margin-left: 10px;}
+.lyask-first-login .lyask-complete-data{overflow: hidden;margin:0 0 0;padding:30px;}
+.lyask-first-login .lyask-complete-data .side-bar{width: 100px;margin-right: 30px;}
+.lyask-first-login .lyask-complete-data .side-bar img{margin-bottom: 10px;}
+.lyask-first-login .lyask-complete-data .side-bar .file-input{left: -12px;top: -4px;width: 70px;height: 24px;}
+.lyask-first-login .lyask-complete-data input[type="text"]{width: 300px;}
+.lyask-first-login .lyask-complete-data .form-horizontal{margin-top: 10px;}
+.lyask-first-login .lyask-complete-data .col-sm-10{padding-left: 0;}
+.lyask-first-login .lyask-complete-data .col-sm-10 label{margin-top: 5px;}
+.lyask-first-login .lyask-first-login-suggest-list{padding:0 30px;}
+.lyask-first-login .lyask-first-login-suggest-list .title{padding:20px 0 10px;margin:0;border-bottom: 1px solid #e6e6e6;}
+.lyask-first-login .lyask-first-login-suggest-list .img{float: left;margin-right: 10px;}
+.lyask-first-login .lyask-first-login-suggest-list .img img{width: 50px;height: 50px;}
+.lyask-first-login .lyask-first-login-suggest-list ul{width:590px;margin:0 0 30px;}
+.lyask-first-login .lyask-first-login-suggest-list li{position: relative;float:left;width:244px;height:90px;margin:0 50px 0 0;padding:20px 15px 20px 0;font-size: 12px;border-bottom:1px solid #e6e6e6;}
+.lyask-first-login .lyask-first-login-suggest-list li .btn{position: absolute;right: 0;bottom: 20px;}
+.lyask-first-login .lyask-first-login-suggest-list li p{height:28px;margin:0;}
+.lyask-first-login #welcome_users_list li{height: 105px;}
+.lyask-first-login #welcome_users_list li .btn{bottom: 30px;}
+
+/* 发现和文章列表文章摘要 */
+.lyask-explore-list .markitup-box h2, .lyask-explore-list .markitup-box h3, .lyask-explore-list .markitup-box strong, .lyask-explore-list .markitup-box em,
+.lyask-explore-list .markitup-box ul li,.lyask-explore-list .markitup-box ol li, .lyask-article-list .markitup-box ol li,.lyask-article-list .markitup-box ul li,
+.lyask-article-list .markitup-box h2, .lyask-article-list .markitup-box h3, .lyask-article-list .markitup-box strong, .lyask-article-list .markitup-box em {display: inline;margin: 0;padding: 0;line-height: 25px;font-size: 14px;font-style: normal;font-weight: 400;color: #666;}
+.lyask-explore-list .markitup-box br, .lyask-article-list .markitup-box br {display: none;}
+.lyask-explore-list .markitup-box ul, .lyask-explore-list .markitup-box ol, .lyask-article-list .markitup-box ol, .lyask-article-list .markitup-box ul {padding: 0;margin: 0;}
+
+
+/* 自定义页面 */
+.lyask-custom-page{padding: 20px;background: #fff;}
+.lyask-custom-page h1{font-size: 26px;}
+.lyask-custom-page h2{font-size: 22px}
+.lyask-custom-page h3{font-size: 18px;}
+.lyask-custom-page h4{font-size: 16px;}
+.lyask-custom-page h5{font-size: 14px;}
+.lyask-custom-page h6{font-size: 12px;}
+.lyask-custom-page p{line-height: 24px;}
+.lyask-custom-page ul, .lyask-custom-page ol{padding:0 0 0 20px;}
+.lyask-custom-page ul{list-style-type: square;}
+.lyask-custom-page ol{list-style-type: decimal;}
+.lyask-custom-page img{margin:10px 0;}
+
+/* 自定义页面 积分说明 */
+.lyask-point-rule h1{margin-bottom: 30px;}
+.lyask-point-rule dl{height: auto;overflow: hidden;margin:0;padding:10px;border-bottom: 1px dashed #ddd;transition: background-color .3s ease-in-out;}
+.lyask-point-rule dl:hover{background-color: #f5f5f5;}
+.lyask-point-rule dt, .lyask-point-rule dd{float: left;height: 30px;line-height: 30px;}
+.lyask-point-rule dt{width: 500px;font-weight: normal;}
+.lyask-point-rule dd{float: right;}
+.lyask-point-rule .green{color: #388202;}
+.lyask-point-rule .red{color: #ff5d61;}
+
+/* 微信登陆页面 */
+.lyask-wechat-body{background: #333;}
+.lyask-wechat-body h1{margin-bottom:20px;font-size: 20px;text-shadow:0 2px 0 #333;color:#fff;text-align: center;}
+.lyask-wechat-body .lyask-wechat-login-box{width: 500px;margin:60px auto 0;text-shadow:0 1px 1px #333;text-align: center;}
+.lyask-wechat-body .lyask-wechat-login-box .icon-wechat{display:block;font-size: 200px;}
+.lyask-wechat-body .lyask-wechat-login-box img{width: 280px;}
+.lyask-wechat-body .lyask-wechat-login-box .info{display:inline-block;width:280px;height:46px;line-height:46px;margin:20px auto 0;padding:0 40px;box-shadow:0 5px 10px -5px #191919 inset, 0 1px 0 0 #444;border-radius: 20px;color:#fff;}
+.lyask-wechat-body .lyask-wechat-login-box .info b{color:#ffba61;}
+
+/* 404页面 */
+.lyask-404 {background:#f4f4f4;}
+.lyask-404 .lyask-footer-wrap {background-color: #fff;}
+.lyask-404-wrap{width: 500px;height:auto;margin:100px auto 300px;text-align: center;}
+.lyask-404-wrap p{margin: 45px auto 30px; font-size: 18px;}
+.lyask-404-wrap p a{font-size:18px;color: #54beff;}
+.lyask-404-wrap .lyask-search-box {width: 460px;float: none;margin: 0 auto;}
+.lyask-404-wrap .lyask-search-box .form-control {border-radius: 0;border-color: #54beff;}
+.lyask-404-wrap .lyask-search-box .input-group {margin: 0 auto;}
+.lyask-404-wrap .lyask-search-box .input-group input {width: 460px;padding-right: 50px;}
+.lyask-404-wrap .lyask-search-box #global_search_btns {top:0;right:0;z-index:10;width:40px;height:32px;border-radius: 0;border-color: #54beff; color: #fff;background-color: #54beff;}
+
+#browser-not-support{position:fixed;bottom:0;z-index:9999;width:100%;padding:20px;background-color: #f2dede;}
+#browser-not-support img{margin-right: 20px;}
+
+/* 帮助中心 */
+.lyask-help-center .mod-head {padding: 40px 0;}
+.lyask-help-center .mod-head h2 {font-size: 32px; text-align: center;color: #666;}
+.lyask-help-center .mod-head h2 i {margin-right: 10px;}
+.lyask-help-center .mod-head .lyask-search-box {float:  none;margin: 35px auto 0;width: 510px;border: 8px solid #f5f5f5;}
+.lyask-help-center .mod-body {padding: 40px 25px 20px;border-top: 1px solid #e6e6e6;}
+.lyask-help-center .mod-body .col-md-4 {margin-bottom: 20px;height: 232px;}
+.lyask-help-center .mod-body .lyask-item img {position: absolute;left: 0;top: 0;width: 32px;height: 32px;}
+.lyask-help-center .mod-body .lyask-item h3 { position: relative; padding-left: 42px;margin-bottom: 18px;font-size: 16px;font-weight: bold;}
+.lyask-help-center .mod-body .lyask-item h3 a {color: #333;}
+.lyask-help-center .mod-body .lyask-item ul {list-style-type: disc;padding-left: 5px;line-height: 25px;overflow: hidden; }
+.lyask-help-center .mod-body .lyask-item ul li {margin: 5px 0;list-style-position: inside;}
+.lyask-help-center .lyask-search-box #global_search_btns {top: 7px;}
+.lyask-help-center .lyask-search-box input {width: 494px;border:1px solid #e6e6e6;}
+.lyask-help-list {padding: 20px;}
+.lyask-help-list .mod-head {position: relative;padding-left: 60px;margin-bottom: 10px;height: 50px;}
+.lyask-help-list .mod-head img {position: absolute;left: 0;top: 0;width: 50px;}
+.lyask-help-list .mod-head h3 {line-height: 50px;font-size: 20px;font-weight: bold;}
+.lyask-help-list .mod-body ul li {padding: 12px 0;line-height: 22px;border-bottom: 1px solid #e6e6e6;}
+.lyask-help-side .mod-body dd {width: auto;padding-left: 40px;margin-left: 0;line-height: 32px;}
+
+/* noscript 提示 */
+.lyask-noscript{position: absolute;z-index: 100;width: 100%;height: 100%;background-color: #f5f5f5;overflow: hidden;}
+
+@media not all, (min-resolution: 192dpi) {
+.lyask-logo a {
+background-size: 60px auto;
+}
+}
+
+@media (max-width: 992px){
+.container {width: 100% !important;}
+}
+/* ipad竖屏 */
+@media (max-width: 769px) {
+.lyask-feed-list .lyask-item .more-operate{display:inline-block;}
+.lyask-main-content {border:none;}
+/*导航条*/
+.navbar-collapse.active{display: block;}
+.navbar-collapse {
+position: absolute;
+width: 120px;
+left: -15px;
+background: #499ef3;
+}
+}
+@media (min-width: 768px) {
+.navbar-collapse {
+position: static;
+width: auto;
+}
+}
+/* iphone横屏幕 */
+@media (max-width:736px) {
+/*公共部分*/
+.lyask-container-wrap {margin-top: 15px;}
+.page-control .pagination{float: none !important;}
+.markitup-box img {width: 100% !important;}
+.lyask-nav-tabs {padding:30px 10px 0;}
+.lyask-nav-tabs > li {margin:0;}
+.lyask-common-list .lyask-item {padding:14px;}
+/*分类*/
+.category .col-sm-12 > ul > li {margin:2px 3px;padding:0 4px;}
+.category dl:hover .lyask-dropdown, .category ul li:hover .lyask-dropdown, .category dl .lyask-dropdown ul li a {display:none;}
+.category dl {margin:10px 10px 10px 0;}
+.category dl dd {width: 115px;}
+.category dl dt, .category dl dt img {width: 32px;height: 32px;}
+/*话题详情页*/
+.lyask-topic-list-mod .lyask-item {padding-left: 0;}
+/*文章广场*/
+.lyask-article-list .lyask-item {padding: 10px 15px;}
+/*弹窗*/
+.lyask-publish-box .modal-dialog, .lyask-question-redirect-box .modal-dialog, .lyask-inbox .modal-dialog, .lyask-topic-edit-note-box .modal-dialog, .lyask-tips-box .modal-dialog, .lyask-image-box .modal-dialog, .lyask-link-box .modal-dialog, .lyask-edit-comment-box .modal-dialog, .lyask-publish-box .modal-content {width: auto;}
+/*发起问题页面*/
+.lyask-publish-title input, .lyask-publish-article .lyask-publish-title input {width: 68%;}
+.lyask-publish-title .dropdown {width: 30%;}
+/*个人页面*/
+.lyask-user-detail-box .mod-head {min-height:70px !important;padding:10px 10px 0px 70px !important;}
+.lyask-user-detail-box .mod-head img {width: 50px;left: 10px !important;top: 10px !important;}
+.lyask-user-detail-box .mod-body .meta span {float: left;width: 25%;margin:0 !important;}
+.lyask-user-center-tab .tab-pane > .lyask-mod a.lyask-hide-txt {max-width: auto;}
+.lyask-imageVideo-box .modal-dialog, .lyask-share-box .modal-dialog, .lyask-question-redirect-box .modal-dialog, .lyask-inbox .modal-dialog, .lyask-topic-edit-note-box .modal-dialog, .lyask-favorite-box .modal-dialog{width: 100%;}
+}
+/* iphone竖屏幕 */
+@media (max-width:414px) {
+.lyask-top-menu-wrap .container {padding: 0;}
+.lyask-user-nav {margin-right: 10px;}
+.lyask-question-comment-box .lyask-feed-list .lyask-item .lyask-user-img {display: none;}
+.lyask-feed-list .operate + .operate {margin-left: 1px;}
+.lyask-feed-list .lyask-item .more-operate, .lyask-feed-list .lyask-item:hover .more-operate, .lyask-feed-list .lyask-item:hover .close {display: inline;}
+.lyask-question-detail-txt iframe {max-width: 100%;}
+.lyask-top-nav .navbar-collapse.active {left: 0;}
+.lyask-common-list .lyask-item {padding:14px 0;}
+.lyask-global-tips {margin:0 0 15px;padding:0;}
+/* 分类导航 */
+.category dl {padding:0;}
+.category dl dd {width: 80px;}
+/* 发起页面 */
+.lyask-publish-title input, .lyask-publish-article .lyask-publish-title input {width: 58%;}
+.lyask-publish-title .dropdown {width: 40%;}
+.lyask-mod-publish .mod-footer .lyask-anonymity {margin:0 20px 0 0;}
+/* 问题详情页 */
+.lyask-question-detail .mod-head h1 {font-size: 16px;}
+.lyask-question-detail .mod-head .operate, .lyask-topic-detail-title .lyask-topic-operate {position: relative;}
+.lyask-feed-list .lyask-item .mod-footer {padding:0;}
+/* 话题列表 */
+.lyask-topic-list .lyask-item{height:152px;padding:20px 5px 20px 0;}
+.lyask-topic-list .lyask-item .img {position: relative;left: 0;top: 0;float: left;margin-right: 10px;}
+.lyask-topic-list .lyask-item .img img {width: 30px;height: 30px;}
+.lyask-footer {padding:20px 0 0px;}
+}
+
+
+
+
+/*用户*/
+/* 用户个人信息 */
+.lyask-user-detail-box .mod-head{position: relative;min-height:140px;padding:20px 20px 20px 135px;border-bottom: 1px solid #e6e6e6;}
+.lyask-user-detail-box .mod-head img{position: absolute;left:20px;top:20px;border-radius: 5px;}
+.lyask-user-detail-box .mod-head .lyask-user-flag span{margin-right: 10px;}
+.lyask-user-detail-box .mod-head .operate a{margin-left:10px;}
+.lyask-user-detail-box .mod-body .meta{height:45px;line-height:45px;padding:0 20px;font-size: 13px;}
+.lyask-user-detail-box .mod-body .meta span{margin-right:10px;}
+.lyask-user-detail-box .mod-body .meta span i{position: relative;top: 2px;}
+.lyask-user-detail-box .mod-body .meta .lyask-icon{margin-right:5px;}
+.lyask-user-detail-box .mod-body .meta .lyask-text-color-green, .meta .lyask-text-color-orange{font-size:13px;font-weight: bold;}
+.lyask-user-detail-box .mod-body .good-at-topics{padding:20px;border-top: 1px solid #e6e6e6;}
+.lyask-user-detail-box .mod-body .good-at-topics ul li{float:left;width:205px;margin:0 10px 15px 0;}
+.lyask-user-detail-box .mod-body .good-at-topics ul li .topic-tag{margin-right: 10px;}
+.lyask-user-detail-box .mod-body .good-at-topics ul li .topic-tag a{max-width: 65px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+.lyask-user-detail-box .mod-footer{border-top: 1px solid #e3e3e3;}
+.lyask-user-detail-box .mod-footer .lyask-nav-tabs{padding-top: 20px;}
+
+/* 用户页面公共模块 */
+.lyask-user-center-tab .tab-pane > .lyask-mod > .mod-head{padding:0 20px;}
+.lyask-user-center-tab .tab-pane > .lyask-mod > .mod-head h3{margin:20px 0;font-size: 20px;line-height: 20px;}
+.lyask-user-center-tab .tab-pane > .lyask-mod > .mod-head h3 a{font-size: 12px;}
+.lyask-user-center-tab .tab-pane > .lyask-mod > .mod-body{padding:0 20px;}
+.lyask-user-center-tab .tab-pane > .lyask-mod a.lyask-hide-txt{display:block;max-width:410px;}
+.lyask-user-center-tab .lyask-mod .lyask-item{padding-top:14px;border-bottom:1px solid #f5f5f5;}
+.lyask-user-center-tab .lyask-mod .lyask-item:first-child{padding-top:0;border-top: none;}
+.lyask-user-center-tab .lyask-mod .lyask-item .mod-head h4.lyask-hide-txt{max-width: 645px;}
+.lyask-user-center-tab .lyask-mod .lyask-item .mod-body{position:relative;min-height: 30px;}
+.lyask-user-center-tab .lyask-mod .lyask-item .mod-body p.lyask-hide-txt{max-width: 610px;}
+.lyask-user-center-tab .count{width: 58px;height:30px;margin:0 10px 0 0;padding:0 10px;background-color: #fff;border:1px solid #f5f5f5;border-radius: 4px;line-height: 30px;}
+.lyask-user-center-tab .count i{margin-right: 0;margin-right: 3px\0;vertical-align: -1px;}
+
+/* tab切换 */
+/* 发问 */
+.lyask-profile-publish-list .mod-body{padding:0 !important;}
+.lyask-profile-publish-list p, .lyask-profile-answer-list p{margin-bottom:14px;line-height: 30px;}
+/* 关注 */
+.lyask-user-center-follow-mod > .mod-footer{margin-top: 20px;}
+.lyask-user-center-follow-mod ul li{position:relative;float: left;min-height:100px;width: 50%;padding:10px 0 10px 60px;border-bottom: 1px solid #f5f5f5;}
+.lyask-user-center-follow-mod .lyask-user-img, .lyask-user-center-follow-mod .lyask-topic-img{position: absolute;left: 0;top:10px;}
+.lyask-user-center-follow-mod li .mod-body{min-height:24px;overflow: hidden;}
+.lyask-user-center-follow-mod li p{margin:0 0 5px;}
+.lyask-user-center-follow-mod li .meta span{margin-right: 10px;}
+.lyask-user-center-follow-mod .lyask-load-more-content{margin:20px 0 0;}
+.lyask-user-center-follow-mod #contents_user_topics li{min-height: 75px;}
+
+/* 动态 */
+.tab-pane #contents_user_actions li, #overview ul li{padding-top:10px;border-top: 1px solid #f5f5f5;}
+.tab-pane #contents_user_actions li:first-child, #overview ul li:first-child{padding-top:0;border-top: none;}
+.lyask-user-center-tab .tab-pane p .lyask-user-name, .lyask-user-center-tab .tab-pane p .lyask-topic-name {font-size: 14px;}
+/* 详细资料 */
+.lyask-user-center-details{padding:0 60px;}
+.lyask-user-center-details dl{height: auto;overflow: hidden;line-height: 22px;margin:0;padding:15px 0 15px 10px;border-top:1px dotted #c1cad4;}
+.lyask-user-center-details dl:first-child{border-top: none;}
+.lyask-user-center-details dl dt, .lyask-user-center-details dl dd{float:left;}
+.lyask-user-center-details dl dt{margin-right:20px;font-weight: normal;color: #333;}
+.lyask-user-center-details dl dd{color:#666;}
+.lyask-user-center-details dl dd a{margin-right: 10px;}
+.lyask-user-center-details .lyask-user-center-details-good-topic > div{min-height:20px;margin-bottom:15px;}
+.lyask-user-center-details .meta{margin:0;}
+.lyask-user-center-details .meta span{margin-right:10px;}
+
+/* 侧边栏 */
+.lyask-mod.people-following p{margin-top: 10px;}
+.lyask-mod.people-following .lyask-user-name img{width: 24px;height: 24px;}
+.lyask-mod.people-following .lyask-topic-bar{margin:10px 0 0 0;}

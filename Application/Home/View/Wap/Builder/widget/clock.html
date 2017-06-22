@@ -1,0 +1,12 @@
+<case value="text">
+    <li class="item_{$[type]form.name} {$[type]form.extra.class|default=''}">
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title label">{$[type]form.title}</div>
+                <div class="item-input">
+                    <input type="text" placeholder="{$[type]form.tip|default=''}" name="{$[type]form.name}" value="{$[type]form['value']}">
+                </div>
+            </div>
+        </div>
+    </li>
+</case>

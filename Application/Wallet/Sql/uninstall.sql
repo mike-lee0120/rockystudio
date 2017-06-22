@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS `ly_wallet_index`;
+DROP TABLE IF EXISTS `ly_wallet_recharge`;
+DROP TABLE IF EXISTS `ly_wallet_recharge_bonuses`;
+DROP TABLE IF EXISTS `ly_wallet_redbag_share_pool`;
+DROP TABLE IF EXISTS `ly_wallet_redbag_share`;
+DROP TABLE IF EXISTS `ly_wallet_redbag`;
+DROP TABLE IF EXISTS `ly_wallet_withdraw`;
+DROP TABLE IF EXISTS `ly_wallet_coupon_share_pool`;
+DROP TABLE IF EXISTS `ly_wallet_coupon_share`;
+DROP TABLE IF EXISTS `ly_wallet_coupon`;

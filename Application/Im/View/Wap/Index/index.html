@@ -1,0 +1,99 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"></div>
+            <div class="center">{$meta_title}</div>
+            <div class="right"></div>
+        </div>
+    </div>
+
+    <div class="page {$_page_name}" data-page="{$_page_name}">
+        <div class="page-content">
+            <div class="list-block media-list no-margin">
+                <ul>
+                    <volist name="recent_list" id="vo">
+                        <?php switch($vo['type']): case '0': ?>
+                            <li class="swipeout">
+                                <a href="{:U('Im/Index/detail', array('id' => $vo['im_id']), true, true)}" class="item-link swipeout-content" data-ignore-cache="true">
+                                    <div class="item-content">
+                                        <div class="item-media">
+                                            <img class="media-object" src="{$vo.user_info.avatar_url}" width='45' style="border-radius: 50%">
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">{$vo.user_info.nickname}</div>
+                                                <div class="item-after">
+                                                    <notempty name="vo.new_message_count">
+                                                        <span class="badge badge-red">{$vo.new_message_count}</span>
+                                                    </notempty>
+                                                </div>
+                                            </div>
+                                            <div class="item-text" style="height: 24px;">{$vo.message|html2text}</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="swipeout-actions-right">
+                                    <a class="swipeout-close ajax-get bg-red" href="{:U('delete', array('id' => $vo['id']), true, true)}">删除</a>
+                                </div>
+                            </li>
+                        <?php break;?>
+                        <?php case '1': ?>
+                            <li class="swipeout">
+                                <a href="{:U('Im/Qun/detail', array('id' => $vo['im_id']), true, true)}" class="item-link swipeout-content" data-ignore-cache="true">
+                                    <div class="item-content">
+                                        <div class="item-media">
+                                            <img class="media-object" src="{$vo.qun_info.cover_url}" width='45' style="border-radius: 50%">
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">{$vo.qun_info.title}</div>
+                                                <div class="item-after">
+                                                    <notempty name="vo.new_message_count">
+                                                        <span class="badge badge-red">{$vo.new_message_count}</span>
+                                                    </notempty>
+                                                </div>
+                                            </div>
+                                            <div class="item-text" style="height: 24px;">{$vo.message|html2text}</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="swipeout-actions-right">
+                                    <a class="swipeout-close ajax-get bg-red" href="{:U('delete', array('id' => $vo['id']), true, true)}">删除</a>
+                                </div>
+                            </li>
+                        <?php break;?>
+                        <?php case '2': ?>
+                            <li class="swipeout">
+                                <a href="{:U('Im/Mp/detail', array('id' => $vo['im_id']), true, true)}" class="item-link swipeout-content" data-ignore-cache="true">
+                                    <div class="item-content">
+                                        <div class="item-media">
+                                            <img class="media-object" src="{$vo.mp_info.cover_url}" width='45' style="border-radius: 50%">
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">{$vo.mp_info.title}</div>
+                                                <div class="item-after">
+                                                    <notempty name="vo.new_message_count">
+                                                        <span class="badge badge-red">{$vo.new_message_count}</span>
+                                                    </notempty>
+                                                </div>
+                                            </div>
+                                            <div class="item-text" style="height: 24px;">{$vo.message|html2text}</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="swipeout-actions-right">
+                                    <a class="swipeout-close ajax-get bg-red" href="{:U('delete', array('id' => $vo['id']), true, true)}">删除</a>
+                                </div>
+                            </li>
+                        <?php break;?>
+                        <?php endswitch; ?>
+                    </volist>
+                </ul>
+                <div class="list-block-label">安全起见，请不要随意向陌生人透露您的个人信息</div>
+            </div>
+        </div>
+    </div>
+</block>

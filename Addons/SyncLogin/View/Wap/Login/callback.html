@@ -1,0 +1,108 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"></div>
+            <div class="center">{$meta_title}</div>
+            <div class="right">
+                <a href="{:U('User/Index/agreement')}" class="link">
+                    <span>用户协议</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page no-toolbar">
+        <div class="page-content">
+            <div class="list-block media-list">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-media"><img src="{$user_sns_info.head}" width="50" height="50"></div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title">恭喜您，{$user_sns_info.nick}</div>
+                            </div>
+                            <div class="item-text">您的{$user_sns_info.type}授权成功，接下来完成简单的设置，即可用{$user_sns_info.type}直接登录。</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content-block">
+                <div class="buttons-row">
+                    <a href="#bind-tab1" class="tab-link button active">还没有帐号</a>
+                    <a href="#bind-tab2" class="tab-link button">已有账号</a>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <div id="bind-tab1" class="tab active">
+                    <form action="{:addons_url('SyncLogin://Login/register')}" method="post" class="form bind-form-reg">
+                        <div class="list-block">
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-input">
+                                                <input type="hidden" name="avatar" value="{$user_sns_info.head}">
+                                                <input type="text" name="username" placeholder="请输入用户名">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-input">
+                                                <input type="password" name="password" placeholder="请设置一个密码">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="list-block">
+                            <ul>
+                                <li><a href="#" type="submit" class="submit item-link list-button ajax-post" target-form="bind-form-reg">立即创建新账号</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+                <div id="bind-tab2" class="tab">
+                    <form class="bind-form-login" action="{:addons_url('SyncLogin://Login/bind')}" method="post">
+                        <div class="list-block">
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-input">
+                                                <input type="hidden" name="avatar" value="{$user_sns_info.head}">
+                                                <input type="text" name="username" placeholder="请输入邮箱/手机号/用户名">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-input">
+                                                <input type="password" name="password" placeholder="请输入密码">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="list-block">
+                            <input type="hidden" name="reg_type" value="username">
+                            <ul>
+                                <li><a href="#" type="submit" class="submit item-link list-button ajax-post" target-form="bind-form-login">确认绑定</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

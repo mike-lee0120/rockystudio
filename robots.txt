@@ -1,0 +1,8 @@
+Disallow: /Addons
+Disallow: /Application
+Disallow: /Framework
+Disallow: /Public
+Disallow: /Theme
+Disallow: /Uploads
+Disallow: /Vendor
+Disallow: /wallet

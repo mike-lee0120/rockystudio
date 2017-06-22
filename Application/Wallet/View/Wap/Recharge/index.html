@@ -1,0 +1,166 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="__ROOT__/" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">{$meta_title}</div>
+            <div class="right"></div>
+        </div>
+    </div>
+    <div class="page no-toolbar" data-page="{$_page_name}">
+        <div class="page-content">
+            <form action="{:U('')}" method="post" class="recharge-form">
+                <?php if($bonuses_list): ?>
+                    <div class="card">
+                        <div class="card-header">{$bonuses_title}</div>
+                        <div class="card-content">
+                            <div class="card-content-inner">
+                                <volist name="bonuses_list" id="b">
+                                    <p>充值满{$b.money}元送{$b.bonuses}元</p>
+                                </volist>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="list-block">
+                    <ul>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title label">充值金额</div>
+                                    <div class="item-input">
+                                        <input type="text" name="money" placeholder="充值金额" value="{:C('wallet_config.min_recharge')}">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <volist name="allow_pay_type" id="pt">
+                            <li>
+                                <label class="label-radio item-content">
+                                    <input type="radio" id="pay_type_{$pt.type}" name="pay_type" value="{$pt.type}" <if condition="$i eq 1">checked="checked"</if>>
+                                    <div class="item-media">
+                                        <i class="icon icon-form-radio"></i>
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-title"><img src="{$pt.logo}" style="height: 20px;"></div>
+                                    </div>
+                                </label>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+                <div class="content-block-title m-t m-b">当前余额: ￥{$user_info.money}</div>
+                <div class="content-block row">
+                    <p class="col-100"><button type="submit" id="pay_submit" class="col-100 button button-fill button-big color-orange ajax-pay">立即充值</button></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+    <script position="page" type="text/javascript">
+        $(function(){
+            //ajax pay submit请求
+            $('.ajax-pay').bind('click', function() {
+                var form = $(this).closest('form');
+                var target = form.attr('action');
+                var query  = form.serialize();
+                var that = this;
+                $(that).addClass('disabled').attr('autocomplete', 'off').prop('disabled', true);
+                $.ajax({
+                    dataType: "json",
+                    url: target,
+                    async: false,
+                    data: query,
+                    type: "post",
+                    success: function(data) {
+                        if (data.status == 1) {
+                            // 智能判断APP支付(其中APP支付既支持Cordova也支持Dcloud)还是网页支付
+                            // 如果订单信息返回值里存在pay_type（当然了这个规则是零云定的）说明在APP环境下，为了体验友好，调用支付宝、微信客户端支付
+                            if (data.pay_type) {
+                                // 判断是否有Cordova环境
+                                if (window.cordova) {
+                                    switch (data.pay_type) {
+                                        case 'wxpay':
+                                        // Cordova环境下调用微信支付插件
+                                        // 插件地址：https://github.com/ijry
+                                        function cb_success() {
+                                            alert('支付成功');
+                                        }
+                                        function cb_failure() {
+                                            alert('支付失败');
+                                        }
+                                        wxpay.payment($.parseJSON(data.json),cb_success, cb_failure);
+                                        mainView.router.back();
+                                        break;
+                                    case 'alipay':
+                                        // Cordova环境下调用支付宝支付插件
+                                        // 插件地址：https://github.com/ijry
+                                        function cb_success() {
+                                            alert('支付成功');
+                                        }
+                                        function cb_failure() {
+                                            alert('支付失败');
+                                        }
+                                        Alipay.Base.pay($.parseJSON(data.json), cb_success, cb_failure);
+                                        mainView.router.back();
+                                        break;
+                                    default:
+                                        alert('未找对对应的支付插件');
+                                    }
+                                } else if (window.plus) { // 判断是否有Dcloud的5+环境
+                                    var channel = null;
+                                    var param = '';
+                                    // 获取支付通道
+                                    plus.payment.getChannels(function(channels){
+                                        for(var i in channels){
+                                            channel = channels[i];
+                                            if (channel.id == data.pay_type) {
+                                                if (!channel.serviceReady) {
+                                                    channel.installService();
+                                                } else {
+                                                    if (data.pay_type == 'alipay') {
+                                                        param = data.string
+                                                    } else {
+                                                        param = data.json;
+                                                    }
+                                                    plus.payment.request(channel, param, function(result){
+                                                        plus.nativeUI.alert("支付成功！", function(){
+                                                            mainView.router.back();
+                                                        });
+                                                    }, function(error) {
+                                                        plus.nativeUI.alert("支付失败！"+ error.code, function(){
+                                                            mainView.router.back();
+                                                        });
+                                                    });
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    },function(e){
+                                        alert("获取支付通道失败："+e.message);
+                                    });
+                                }
+                            } else {
+                                // 网页支付
+                                window.open(data.url);
+                            }
+                        } else {
+                            $.alertMessager(data.info, 'danger');
+                            setTimeout(function() {
+                                $(that).removeClass('disabled').prop('disabled', false);
+                            }, 2000);
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</block>

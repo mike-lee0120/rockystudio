@@ -1,0 +1,22 @@
+<case value="select">
+    <li class="item_{$[type]form.name} {$[type]form.extra.class|default=''}">
+        <a href="#" class="item-link smart-select">
+            <select name="{$[type]form.name}">
+                <foreach name="[type]form.options" item="option" key="option_key">
+                    <option value="{$option_key}" <eq name="[type]form.value" value="$option_key"> selected</eq>>{$option}</option>
+                </foreach>
+            </select>
+            <div class="item-content">
+                <div class="item-inner">
+                    <div class="item-title label">
+                        <?php if($[type]form['extra']['must']): ?>
+                            <span style="color: red;">*</span>
+                        <?php endif; ?>
+                        <span>{$[type]form.title}：</span>
+                    </div>
+                    <div class="item-after">{$[type]form['options'][$option_key]}</div>
+                </div>
+            </div>
+        </a>
+    </li>
+</case>

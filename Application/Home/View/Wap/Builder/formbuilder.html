@@ -1,0 +1,189 @@
+<?php if($extra_html['top']): ?>
+    <div class="content-block">
+        <div class="content-block-inner">
+            {$extra_html['top']}
+        </div>
+    </div>
+<?php endif; ?>
+
+<notempty name="tab_nav">
+    <div class="content-block">
+        <div class="buttons-row">
+            <volist name="tab_nav.tab_list" id="tab">
+                <a href="{$tab.href}" class="button <php>if($tab_nav['current_tab'] == $key) echo 'active';</php>">{$tab.title}</a>
+            </volist>
+        </div>
+    </div>
+</notempty>
+
+<form action="{$post_url}" method="post" class="form form-builder">
+    <div class="list-block">
+        <ul>
+            <volist name="form_items" id="form" key="k">
+                <switch name="form.type">
+                    <include file='[builderpath]/widget/hidden.html' type='' />
+                    {// 不可修改文本 }
+                    <include file='[builderpath]/widget/static.html' type='' />
+                    {// 数字 }
+                    <include file='[builderpath]/widget/num.html' type='' />
+                    {// 价格 }
+                    <include file='[builderpath]/widget/price.html' type='' />
+                    {// 字符串 }
+                    <include file='[builderpath]/widget/text.html' type='' />
+                    {// 文本 }
+                    <include file='[builderpath]/widget/textarea.html' type='' />
+                    {// 数组 }
+                    <include file='[builderpath]/widget/array.html' type='' />
+                    {// 密码 }
+                    <include file='[builderpath]/widget/password.html' type='' />
+                    {// 开关 }
+                    <include file='[builderpath]/widget/toggle.html' type='' />
+                    {// 单选按钮 }
+                    <include file='[builderpath]/widget/radio.html' type='' />
+                    {// 复选框 }
+                    <include file='[builderpath]/widget/checkbox.html' type='' />
+                    {// 下拉框 }
+                    <include file='[builderpath]/widget/select.html' type='' />
+                    {// 图标 }
+                    <include file='[builderpath]/widget/icon.html' type='' />
+                    {// 日期 }
+                    <include file='[builderpath]/widget/date.html' type='' />
+                    {// 时间 }
+                    <include file='[builderpath]/widget/datetime.html' type='' />
+                    {// 时刻 }
+                    <include file='[builderpath]/widget/clock.html' type='' />
+                    {// 时间区间 }
+                    <include file='[builderpath]/widget/dateranger.html' type='' />
+                    {// 图片 }
+                    <include file='[builderpath]/widget/picture.html' type='' />
+                    {// 图片temp }
+                    <include file='[builderpath]/widget/picture_temp.html' type='' />
+                    {// 图片(多图) }
+                    <include file='[builderpath]/widget/pictures.html' type='' />
+                    {// 图片(多图)temp }
+                    <include file='[builderpath]/widget/pictures_temp.html' type='' />
+                    {// 文件 }
+                    <include file='[builderpath]/widget/file.html' type='' />
+                    {// 多文件 }
+                    <include file='[builderpath]/widget/files.html' type='' />
+                    {// 编辑器 summernote }
+                    <include file='[builderpath]/widget/summernote.html' type='' />
+                    {// 编辑器 kindeditor }
+                    <include file='[builderpath]/widget/kindeditor.html' type='' />
+                    {// 编辑器 markdown }
+                    <include file='[builderpath]/widget/editormd.html' type='' />
+                    {// 百度地图 }
+                    <include file='[builderpath]/widget/bdmap.html' type='' />
+                    {// 谷歌地图 }
+                    <include file='[builderpath]/widget/gmap.html' type='' />
+                    {// Mapbox }
+                    <include file='[builderpath]/widget/mapbox.html' type='' />
+                    {// 三级联动 }
+                    <include file='[builderpath]/widget/linkage.html' type='' />
+                    {// 标签 }
+                    <include file='[builderpath]/widget/tags.html' type='' />
+                    {// 拖动排序 }
+                    <include file='[builderpath]/widget/board.html' type='' />
+
+                    <case value="group">
+                        <div class="content-block" style="padding-top: 15px;margin-bottom: 10px;">
+                            <div class="buttons-row">
+                                <volist name="form.options" id="li" key="group_k">
+                                    <a href="#tab{$group_k}" class="tab-link button <eq name="group_k" value="1">active</eq>">{$li.title}</a>
+                                </volist>
+                            </div>
+                        </div>
+
+                        <div class="tabs">
+                            <volist name="form.options" id="tab" key="group_k">
+                                <div id="tab{$group_k}" class='tab <eq name="group_k" value="1">active</eq> tab{$group_k}'>
+                                    <div class="group">
+                                        <volist name="tab.options" id="tab_form" key="tab_k">
+                                            <switch name="tab_form.type">
+                                                <include file='[builderpath]/widget/hidden.html' type='tab_' />
+                                                {// 不可修改文本 }
+                                                <include file='[builderpath]/widget/static.html' type='tab_' />
+                                                {// 数字 }
+                                                <include file='[builderpath]/widget/num.html' type='tab_' />
+                                                {// 价格 }
+                                                <include file='[builderpath]/widget/price.html' type='tab_' />
+                                                {// 字符串 }
+                                                <include file='[builderpath]/widget/text.html' type='tab_' />
+                                                {// 文本 }
+                                                <include file='[builderpath]/widget/textarea.html' type='tab_' />
+                                                {// 数组 }
+                                                <include file='[builderpath]/widget/array.html' type='tab_' />
+                                                {// 密码 }
+                                                <include file='[builderpath]/widget/password.html' type='tab_' />
+                                                {// 开关 }
+                                                <include file='[builderpath]/widget/toggle.html' type='tab_' />
+                                                {// 单选按钮 }
+                                                <include file='[builderpath]/widget/radio.html' type='tab_' />
+                                                {// 复选框 }
+                                                <include file='[builderpath]/widget/checkbox.html' type='tab_' />
+                                                {// 下拉框 }
+                                                <include file='[builderpath]/widget/select.html' type='tab_' />
+                                                {// 图标 }
+                                                <include file='[builderpath]/widget/icon.html' type='tab_' />
+                                                {// 日期 }
+                                                <include file='[builderpath]/widget/date.html' type='tab_' />
+                                                {// 时间 }
+                                                <include file='[builderpath]/widget/datetime.html' type='tab_' />
+                                                {// 时刻 }
+                                                <include file='[builderpath]/widget/clock.html' type='tab_' />
+                                                {// 时间区间 }
+                                                <include file='[builderpath]/widget/dateranger.html' type='tab_' />
+                                                {// 图片 }
+                                                <include file='[builderpath]/widget/picture.html' type='tab_' />
+                                                {// 图片temp }
+                                                <include file='[builderpath]/widget/picture_temp.html' type='tab_' />
+                                                {// 图片(多图) }
+                                                <include file='[builderpath]/widget/pictures.html' type='tab_' />
+                                                {// 图片(多图)temp }
+                                                <include file='[builderpath]/widget/pictures_temp.html' type='' />
+                                                {// 文件 }
+                                                <include file='[builderpath]/widget/file.html' type='tab_' />
+                                                {// 多文件 }
+                                                <include file='[builderpath]/widget/files.html' type='tab_' />
+                                                {// 编辑器 summernote }
+                                                <include file='[builderpath]/widget/summernote.html' type='tab_' />
+                                                {// 编辑器 kindeditor }
+                                                <include file='[builderpath]/widget/kindeditor.html' type='tab_' />
+                                                {// 编辑器 markdown }
+                                                <include file='[builderpath]/widget/editormd.html' type='tab_' />
+                                                {// 百度地图 }
+                                                <include file='[builderpath]/widget/bdmap.html' type='tab_' />
+                                                {// 谷歌地图 }
+                                                <include file='[builderpath]/widget/gmap.html' type='tab_' />
+                                                {// Mapbox }
+                                                <include file='[builderpath]/widget/mapbox.html' type='tab_' />
+                                                {// 三级联动 }
+                                                <include file='[builderpath]/widget/linkage.html' type='tab_' />
+                                                {// 标签 }
+                                                <include file='[builderpath]/widget/tags.html' type='tab_' />
+                                                {// 拖动排序 }
+                                                <include file='[builderpath]/widget/board.html' type='tab_' />
+                                                // 扩展类型
+                                                <default />
+                                                {:hook('FormBuilderExtend', array('form' => $tab_form, 'type' => tab_))}
+                                            </switch>
+                                        </volist>
+                                    </div>
+                                </div>
+                            </volist>
+                        </div>
+                        <div class="form-group"><hr></div>
+                    </case>
+                </switch>
+            </volist>
+        </ul>
+    </div>
+</form>
+
+<?php if($extra_html['bottom']): ?>
+    <div class="content-block">
+        <div class="content-block-inner">
+            {$extra_html['bottom']}
+        </div>
+    </div>
+<?php endif; ?>

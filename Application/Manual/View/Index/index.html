@@ -1,0 +1,44 @@
+<extend name="$_home_public_layout"/>
+
+<block name="style">
+   <style type="text/css">
+       .abstract {
+            height: 60px;
+            overflow: hidden;
+        }
+   </style>
+</block>
+
+<block name="main">
+    <div class="container">
+        <div class="row">
+            <volist name="data_list" id="vo">
+                <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+                    <div class="thumbnail">
+                        <a href="{:U('read', array('name' => $vo['name']))}">
+                            <img class="lazy" src="{$vo.cover_url}" alt="{$vo.title}" style="width:100%;height:120px;">
+                        </a>
+                        <div class="caption">
+                            <h3 class="text-overflow ">{$vo.title}</h3>
+                            <p class="abstract">{$vo.abstract|cut_str=0,38}</p>
+                            <p>
+                                <a href="{:U('read', array('name' => $vo['name']))}" class="btn btn-warning" role="button"><i class="fa fa-download"></i> 在线阅读</a>
+                                <a href="{:U('read', array('name' => $vo['name']))}" class="btn btn-info border-radius-none" role="button"><i class="fa fa-info-circle"></i> 下载</a>
+                            </p>
+                            <p class="small">
+                                <a href="#" class="text-muted" role="button">作者：{$vo.user.nickname}</a>
+                                <a href="#" class="pull-right text-muted" role="button">下载次数：{$vo.download}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </volist>
+            <notempty name="page">
+                <ul class="pagination">{$page}</ul>
+            </notempty>
+            <empty name="data_list">
+                <div class="text-center clearfix">暂时没有数据～</div>
+            </empty>
+        </div>
+    </div>
+</block>

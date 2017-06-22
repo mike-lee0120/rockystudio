@@ -1,0 +1,23 @@
+{
+    "name": "lingyun/lingyun",
+    "description": "The PHP Cloud Framework.",
+    "keywords": ["framework", "thinkphp"],
+    "license": "lingyun",
+    "type": "project",
+    "require": {
+        "cypresslab/gitelephant": "~1.0",
+        "kzykhys/git": "dev-master",
+        "docker-php/docker-php": "^1.24",
+        "erusev/parsedown": "^1.6",
+        "aferrandini/phpqrcode": "1.0.1",
+        "spipu/html2pdf": "^4.6",
+        "phpoffice/phpexcel": "v1.8.*",
+        "phpoffice/phpword": "v0.13.*"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}

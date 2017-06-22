@@ -1,0 +1,114 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="__ROOT__/" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">{$meta_title}</div>
+            <div class="right"></div>
+        </div>
+    </div>
+
+    <div class="page no-toolbar {$_page_name}" data-page="{$_page_name}">
+        <div class="page-content">
+            <form action="{:U('')}" method="post" class="login-form">
+                <div class="content-block-title m-t">当期会员</div>
+                <div class="list-block media-list m-b-0">
+                    <ul>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">会员类型</div>
+                                    <div class="item-after">{$vip_info.type_info.title}</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">到期时间</div>
+                                    <div class="item-after">{$vip_info.expire_format}</div>
+                                </div>
+                            </div>
+                        </li>
+                         <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">当前特权</div>
+                                </div>
+                                <div style="margin-top: 5px; font-size: 12px; color: rgb(119, 119, 119);">{$vip_info.type_info.content}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="content-block-title m-t">升级后</div>
+                <div class="list-block media-list m-b-0">
+                    <ul>
+                        <li>
+                            <a href="#" class="item-link smart-select" data-back-on-select="true" data-back-text="返回">
+                                <select name="vip_type" class="vip_type_select">
+                                    <volist name="vip_type_list" id="type">
+                                        <option data-price="{$type.upgrade_price}" data-content="{$type.content}" value="{$type.id}">{$type.title}</option>
+                                    </volist>
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title-row">
+                                            <div class="item-title">升级后会员类型</div>
+                                            <div class="item-after">初级会员</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">升级后特权</div>
+                                </div>
+                                <div class="vip-content" style="margin-top: 5px; font-size: 12px; color: rgb(119, 119, 119);">{$vip_type_list[0]['content']}</div>
+                            </div>
+                        </li>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">需补差价</div>
+                                    <div class="item-after">
+                                        <span class="color-red">¥</span>
+                                        <span class="color-red total_price m-l-xs m-r-xs"></span>
+                                        <span>元</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="list-block-label m-b-0">升级会员不足一月按一月计算</div>
+                </div>
+                <div class="content-block row m-t">
+                    <p class="col-100">
+                        <button type="submit" class="col-100 button button-fill button-big color-red">立即升级</button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+    <script position="page" type="text/javascript">
+        $(function(){
+            var total_price = parseFloat($(".vip_type_select").find("option:selected").attr('data-price'));
+            $('.total_price').text(total_price.toFixed(2));
+
+            $('.vip_type_select').change(function(){
+                var total_price = parseFloat($(".vip_type_select").find("option:selected").attr('data-price'));
+                $('.total_price').text(total_price);
+                $('.vip-content').text($(".vip_type_select").find("option:selected").attr('data-content'));
+            });
+        });
+    </script>
+</block>

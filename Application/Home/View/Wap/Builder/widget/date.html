@@ -1,0 +1,94 @@
+<case value="date">
+    <li class="item_{$[type]form.name} {$[type]form.extra.class|default=''}">
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title label">
+                    <?php if($[type]form['extra']['must']): ?>
+                        <span style="color: red;">*</span>
+                    <?php endif; ?>
+                    <span>{$[type]form.title}：</span>
+                </div>
+                <div class="item-input">
+                    <?php
+                        $date = '';
+                        if ($[type]form['value']) {
+                            if(is_numeric($[type]form['value'])) {
+                                $date = time_format($[type]form['value'], 'Y-m-d');
+                            } else {
+                                $date = $[type]form['value'];
+                            }
+                            $date = explode('-', $date);
+                        }
+                    ?>
+                    <input id="[type]{$group_k|default=''}_date_{$[type]k}" type="text" placeholder="{$[type]form.tip|default=''}" name="{$[type]form.name}" value="<notempty name='[type]form.value'>{$[type]form.value|time_format='Y-m-d'}</notempty>">
+                    <script position="page" type="text/javascript">
+                        $(function(){
+                            var today = new Date();
+                            var month = today.getMonth()+1;
+                            if(month < 10) {
+                                month = "0" + month; // 补全月份两位
+                            }
+                            var day = today.getDate();
+                            if(day < 10) {
+                                day = "0" + day; // 补全日期两位
+                            }
+                            var pickerInline = myApp.picker({
+                                convertToPopover: false,
+                                input: '#[type]{$group_k|default=''}_date_{$[type]k}',
+                                toolbar: true,
+                                rotateEffect: true,
+                                <?php if($date): ?>
+                                    value: ['{$date[0]}', '{$date[1]}', '{$date[2]}'],
+                                <?php else: ?>
+                                    value: [today.getFullYear(), month, day],
+                                <?php endif; ?>
+
+                                onChange: function (picker, values, displayValues) {
+                                    var daysInMonth = new Date(picker.value[0], picker.value[1]*1, 0).getDate();
+                                    if (values[2] > daysInMonth) {
+                                        picker.cols[2].setValue(daysInMonth);
+                                    }
+                                },
+
+                                formatValue: function (p, values, displayValues) {
+                                    return values[0] + '-' + values[1] + '-' + values[2];
+                                },
+
+                                cols: [
+                                    // Years
+                                    {
+                                        values: (function () {
+                                            var arr = [];
+                                            for (var i = 1950; i <= 2050; i++) { arr.push(i); }
+                                            return arr;
+                                        })(),
+                                    },
+                                    // Space divider
+                                    {
+                                        divider: true,
+                                        content: '  '
+                                    },
+                                    // Months
+                                    {
+                                        values: ('01 02 03 04 05 06 07 08 09 10 11 12').split(' '),
+                                        displayValues: ('1月 2月 3月 4月 5月 6月 7月 8月 9月 10月 11月 12月').split(' '),
+                                        textAlign: 'left'
+                                    },
+                                    // Space divider
+                                    {
+                                        divider: true,
+                                        content: '  '
+                                    },
+                                    // Days
+                                    {
+                                        values: ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'],
+                                    }
+                                ]
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </li>
+</case>

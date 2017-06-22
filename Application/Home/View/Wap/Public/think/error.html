@@ -1,0 +1,58 @@
+<extend name="$_info_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner" style="background: #f7f7f8;color: #666;">
+            <div class="left"></div>
+            <div class="center">提示页面</div>
+            <div class="right"></div>
+        </div>
+    </div>
+
+    <div class="page no-toolbar" data-page="lingyun-error">
+        <div class="page-content bg-white text-center">
+            <div class="m-t-md color-red" style="font-size: 30px;">
+                <?php echo($error); ?>
+            </div>
+            <div class="m-t-md">
+                <span class="fa fa-info color-white m-t m-b bg-red" style="display: inline-block;padding: 30px;border-radius: 50%;font-size: 50px;"></span>
+            </div>
+            <div class="m-t-sm" style="font-size: 20px;">
+                <span style="color: #333;">{$msgTitle}</span>
+                <p class="color-gray m-t" style="font-size: 13px;">
+                    如果 <b id="wait" class="text-danger"><?php echo($waitSecond); ?></b> 秒后没有自动跳转，请点击
+                    <a id="href" href="<?php echo $jumpUrl; ?>">这里</a>。
+                </p>
+            </div>
+            <div class="content-block">
+                <p>
+                    <a href="<?php echo $jumpUrl; ?>" class="button button-big button-fill color-red">确定</a>
+                </p>
+                <p>
+                    <a href="{:C('TOP_HOME_PAGE')}" class="button button-big" style="color: #777; border-color: #ddd;">取消</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="toolbar"></block>
+
+<block name="script">
+    <script position="page" type="text/javascript" >
+        (function(){
+            var wait = document.getElementById('wait');
+            var href = document.getElementById('href').href;
+            var interval = setInterval(function(){
+                var time = --wait.innerHTML;
+                if(time <= 0) {
+                    location.href = href;
+                    clearInterval(interval);
+                };
+            }, 1000);
+            window.stop = function (){
+                clearInterval(interval);
+            }
+        })();
+    </script>
+</block>

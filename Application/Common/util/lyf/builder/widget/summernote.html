@@ -1,0 +1,57 @@
+<case value="summernote">
+    <div class="form-group item_{$[type]form.name} {$[type]form.extra.class|default=''}">
+        <label class="left control-label">
+            <?php if($[type]form['extra']['must']): ?>
+                <span style="color: red;">*</span>
+            <?php endif; ?>
+            <span>{$[type]form.title}：</span>
+        </label>
+        <div class="right">
+            <textarea name="{$[type]form.name}" rwos="5" id="[type]{$group_k|default=''}_summernote_{$[type]k}" class="form-control" {$[type]form.extra.attr|default=''}>
+                {$[type]form.value|default=''}
+            </textarea>
+            <link rel="stylesheet" type="text/css" href="__PUBLIC__/libs/summernote/summernote.css">
+            <style type="text/css" media="screen">
+                .note-editor .modal-body .form-group {
+                    margin: 0;
+                }
+            </style>
+            <script type="text/javascript" src="__PUBLIC__/libs/summernote/summernote.min.js" charset="utf-8"></script>
+            <script type="text/javascript">
+                $(function(){
+                    $('#[type]{$group_k|default=''}_summernote_{$[type]k}').summernote({
+                        height: 300,
+                        callbacks: {
+                            onImageUpload: function(files) { //the onImageUpload API
+                                var data = new FormData();
+                                data.append("file", files[0]);
+                                console.log(data);
+                                $.ajax({
+                                    data: data,
+                                    type: "POST",
+                                    dataType: "json",
+                                    url: '{:U(MODULE_MARK."/Upload/upload", array("callback_type" => "summernote", "module_name" => request()->module()), true, true)}',
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    crossDomain: true,
+                                    success: function(data) {
+                                        if (data.status == 1) {
+                                            $.alertMessager('图片上传成功', 'success');
+                                            $("#[type]{$group_k|default=''}_summernote_{$[type]k}").summernote('insertImage', data.url, data.name); // the insertImage API
+                                        } else {
+                                            $.alertMessager(data.info, 'danger');
+                                        }
+                                    },
+                                    error: function(data){
+                                        console.log(data);
+                                    }
+                                });
+                            }
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</case>

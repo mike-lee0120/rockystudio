@@ -1,0 +1,74 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="{:U('User/Center/index')}" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">{$meta_title}</div>
+            <div class="right">
+                <a href="{:U('Wallet/Index/my')}" class="link">
+                    <span>账单</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" data-page="{$_page_name}">
+        <div class="page-content">
+            <div class="content-block" style="margin-top: -1px;">
+                <div class="content-block-inner">
+                    <p>
+                        <span style="font-size: 20px;color: #646464;font-weight: 300;">账户余额</span>：
+                        <span style="font-size: 20px;color: #3fa9f5"">¥ </span>
+                        <span style="font-size: 30px;color: #3fa9f5">{$user_info.money}</span>
+                    </p>
+                    <p style="color: #B3B3B3;">
+                        账户余额可以用于支付订单（可以使用红包和折扣券）
+                    </p>
+                </div>
+                <div class="content-block-inner" style="margin-top: -1px;">
+                    <div class="row text-center">
+                        <div class="col-auto">
+                            <a href="{:U('Wallet/Recharge/index')}"><i class="fa fa-recharge" style="font-size: 30px;color: #F15A4A;"></i></a>
+                            <div>充值</div>
+                        </div>
+                        <div class="col-auto">
+                            <a onclick="alert('该功能正在开发');"><i class="fa fa-transfer" style="font-size: 30px;color: #F2952A;"></i></a>
+                            <div>转账</div>
+                        </div>
+                        <div class="col-auto">
+                            <a href="{:U('Wallet/Withdraw/my')}"><i class="fa fa-withdraw" style="font-size: 30px;color: #33A8E2;"></i></a>
+                            <div>提现</div>
+                        </div>
+                        <div class="col-auto">
+                            <a onclick="alert('该功能正在开发');"><i class="fa fa-credit-card" style="font-size: 30px;color: #48B789;"></i></a>
+                            <div>银行卡</div>
+                        </div>
+                    </div>
+                    <div class="row text-center" style="margin-top: 30px;">
+                        <div class="col-auto">
+                            <a href="{:U('Wallet/Redbag/my')}"><i class="fa fa-redbag" style="font-size: 30px;color: #F15A4A;"></i></a>
+                            <div>红包</div>
+                        </div>
+                        <div class="col-auto">
+                            <a href="{:U('Wallet/Coupon/my')}"><i class="fa fa-coupon" style="font-size: 30px;color: #33A8E2;"></i></a>
+                            <div>折扣券</div>
+                        </div>
+                        <div class="col-auto">
+                            <a href="{:U('/appstore')}"><i class="fa fa-cloud" style="font-size: 30px;color: #F2952A;"></i></a>
+                            <div>云商城</div>
+                        </div>
+                        <div class="col-auto">
+                            <a onclick="alert('该功能正在开发');"><i class="fa fa-qrcode" style="font-size: 30px;color: #48B789;"></i></a>
+                            <div>付款码</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

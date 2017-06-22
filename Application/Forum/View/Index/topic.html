@@ -1,0 +1,121 @@
+<extend name="$_home_public_layout" />
+
+<block name="style">
+    <link rel="stylesheet" type="text/css" href="__CSS__/home.css">
+</block>
+
+<block name="main">
+    <div class="lyask-container-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="lyask-content-wrap clearfix">
+                    <div class="col-sm-12 col-md-9 lyask-main-content">
+                        <div class="lyask-mod lyask-topic-detail-title">
+                            <div class="mod-body">
+                                <img src="__ROOT__/logo.png" width="50" alt="{$info.title}">
+                                <h2 class="pull-left">{$info.title}</h2>
+                            </div>
+                        </div>
+                        <div class="lyask-mod lyask-topic-list-mod">
+                            <div class="mod-head">
+                                <div class="tabbable">
+                                    <!-- tab 切换 -->
+                                    <ul class="nav nav-tabs lyask-nav-tabs hidden-xs">
+                                        <li class="active"><a href="#all" data-toggle="tab">全部内容</a></li>
+                                    </ul>
+                                    <!-- end tab 切换 -->
+                                </div>
+                            </div>
+                            <div class="mod-body">
+                                <!-- tab 切换内容 -->
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="all">
+                                        <div class="lyask-mod">
+                                            <div class="mod-body">
+                                                <div class="lyask-common-list" id="c_all_list">
+                                                    <volist name="data_list" id="vo">
+                                                        <div class="lyask-item active" data-id="{$vo.id}">
+                                                            <a class="lyask-user-name hidden-xs" data-id="{$vo['user']['id']}" href="{:U('User/Index/home', array('uid' => $vo['user']['id']), true, true)}">
+                                                                <img src="{$vo.user.avatar_url}">
+                                                            </a>
+                                                            <div class="lyask-question-content">
+                                                                <h4>
+                                                                    {$vo.title_url}
+                                                                </h4>
+                                                                <a href="{$vo.title_href}" class="pull-right text-color-999">
+                                                                    回复
+                                                                </a>
+                                                                <p>
+                                                                    <a href="{:U('User/Index/home', array('uid' => $vo['user']['id']), true, true)}" class="lyask-user-name">
+                                                                        {$vo.user.nickname}
+                                                                    </a>
+                                                                    <span class="text-color-999">
+                                                                        发表了帖子 • {$vo.comment_count|default=0} 个回复 • {$vo.view_count|default=0} 次浏览 • {$vo.create_time|friendly_date}
+                                                                    </span>
+                                                                    <span class="text-color-999 related-topic collapse">
+                                                                        • 来自相关话题
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </volist>
+                                                </div>
+                                            </div>
+                                            <div class="mod-footer">
+                                                <div class="page-control">
+                                                    <notempty name="page">
+                                                        <ul class="pagination pull-right">{$page}</ul>
+                                                    </notempty>
+                                                    <empty name="data_list">
+                                                        <div class="text-center clearfix">暂时没有数据～</div>
+                                                    </empty>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end tab 切换内容 -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 侧边栏 -->
+                    <div class="col-sm-12 col-md-3 lyask-side-bar hidden-xs">
+                        <!-- 话题描述 -->
+                        <div class="lyask-mod lyask-text-align-justify">
+                            <div class="mod-head">
+                                <h3>话题描述</h3>
+                            </div>
+                            <div class="mod-body">
+                                <p>{$info.abstract}</p>
+                            </div>
+                        </div>
+                        <!-- end 话题描述 -->
+                        <div class="lyask-mod topic-about">
+                            <div class="mod-head">
+                                <h3>相关话题</h3>
+                            </div>
+                            <div class="mod-body" data-type="topic">
+                                <div class="lyask-topic-bar" data-type="topic" data-id="2078">
+                                    <div class="tag-bar clearfix">
+                                        <span class="topic-tag">
+                                            <volist name="info.similar_list" id="vo">
+                                                {$vo.title_url}
+                                            </volist>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lyask-mod">
+                            <div class="mod-head">
+                                <h3>根话题</h3>
+                            </div>
+                            <a class="lyask-topic-name" href="{$info.top_plate.href}"><span>{$info.top_plate.title}</span></a>
+                        </div>
+                    </div>
+                    <!-- end 侧边栏 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

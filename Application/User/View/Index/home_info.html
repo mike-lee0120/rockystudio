@@ -1,0 +1,104 @@
+<?php
+    // 获取所有模块配置的用户导航
+    $mod_con['status'] = 1;
+    $mod_con['is_system'] = 0;
+    $_module_list = D('Admin/Module')->where($mod_con)->order('sort asc, id asc')->select();
+?>
+
+<style type="text/css">
+    .profile-header {
+        height:360px;
+    }
+    .profile-header .user-button .btn-default {
+        color: #fff;
+        border-color: #fff;
+        background: none;
+    }
+    .profile-header .user-button .btn-default:hover,
+    .profile-header .user-button .btn-default.active {
+        color: #3EA9F5;
+        background: #fff;
+    }
+</style>
+
+<div class="pos-r m-b">
+    <div class="profile-header text-center bg-primary">
+        <div class="container-inner m-t">
+            <img class="img-circle media-object" src="{$user_info.avatar|get_cover='avatar'}">
+            <h3 class="profile-header-user">{$user_info.nickname}</h3>
+            <p class="profile-header-bio">{$user_info.summary}</p>
+        </div>
+        <div class="user-button">
+            <div class="row">
+                <div class="hidden-xs col-md-4"></div>
+                <div class="col-xs-6 col-md-2">
+                    <a href="{:U('User/Talk/index', array('to_uid' => $user_info['id']))}" class="btn btn-default btn-sm"><i class="fa fa-envelope"></i> 发私信</a>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <?php if ($user_info['follow_status']) :?>
+                        <button type="button" class="btn btn-default active btn-sm ajax-follow"
+                            url="{:U('User/Follow/add', array('uid' => $user_info['id']))}">
+                                <i class="fa fa-check"></i> 已关注
+                        </button>
+                    <?php else :?>
+                        <button type="button" class="btn btn-default btn-sm ajax-follow"
+                            url="{:U('User/Follow/add', array('uid' => $user_info['id']))}">
+                                <i class="fa fa-plus"></i> 加关注
+                        </button>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="profile-header-nav">
+        <ul class="nav nav-tabs">
+            <volist name="_module_list" id="vo">
+                <?php if($vo['home_nav']): ?>
+                    <?php $vo['home_nav'] = json_decode($vo['home_nav'], true); ?>
+                    <li class="<?php
+                            if($vo['name'] === request()->module()) {
+                                echo 'active';
+                            }
+                        ?>">
+                        <a href="{:U($vo['home_nav'][0]['url'], array('uid' => I('get.uid')), true, true)}">{$vo.title}</a>
+                    </li>
+                <?php endif; ?>
+            </volist>
+        </ul>
+    </nav>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        //关注
+        $(document).delegate('.ajax-follow', 'click', function() {
+            var target;
+            var that = this;
+            if (target = $(this).attr('url')) {
+                $.get(target).success(function(data){
+                    if (data.status == 1) {
+                        if(data.follow_status == 1){
+                            $(that).removeClass('btn-default');
+                            $(that).addClass('active');
+                            $(that).html('<i class="fa fa-check"></i> 已关注');
+                            $.alertMessager(data.info, 'success');
+                        }else{
+                            $(that).addClass('btn-default');
+                            $(that).removeClass('active');
+                            $(that).html('<i class="fa fa-plus"></i> 加关注');
+                            $.alertMessager(data.info, 'success');
+                        }
+                    } else {
+                        if(data.login == 1){
+                            $('#login-modal').modal(); //弹出登陆框
+                        }else{
+                            $.alertMessager(data.info, 'danger');
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+    });
+</script>

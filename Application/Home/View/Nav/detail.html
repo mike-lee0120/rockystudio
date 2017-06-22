@@ -1,0 +1,34 @@
+<extend name="$_home_public_layout"/>
+
+<block name="jumbotron">
+    <!--
+        <div class="jumbotron jumbotron-primary m-b-0" style="height: 400px;background: url(__HOME_IMG__/default/banner.png);">
+            <div class="container text-center">
+                <h3 class="m-t-md" style="font-weight: 300;font-size: 50px;">
+                    {$info.title}
+                </h3>
+            </div>
+        </div>
+    -->
+</block>
+
+<block name="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <?php if (isset($info['content'])): ?>
+                    <div class="panel">
+                        <article class="panel-body" style="min-height: 250px">
+                            <!-- 文章正文 -->
+                            <div class="article-body">
+                                {$info['content']|parse_content}
+                            </div>
+                        </article>
+                    </div>
+                <?php else: ?>
+                    <p class="text-center text-muted">在后台［系统－导航管理］可以编辑 {$meta_title} 的内容</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</block>

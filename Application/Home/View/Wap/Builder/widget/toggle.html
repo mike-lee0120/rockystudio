@@ -1,0 +1,34 @@
+<case value="toggle">
+    <li class="item_{$[type]form.name} {$[type]form.extra.class|default=''}">
+        <div class="item-content">
+            <div class="item-inner">
+                <div class="item-title label">
+                    <?php if($[type]form['extra']['must']): ?>
+                        <span style="color: red;">*</span>
+                    <?php endif; ?>
+                    <span>{$[type]form.title}：</span>
+                </div>
+                <div class="item-input">
+                    <label class="label-switch">
+                        <input id="[type]{$group_k|default=''}_date_{$[type]k}" type="checkbox" <?php if($[type]form['value']) { echo 'checked="checked"'; } ?>>
+                        <div class="checkbox"></div>
+                    </label>
+                </div>
+                <input id="[type]{$group_k|default=''}_date_{$[type]k}_input" type="hidden" name="{$[type]form.name}" value="{$[type]form['value']}">
+                <script position="page" type="text/javascript">
+                    $(function(){
+                        $(document).on('click', '#[type]{$group_k|default=''}_date_{$[type]k}', function() {
+                            var ch = $(this).is(':checked');
+                            if (ch == true) {
+                                $('#[type]{$group_k|default=''}_date_{$[type]k}_input').val('1');
+                            } else {
+                                $('#[type]{$group_k|default=''}_date_{$[type]k}_input').val('0');
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </li>
+</case>
+

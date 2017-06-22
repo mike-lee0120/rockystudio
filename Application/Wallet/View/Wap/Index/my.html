@@ -1,0 +1,55 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="__ROOT__/" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">{$meta_title}</div>
+        </div>
+    </div>
+
+    <div class="page no-toolbar" data-page="{$_page_name}">
+        <div class="page-content">
+            <div class="list-block m-t-sm m-b-sm media-list">
+                <ul>
+                    <volist name="table_data_list" id="vo">
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div class="item-title">{$vo.title}</div>
+                                        <div class="item-after">
+                                            <div>
+                                                <div style="color: rgb(51, 51, 51);">
+                                                    {$vo.type_code} {$vo.money}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 5px; font-size: 12px; color: rgb(119, 119, 119);">
+                                        {$vo.create_time}
+                                        {$vo.is_pay_text}
+                                        <div style="color: rgb(51, 51, 51);">
+                                            {$vo.pay_type_text}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+            <?php if($table_data_page): ?>
+                <div class="content-block">
+                    <div class="content-block-inner">
+                        <ul class="pagination">{$table_data_page}</ul>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</block>

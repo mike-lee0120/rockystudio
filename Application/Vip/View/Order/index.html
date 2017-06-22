@@ -1,0 +1,83 @@
+<extend name="$_home_public_layout"/>
+
+<block name="breadcrumb">
+    <include file="$_user_center_info" />
+</block>
+
+<block name="main">
+    <div class="container">
+        <div class="row ucenter-row">
+            <div class="col-xs-12 col-md-3">
+                <include file="$_user_center_side" /><!-- 包含用户中心侧边导航 -->
+            </div>
+            <div class="col-xs-12 col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        购买VIP
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-danger">
+                            注意：VIP会员计费周期采用非自然月计算，即每月都按30天计算。
+                        </div>
+                        <form action="{:U('')}" method="post" class="form form-vip">
+                            <div class="form-group">
+                                <label>会员类型</label>
+                                <div>
+                                    <select name="vip_type" class="form-control lyui-select vip_type_select" style="width: 300px;">
+                                        <volist name="vip_type_list" id="type">
+                                            <option data-price="{$type.price}" data-content="{$type.content}" value="{$type.id}">{$type.title}（¥{$type.price}）</option>
+                                        </volist>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>VIP特权</label>
+                                <div class="vip-content">
+                                    {$vip_type_list[0]['content']}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>购买时长</label>
+                                <div class="vip_pay_month">
+                                    <label><input type="radio" name="buy_period" value="1"> 1个月</label>
+                                    <label><input type="radio" name="buy_period" value="3" checked="checked"> 3个月</label>
+                                    <label><input type="radio" name="buy_period" value="6"> 6个月</label>
+                                    <label><input type="radio" name="buy_period" value="12"> 12个月</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>需支付</label>
+                                <div>
+                                      ¥ <span class="text-danger total_price"></span> 元
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-warning" value="立即开通">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            var total_price = parseFloat($(".vip_type_select").find("option:selected").attr('data-price')) * ($('input:radio[name=buy_period]:checked').val());
+            $('.total_price').text(total_price.toFixed(2));
+
+            $('.vip_type_select').change(function(){
+                var total_price = parseFloat($(".vip_type_select").find("option:selected").attr('data-price')) * ($('input:radio[name=buy_period]:checked').val());
+                $('.total_price').text(total_price);
+                $('.vip-content').text($(".vip_type_select").find("option:selected").attr('data-content'));
+            });
+
+            $('input:radio[name="buy_period"]').change(function(){
+                var total_price = parseFloat($(".vip_type_select").find("option:selected").attr('data-price')) * ($('input:radio[name=buy_period]:checked').val());
+                $('.total_price').text(total_price);
+            });
+        });
+    </script>
+</block>

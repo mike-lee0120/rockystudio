@@ -1,0 +1,32 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"></div>
+            <div class="center">{$meta_title}</div>
+            <div class="right"></div>
+        </div>
+    </div>
+
+    <div class="page" data-page="{$_page_name}">
+        <div class="page-content">
+            <volist name="data_list" id="vo">
+                <div class="content-block-title">{$vo.title}</div>
+                <div class="list-block">
+                    <ul>
+                        <volist name="vo._child" id="vo1">
+                            <li>
+                                <a href="{$vo1.href}" class="item-link item-content" data-ignore-cache="true">
+                                    <div class="item-inner">
+                                        <div class="item-title">{$vo1.title}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+            </volist>
+        </div>
+    </div>
+</block>

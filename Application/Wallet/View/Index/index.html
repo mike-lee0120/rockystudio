@@ -1,0 +1,31 @@
+<extend name="$_home_public_layout"/>
+
+<block name="breadcrumb">
+    <include file="$_user_center_info" />
+</block>
+
+<block name="main">
+    <div class="container">
+        <div class="row ucenter-row">
+            <div class="col-xs-12 col-md-3">
+                <include file="$_user_center_side" /><!-- 包含用户中心侧边导航 -->
+            </div>
+            <div class="col-xs-12 col-md-9">
+                <div class="panel">
+                    <div class="panel-heading">
+                        我的钱包
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="{:U('Wallet/Index/my')}"><i class="fa fa-calendar-check-o"></i> 我的账单</a></li>
+                            <li class="list-group-item"><a href="{:U('Wallet/Recharge/my')}"><i class="fa fa-calendar-check-o"></i> 充值记录</a></li>
+                            <li class="list-group-item"><a href="{:U('Wallet/Withdraw/my')}"><i class="fa fa-money"></i> 提现记录</a></li>
+                            <li class="list-group-item"><a href="{:U('Wallet/Redbag/my')}"><i class="fa fa-get-pocket"></i> 我的红包</a></li>
+                            <li class="list-group-item"><a href="{:U('Wallet/Coupon/my')}"><i class="fa fa-get-pocket"></i> 我的折扣券</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

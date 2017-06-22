@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta framework="framework7">
+    <meta charset="utf-8">
+    <title>{:C('WEB_SITE_TITLE')}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="author" content="{:C('WEB_SITE_TITLE')}">
+    <meta name="keywords" content="{$meta_keywords}">
+    <meta name="description" content="{$meta_description}">
+    <meta name="generator" content="零云">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="{:C('WEB_SITE_TITLE')}">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-itunes-app" content="app-id=1240647032">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico">
+    <link rel="apple-touch-icon" type="image/x-icon" href="__ROOT__/logo.png">
+    <link rel="stylesheet" href="__PUBLIC__/libs/framework7/css/framework7.ios.min.css">
+    <link rel="stylesheet" href="__HOME_CSS__/home.css">
+    <link rel="stylesheet" href="__PUBLIC__/libs/framework7/css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="__HOME_LIBS__/toast/toast.css">
+    <link rel="stylesheet" href="__LYUI__/css/lyicon.css">
+    <block name="style"></block>
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        window.jQuery || document.write('<script type="text/javascript" src="__PUBLIC__/libs/jquery/2.x/jquery.min.js"><\/script>');
+        window.lingyun = {
+            "app_debug"     : "<?php echo APP_DEBUG; ?>",
+            "app_debug_msg" : "调试模式已关闭",
+            "top_home_page" : "{:C('TOP_HOME_PAGE')}",
+            "home_page"     : "{:C('HOME_PAGE')}",
+            "var_root "     : "__ROOT__",
+            "default_img"   : "{:get_cover('', 'default')}"
+        }
+    </script>
+</head>
+<body>
+    <div class="panel-overlay"></div>
+    <div class="panel panel-left panel-reveal layout-dark">
+        <div class="content-block-title m-b">
+            <php>if(C('WEB_SITE_LOGO')):</php>
+                <a class="navbar-brand" href="{:C('HOME_PAGE')}">
+                    <img alt="logo" src="{$Think.config.WEB_SITE_LOGO|get_cover}" width="200">
+                </a>
+            <php>else:</php>
+                <a class="navbar-brand" href="{:C('HOME_PAGE')}" style="font-size: 30px;">
+                    <span>{:C('LOGO_DEFAULT')}</span>
+                </a>
+            <php>endif;</php>
+        </div>
+        <div class="list-block">
+            <ul>
+                <!-- 主导航 -->
+                <lingyun:nav_list name="vo" pid="0" group="main">
+                    <li>
+                        <a href="{$vo.href}"" class="item-link close-panel">
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">{$vo.title}</div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </lingyun:nav_list>
+            </ul>
+        </div>
+        <div class="content-block">
+            <p>{:C('WEB_SITE_DESCRIPTION')}</p>
+        </div>
+    </div>
+
+    <!-- 视图合集 -->
+    <div class="views tabs theme-opencmf">
+        <div class="view view-main active" id="view-main" data-page="{$_page_name}">
+            <div class="pages navbar-through toolbar-through">
+                <block name="main">
+                </block>
+            </div>
+
+            <block name="toolbar">
+                <div class="toolbar tabbar tabbar-labels">
+                    <div class="toolbar-inner">
+                        <!-- Wap底部Tab导航 -->
+                        <lingyun:nav_list name="vo" pid="0" group="tabbar">
+                            <a target="{$vo.target}" href="{$vo.href}" class="link <?php if(C('HOME_DOMAIN') . $_SERVER['REQUEST_URI'] == $vo['href']) {echo 'active'; }?>">
+                                <i class="fa {$vo.icon}"></i>
+                                <span class="tabbar-label">{$vo.title}</span>
+                            </a>
+                        </lingyun:nav_list>
+                    </div>
+                </div>
+            </block>
+        </div>
+    </div>
+
+    <div class="full-script">
+        <script type="text/javascript" src="//cdn.bootcss.com/framework7/1.4.2/js/framework7.min.js"></script>
+        <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="__PUBLIC__/libs/framework7/js/framework7.min.js"><\/script>');</script>
+        <script type="text/javascript" src="__HOME_LIBS__/toast/toast.js"></script>
+        <script type="text/javascript" src="__HOME_JS__/home.js"></script>
+        <script type="text/javascript">
+            var myApp = new Framework7({
+                cacheDuration: 60000,
+                pushState: true,
+                pushStateSeparator: "",
+                pushStateRoot: undefined,
+                scrollTopOnStatusbarClick: true,
+                uniqueHistory: true,
+                modalTitle: '{:C("WEB_SITE_TITLE")}',
+                modalButtonOk: '确定',
+                modalButtonCancel: '取消',
+                modalPreloaderTitle: '加载中...',
+                modalUsernamePlaceholder: '用户名',
+                modalPasswordPlaceholder: '密码',
+                smartSelectBackText: '返回',
+                smartSelectBackOnSelect: true,
+                ajaxLinks: '.smart-select',
+
+                // Hide and show indicator during ajax requests
+                onAjaxStart: function (xhr) {
+                    myApp.showIndicator();
+                },
+                onAjaxComplete: function (xhr) {
+                    myApp.hideIndicator();
+                }
+            });
+            var toast = myApp.toast('Marked star', '<div>☆</div>', {});
+            var $$ = Framework7.$;
+            var mainView = myApp.addView('.view-main', {
+                dynamicNavbar: true
+            });
+
+            $(function(){
+                // navbar&toolbar
+                if ($('.page').hasClass('no-toolbar')) {
+                    $('.view-main>.toolbar.tabbar').addClass('toolbar-hidden');
+                }
+                if ($('.page').hasClass('no-navbar')) {
+                    $('.navbar').addClass('navbar-hidden');
+                }
+
+                // 修复关闭路由时TAB问题
+                $(document).on('click', 'a.tab-link', function(e) {
+                    e.preventDefault();
+                });
+
+                // 修复关闭路由时返回按钮
+                $(document).on('click', 'a.back', function(e) {
+                    if (history.length > 0) {
+                        history.back();
+                        e.preventDefault();
+                    }
+                });
+
+                // 主导航如果没有当前URL完全一致的页面则高亮当前页面所在的模块
+                var $nav_list = $(".toolbar-inner");
+                var $current = $nav_list.find("a.active");
+                if ($current.length == 0) {
+                    var url = "<?php echo U('/'.request()->module(), '', true, true); ?>";
+                    $('.toolbar-inner a[href="' + url + '"]').addClass('active');
+                }
+            });
+        </script>
+        <block name="script"></block>
+    </div>
+</body>
+</html>

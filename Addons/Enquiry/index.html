@@ -1,0 +1,254 @@
+<style>
+	#enquiry-box {
+		z-index: 99999999;
+	}
+	#enquiry-box .enquiry-header,
+	#enquiry-box .enquiry-btn,.success-close {
+		background-color: {$config.color};
+	}
+	#enquiry-box .valign-wrapper {
+		display: -webkit-flex;
+	  	display: -ms-flexbox;
+	  	display: flex;
+	  	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	    align-items: center;
+	}
+	#enquiry-box .valign {
+		display: block;
+	}
+	#enquiry-box .enquiry-trigger {
+		right:30px;
+		bottom:45px;
+		position:fixed;
+		width: 5em;
+		height:5em;
+		cursor: pointer;
+	}
+	#enquiry-box .sdv {
+		width:90px;
+		background:#fff;
+		padding:5px;
+		right:100px;
+		bottom:110px;
+		position:fixed;
+		border:1px solid #333;
+		display:none;
+		border-radius:15px;
+	}
+	#enquiry-box #enquiry-page {
+		display: none;
+		position: fixed;
+		right: 10px;
+		bottom: 0px;
+		width: 25%;
+		min-height: 30em;
+		border-radius: 30px;
+		background-color: white;
+	}
+	#enquiry-box .enquiry-form {
+		padding-left: 1em;
+		background-color: white;
+		opacity: 1;
+	}
+	#enquiry-box .enquiry-header {
+		opacity:1!important;
+		margin: 0;
+		color: white;
+		height: 3em;
+		line-height: 1;
+		border-radius: 5px 5px 0 0;
+	}
+	#enquiry-box .enquiry-header-left {
+		padding-left: 1em;
+		margin-top: 1em;
+		float: left;
+	}
+	#enquiry-box .enquiry-header-right {
+		line-height: 0.55555555555;
+		margin-top: 1em;
+		float: right;
+	}
+	#enquiry-box .enquiry-abstract {
+		padding-left: 1em;
+		padding-right: 1em;
+		background-color: white;
+		margin: 0;
+		padding-bottom: 1em;
+	}
+	#enquiry-box #enquiry-close {
+		float: right;
+		padding-right: 5px;
+		cursor: pointer;
+	}
+	#enquiry-box .enquiry-form,
+	#enquiry-box .success-content {
+		padding: 0 1em;
+	}
+	#enquiry-box .success-content {
+		margin-top: 10%;
+	}
+	#enquiry-box form.enquiry-form label {
+		display: block;
+		padding-bottom: 0.5em;
+	}
+	#enquiry-box form.enquiry-form input,form textarea {
+		width: 100%;
+		border-radius: 2px;
+	}
+	#enquiry-box form.enquiry-form textarea {
+		height: 8em;
+	}
+	#enquiry-box .enquiry-btn,.success-close {
+		width: 100%;
+		color: white;
+		border-radius: 8px;
+		height:3em;
+	}
+	#enquiry-box #success-view {
+		display: none;
+	}
+	#enquiry-box .success-content {
+		background-color: white;
+		opacity: 1;
+	}
+	#enquiry-box .success-info{
+		text-align: center;
+		font-size: 2em;
+		font-style: bold;
+	}
+	#enquiry-box .success-tips {
+		text-align: center;
+		font-size: 1em;
+	}
+	#enquiry-box .re-enquiry {
+		text-align: center;
+		text-decoration: underline;
+	}
+</style>
+
+<div id="enquiry-box" class="hidden-xs">
+	<div id="enquiry-trigger" class="enquiry-trigger">
+		<notempty name='config.image'>
+			<img src="{$config.image|get_cover}" alt="">
+		<else/>
+			<img src="__ADDONROOT__/img/kefu.png" alt="">
+		</notempty>
+	</div>
+	<div id="enquiry-page">
+		<div id="enquiry-view">
+			<header class="enquiry-header">
+				<div class="enquiry-header-left valign-wrapper">
+					<span class="valign">
+						{$config.title}
+					</span>
+				</div>
+				<div class="enquiry-header-right valign-wrapper">
+					<span id="enquiry-close" class="valign">关闭</span>
+				</div>
+			</header>
+
+			<p class="enquiry-abstract m-t">{$config.abstract}</p>
+
+			<form id="enquiry-form" class="form-horizontal enquiry-form" action="<php>echo addons_url('Enquiry://Enquiry/add');</php>" method="post">
+				<div class="form-group">
+					<label class="col-sm-3">姓名</label>
+					<div class="col-sm-9">
+				        <input type="text" class="form-control" name="name" placeholder="请输入姓名(必填)">
+				    </div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3">手机号</label>
+					<div class="col-sm-9">
+				        <input type="text" class="form-control"name="mobile" placeholder="请输入手机号">
+				    </div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3">QQ</label>
+					<div class="col-sm-9">
+				        <input type="text" class="form-control"name="qq" placeholder="请输入QQ">
+				    </div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3">Eamil</label>
+					<div class="col-sm-9">
+				        <input type="text" class="form-control"name="email" placeholder="请输入Email">
+				    </div>
+				</div>
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label for="">留言内容</label>
+						<textarea name="content"class="form-control" placeholder="请输入您的留言内容(必填)"></textarea>
+					</div>
+					<div class="form-group">
+						<button type="submit" id='enquiry-btn' class="enquiry-btn">提交留言</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div id="success-view">
+			<header class="enquiry-header">
+				<div class="enquiry-header-left valign-wrapper">
+					<span class="valign">
+						{$config.title}
+					</span>
+				</div>
+				<div class="enquiry-header-right valign-wrapper">
+					<span id="enquiry-close" class="valign">关闭</span>
+				</div>
+			</header>
+			<div class="success-content text-center">
+				<p class="fa fa-check text-success fa-5x"></p>
+				<p class="success-info">留言成功</p>
+				<p class="success-tips">{$config.success_tips}
+				</p>
+				<button id="success-close" class="success-close m-b">关闭</button>
+				<a id="re-enquiry" href="#" class="re-enquiry">再次留言</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('#enquiry-trigger').on('click', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		$('#enquiry-page').show();
+		$('#enquiry-view').show();
+		$('#success-view').hide();
+
+	});
+	$('#enquiry-close,#success-close').on('click', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		$('#enquiry-page').hide();
+	});
+
+	$('#re-enquiry').on('click', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		$('#enquiry-view').show();
+		$('textarea[name=content]').val('');
+		$('#success-view').hide();
+
+	});
+
+	$('#enquiry-btn').on('click', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		var data=$('#enquiry-form').serialize();
+		console.log(data);
+
+		$.post($('#enquiry-form').attr('action'), data, function(resp) {
+			/*optional stuff to do after success */
+			console.log(resp);
+			if (resp.status) {
+				$('#enquiry-view').hide();
+				$('#success-view').show();
+			}else{
+				$.alertMessager(resp.info);
+			}
+		});
+	});
+</script>

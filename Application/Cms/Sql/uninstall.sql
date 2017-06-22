@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS `ly_cms_article`;
+DROP TABLE IF EXISTS `ly_cms_attribute`;
+DROP TABLE IF EXISTS `ly_cms_index`;
+DROP TABLE IF EXISTS `ly_cms_category`;
+DROP TABLE IF EXISTS `ly_cms_type`;
+DROP TABLE IF EXISTS `ly_cms_comment`;
+DROP TABLE IF EXISTS `ly_cms_report`;
+DROP TABLE IF EXISTS `ly_cms_mark`;
+DROP TABLE IF EXISTS `ly_cms_slider`;
+DROP TABLE IF EXISTS `ly_cms_zan`;
+DROP TABLE IF EXISTS `ly_cms_ad`;

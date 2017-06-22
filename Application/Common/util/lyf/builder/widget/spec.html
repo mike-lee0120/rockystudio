@@ -1,0 +1,313 @@
+<case value="spec">
+    <div class="form-group item_{$[type]form.name} {$[type]form.extra.class|default=''}">
+        <label class="left control-label">
+            <?php if($[type]form['extra']['must']): ?>
+                <span style="color: red;">*</span>
+            <?php endif; ?>
+            <span>{$[type]form.title}：</span>
+        </label>
+        <div class="right" id="[type]{$group_k|default=''}_spec_{$[type]k}">
+            <style type="text/css" media="screen">
+                .table-bordered>thead>tr>th {
+                    border-bottom-width: 1px;
+                    font-weight: 300;
+                }
+                .input-tags {
+                    margin: 0px 4px 0 0;
+                    height: 30px;
+                    line-height: 1.5
+                }
+                .form-tags span {
+                    padding: .1em .4em .1em;
+                    margin: 0px 4px 0 0;
+                }
+            </style>
+            <script type="text/javascript" src="__PUBLIC__/libs/bootstrap_tags/bootstrap.tags.js" charset="utf-8"></script>
+            <div>
+                <table class="spec table table-bordered m-b-xs" style="width: 70%;">
+                    <thead>
+                        <tr>
+                            <th class="small" colspan="3">{$[type]form.title}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if($[type]form['value']['spec']): ?>
+                            <foreach name="[type]form['value']['spec']" item="sp">
+                                <tr>
+                                    <td class="col-xs-2"><input name="{$[type]form.name}[spec][{$key}][name]" class="form-control input-sm spec-title" value="{$sp['name']}"></td>
+                                    <td class="col-xs-9"><input name="{$[type]form.name}[spec][{$key}][value]" data-toggle="tags" data-value="<?php echo $sp['value']; ?>" class="form-control input-sm spec-item" value="{$sp['value']}"></td>
+                                    <td class="col-xs-1" style="padding-top: 14px;"><span class="label label-danger-outline label-pill del-row">删除</span></td>
+                                </tr>
+                            </foreach>
+                        <?php else: ?>
+                            <tr>
+                                <td class="col-xs-2"><input name="{$[type]form.name}[spec][0][name]" class="form-control input-sm spec-title" value="颜色"></td>
+                                <td class="col-xs-9"><input name="{$[type]form.name}[spec][0][value]" data-toggle="tags" class="form-control input-sm spec-item"></td>
+                                <td class="col-xs-1" style="padding-top: 14px;"><span class="label label-danger-outline label-pill del-row">删除</span></td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary-outline btn-pill btn-xs m-b-sm add-spec">增加一个{$[type]form.title}</button>
+                <button type="button" class="btn btn-danger-outline btn-pill btn-xs m-b-sm update-spec">更新规格</button>
+                <small>注意：更新规格会导致下面的库存价格信息丢失</small>
+                <script type="text/javascript">
+                    $(function(){
+                        /**
+                         * 笛卡尔积换算
+                         * @param {array} [arguments] 多个数组, 如：[[1, 2, 3, 4], [11, 22, 33, 44]]
+                         * @author Flc
+                         * @example
+                         *     descartes([[1, 2, 3, 4], [11, 22, 33, 44], [111, 222, 333, 444]]);
+                         */
+                        function descartes(args){
+                            //var args = arguments;
+                            var rs   = [];
+
+                            // A. 校验并转换为JS数组
+                            for (var i = 0; i < args.length; i++) {
+                                if (!$.isArray(args[i])) {
+                                    return false;  // 参数必须为数组
+                                }
+                            }
+
+                            // 两个笛卡尔积换算
+                            var bothDescartes = function (m, n){
+                                var r = []
+                                for (var i = 0; i < m.length; i++) {
+                                    for (var ii = 0; ii < n.length; ii++) {
+                                        var t = [];
+                                        if ($.isArray(m[i])) {
+                                            t = m[i].slice(0);  //此处使用slice目的为了防止t变化，导致m也跟着变化
+                                        } else {
+                                            t.push(m[i]);
+                                        }
+                                        t.push(n[ii]);
+                                        r.push(t);
+                                    }
+                                }
+                                return r;
+                            }
+
+                            // 多个笛卡尔基数换算
+                            for (var i = 0; i < args.length; i++) {
+                                if (i == 0) {
+                                    rs = args[i];
+                                } else {
+                                    rs = bothDescartes(rs, args[i]);
+                                }
+                            }
+
+                            return rs;
+                        }
+
+                        // 合并单元格
+                        function hbdyg(table) {
+                            var tab = document.getElementById(table); //要合并的tableID
+                            var maxCol = 2, val, count, start;  //maxCol：合并单元格作用到多少列
+                            if (tab != null) {
+                                for (var col = maxCol - 1; col >= 0; col--) {
+                                    count = 1;
+                                    val = "";
+                                    for (var i = 0; i < tab.rows.length; i++) {
+                                        if (val == tab.rows[i].cells[col].innerHTML) {
+                                            count++;
+                                        } else {
+                                            if (count > 1) { //合并
+                                                start = i - count;
+                                                tab.rows[start].cells[col].rowSpan = count;
+                                                for (var j = start + 1; j < i; j++) {
+                                                    tab.rows[j].cells[col].style.display = "none";
+                                                }
+                                                count = 1;
+                                            }
+                                            val = tab.rows[i].cells[col].innerHTML;
+                                        }
+                                    }
+                                    if (count > 1) { //合并，最后几行相同的情况下
+                                        start = i - count;
+                                        tab.rows[start].cells[col].rowSpan = count;
+                                        for (var j = start + 1; j < i; j++) {
+                                            tab.rows[j].cells[col].style.display = "none";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // 检测js数组是否有重复元素
+                        function isRepeat(arr){
+                            var hash = {};
+                            for(var i in arr) {
+                                if(hash[arr[i]])
+                                    return true;
+                                hash[arr[i]] = true;
+                            }
+                            return false;
+                        }
+
+                        // 增加一行规格
+                        $(document).on('click', '#[type]{$group_k|default=''}_spec_{$[type]k} .add-spec', function() {
+                            var count = $('#[type]{$group_k|default=''}_spec_{$[type]k} table.spec tbody tr').length;
+                            if ( count >= 3) {
+                                $.alertMessager('目前最多添加3个规格');
+                                return false;
+                            }
+                            if ('' == $('#[type]{$group_k|default=''}_spec_{$[type]k} table.spec tbody tr:last-child .spec-title').val() || '' == $('#[type]{$group_k|default=''}_spec_{$[type]k} table.spec tbody tr:last-child .spec-item').val()) {
+                                $.alertMessager('请先填写前一个规格');
+                                return false;
+                            }
+                            var tmp = '<tr><td class="col-xs-2"><input name="{$[type]form.name}[spec]['+count+'][name]" data-toggle="tags" class="form-control input-sm spec-title"></td><td class="col-xs-10"><input name="{$[type]form.name}[spec]['+count+'][value]" data-toggle="tags" class="form-control input-sm spec-item"></td><td class="col-xs-1" style="padding-top: 14px;"><span class="label label-danger-outline label-pill del-row">删除</span></td></tr>';
+                            $('#[type]{$group_k|default=''}_spec_{$[type]k} table.spec tbody').append(tmp);
+                            $('#[type]{$group_k|default=''}_spec_{$[type]k} table.spec tbody tr:last-child .spec-item').tags(); // 调用插件TAG化
+                        });
+
+                        // 删除一行规格
+                        $(document).on('click', '#[type]{$group_k|default=''}_spec_{$[type]k} table.spec .del-row', function() {
+                            $(this).closest('tr').remove();
+                        });
+
+                        // 更新表格
+                        $(document).on('click', '#[type]{$group_k|default=''}_spec_{$[type]k} .update-spec', function(e) {
+                            var result = new Array();
+                            var f_item = $('#[type]{$group_k|default=''}_spec_{$[type]k} table.spec tbody tr:first-child .spec-item').val();
+                            if (f_item) {
+                                f_item = f_item.split(",");
+                                if (isRepeat(f_item)) {
+                                    alert('规格项目不允许重复');
+                                    return false;
+                                }
+                                result.push(f_item);
+                            }
+                            var s_item = $('#[type]{$group_k|default=''}_spec_{$[type]k} table.spec tbody tr:nth-child(2) .spec-item').val();
+                            if (s_item) {
+                                s_item = s_item.split(",");
+                                if (isRepeat(f_item)) {
+                                    alert('规格项目不允许重复');
+                                    return false;
+                                }
+                                result.push(s_item);
+                            }
+                            var t_item = $('#[type]{$group_k|default=''}_spec_{$[type]k} table.spec tbody tr:nth-child(3) .spec-item').val();
+                            if (t_item) {
+                                t_item = t_item.split(",");
+                                if (isRepeat(f_item)) {
+                                    alert('规格项目不允许重复');
+                                    return false;
+                                }
+                                result.push(t_item);
+                            }
+                            var dkr = descartes(result);
+                            var tmp = '<tr>';
+                            if (result.length === 1) {
+                                for (var i = 0; i < dkr.length; i++) {
+                                    tmp += '<td class="col-xs-2">'+dkr[i]+'<input type="hidden" name="{$[type]form.name}[item]['+i+'][key]" value="'+dkr[i]+'"></td>';
+                                    tmp += '<td class="col-xs-2"><input name="{$[type]form.name}[item]['+i+'][stock]" class="form-control input-sm"></td><td class="col-xs-2"><input name="{$[type]form.name}[item]['+i+'][price]" class="form-control input-sm"></td><td class="col-xs-2"><input name="{$[type]form.name}[item]['+i+'][code]" class="form-control input-sm"></td></tr>';
+                                }
+                            } else {
+                                for (var i = 0; i < dkr.length; i++) {
+                                    tmp += '<td class="col-xs-2">'+dkr[i][0]+'<input type="hidden" name="{$[type]form.name}[item]['+i+'][key][]" value="'+dkr[i][0]+'"></td>';
+                                    if (dkr[i][1]) {
+                                        tmp += '<td class="col-xs-2">'+dkr[i][1]+'<input type="hidden" name="{$[type]form.name}[item]['+i+'][key][]" value="'+dkr[i][1]+'"></td>';
+                                        if (dkr[i][2]) {
+                                            tmp += '<td class="col-xs-2">'+dkr[i][2]+'<input type="hidden" name="{$[type]form.name}[item]['+i+'][key][]" value="'+dkr[i][2]+'"></td>';
+                                        }
+                                    }
+                                    tmp += '<td class="col-xs-2"><input name="{$[type]form.name}[item]['+i+'][stock]" class="form-control input-sm"></td><td class="col-xs-2"><input name="{$[type]form.name}[item]['+i+'][price]" class="form-control input-sm"></td><td class="col-xs-2"><input name="{$[type]form.name}[item]['+i+'][code]" class="form-control input-sm"></td></tr>';
+                                }
+                            }
+
+                            // 更新表头
+                            var t1 = $('#[type]{$group_k|default=''}_spec_{$[type]k} table.spec tbody tr:nth-child(1) .spec-title').val();
+                            var t2 = $('#[type]{$group_k|default=''}_spec_{$[type]k} table.spec tbody tr:nth-child(2) .spec-title').val();
+                            var t3 = $('#[type]{$group_k|default=''}_spec_{$[type]k} table.spec tbody tr:nth-child(3) .spec-title').val();
+                            var thead = '<th class="small">';
+                            if (t1) {
+                                thead = thead + t1 +'</th>';
+                            }
+                            if (s_item) {
+                                if (t2) {
+                                    thead = thead + '<th class="small">' + t2 +'</th>';
+                                }
+                            }
+                            if (t_item) {
+                                if (t3) {
+                                    thead = thead + '<th class="small">' + t3 +'</th>';
+                                }
+                            }
+
+                            // 规格标题不允许重复
+                            if (t1 && t2) {
+                                if (t1 == t2) {
+                                    alert('规格标题重复');
+                                    return false;
+                                }
+                            }
+                            if (t1 && t2 && t3) {
+                                if (t1 == t2 || t1 == t3 || t2 == t3) {
+                                    alert('规格标题重复');
+                                    return false;
+                                }
+                            }
+
+                            thead += '<th class="small">库存</th><th class="small">价格</th><th class="small">商家编码</th>';
+                            $('#[type]{$group_k|default=''}_spec_stock_price{$[type]k} thead tr').html('');
+                            $('#[type]{$group_k|default=''}_spec_stock_price{$[type]k} thead tr').append(thead);
+
+                            // 更新库存价格表
+                            if (tmp) {
+                                $('#[type]{$group_k|default=''}_spec_stock_price{$[type]k} tbody').html('');
+                                $('#[type]{$group_k|default=''}_spec_stock_price{$[type]k} tbody').append(tmp);
+                                if (result.length > 1) {
+                                    hbdyg('[type]{$group_k|default=''}_spec_stock_price{$[type]k}');
+                                }
+                            }
+                        });
+                    });
+                </script>
+            </div>
+            <div>
+                <table id="[type]{$group_k|default=''}_spec_stock_price{$[type]k}" class="spec_stock_price table table-bordered m-b-xs">
+                    <?php if($[type]form['value']['item']): ?>
+                        <thead>
+                            <tr>
+                                <foreach name="[type]form['value']['spec']" item="sp">
+                                    <th class="small">{$sp.name}</th>
+                                </foreach>
+                                <th class="small">库存</th>
+                                <th class="small">价格</th>
+                                <th class="small">商家编码</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <foreach name="[type]form['value']['item']" item="item">
+                                <tr>
+                                    <?php $item['key'] = explode(',', $item['key']); ?>
+                                    <?php if(count($item['key']) > 1): ?>
+                                        <foreach name="item['key']" item="it" key='key2'>
+                                            <td class="col-xs-2">{$it}<input type="hidden" name="spec[item][{$key}][key][]" value="{$it}"></td>
+                                        </foreach>
+                                    <?php else: ?>
+                                        <td class="col-xs-2">{$item['key'][0]}<input type="hidden" name="spec[item][{$key}][key]" value="{$item['key'][0]}"></td>
+                                    <?php endif; ?>
+                                    <td class="col-xs-2"><input name="spec[item][{$key}][stock]" class="form-control input-sm" value="{$item['stock']}"></td>
+                                    <td class="col-xs-2"><input name="spec[item][{$key}][price]" class="form-control input-sm" value="{$item['price']}"></td>
+                                    <td class="col-xs-2"><input name="spec[item][{$key}][code]" class="form-control input-sm" value="{$item['code']}"></td>
+                                </tr>
+                            </foreach>
+                        </tbody>
+                    <?php else: ?>
+                        <thead>
+                            <tr>
+                                <th class="small">库存</th>
+                                <th class="small">价格</th>
+                                <th class="small">商家编码</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    <?php endif; ?>
+                </table>
+            </div>
+        </div>
+    </div>
+</case>

@@ -1,0 +1,96 @@
+<extend name="$_home_public_layout"/>
+
+<block name="breadcrumb">
+    <include file="$_user_center_info" />
+</block>
+
+<block name="main">
+    <div class="container">
+        <div class="row ucenter-row">
+            <div class="col-xs-12 col-md-3">
+                <include file="$_user_center_side" /><!-- 包含用户中心侧边导航 -->
+            </div>
+            <div class="col-xs-12 col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {$meta_title}
+                    </div>
+                    <div class="panel-body">
+                        <volist name="recent_list" id="vo">
+                            <?php switch($vo['type']): case '0': ?>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a target="_blank" href="{:U('User/Index/Home', array('uid' => $vo['im_id']), true, true)}">
+                                            <img class="media-object" src="{$vo.user_info.avatar_url}" width='42'>
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <a href="{:U('Im/Index/detail', array('id' => $vo['im_id']), true, true)}">
+                                                <span>{$vo.user_info.nickname}</span>
+                                                <notempty name="vo.new_message_count">
+                                                    <span class="badge badge-danger"> {$vo.new_message_count}</span>
+                                                </notempty>
+                                            </a>
+                                            <a class="pull-right ajax-get small" href="{:U('Im/Index/delete', array('id' => $vo['id']), true, true)}">
+                                                删除
+                                            </a>
+                                        </h4>
+                                        <p>{$vo.message} <span class="text-muted">{$vo.create_time_format}</span></p>
+                                    </div>
+                                </div>
+                            <?php break;?>
+                            <?php case '1': ?>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a target="_blank" href="{:U('Im/Qun/detail', array('id' => $vo['im_id']), true, true)}">
+                                            <img class="media-object" src="{$vo.qun_info.cover_url}" width='42'>
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <a href="{:U('Im/Index/qun', array('id' => $vo['im_id']), true, true)}">
+                                                <span>{$vo.qun_info.title}</span>
+                                                <notempty name="vo.new_message_count">
+                                                    <span class="badge badge-danger"> {$vo.new_message_count}</span>
+                                                </notempty>
+                                            </a>
+                                            <a class="pull-right ajax-get small" href="{:U('Im/Index/delete', array('id' => $vo['id']), true, true)}">
+                                                删除
+                                            </a>
+                                        </h4>
+                                        <p>{$vo.message} <span class="text-muted">{$vo.create_time_format}</span></p>
+                                    </div>
+                                </div>
+                            <?php break;?>
+                            <?php case '2': ?>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a target="_blank" href="{:U('Im/Mp/detail', array('id' => $vo['im_id']), true, true)}">
+                                            <img class="media-object" src="{$vo.mp_info.cover_url}" width='42'>
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <a href="{:U('Im/Index/detail', array('id' => $vo['im_id']))}">
+                                                <span>{$vo.mp_info.title}</span>
+                                                <notempty name="vo.new_message_count">
+                                                    <span class="badge badge-danger"> {$vo.new_message_count}</span>
+                                                </notempty>
+                                            </a>
+                                            <a class="pull-right ajax-get small" href="{:U('Im/Index/delete', array('id' => $vo['id']), true, true)}">
+                                                删除
+                                            </a>
+                                        </h4>
+                                        <p>{$vo.message} <span class="text-muted">{$vo.create_time_format}</span></p>
+                                    </div>
+                                </div>
+                            <?php break;?>
+                            <?php endswitch; ?>
+                        </volist>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

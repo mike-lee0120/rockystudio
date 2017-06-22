@@ -1,0 +1,20 @@
+@charset "utf-8";
+/*
+ * 版本：懒人QQ在线客服 beta v0.01
+ * 日期：2013-05-13
+ * 作者：淘经典-经典语录、经典台词、经典个性签名和经典段子等等各种经典http://www.lrjz100.com/
+*/
+.lrkf{width:146px;}  /*必须有一个合适的宽度，否则获取不到正确的宽度*/
+.lrkfshow { right:0;}  /*这个不要动*/
+.lrkf .lrkf a{}
+.lrkf a:hover{color:#FF6600;}
+.lrkf .lrkf_header{ height:37px; background:url(lrkf_yellow1/brd.gif) no-repeat 0 0;}
+.lrkf .lrkf_box{ }
+.lrkf .lrkf_header,.lrkf .lrkf_con,.lrkf .lrkf_tool a{}
+.lrkf .lrkf_header,.lrkf .lrkf_con{ margin-top:0;}
+.lrkf .lrkf_con{background:url(lrkf_yellow1/brd.gif) repeat-y right top; padding:6px 12px;}
+.lrkf .lrkf_foot{height:25px;background:url(lrkf_yellow1/brd.gif) no-repeat -146px bottom;color:#666;}
+.lrkf .lrkf_btn{ width:32px; height:139px; text-indent:-9999px; padding:0; left:-31px;top:50px;
+background:url(lrkf_yellow1/ico.gif) no-repeat 0 -388px;color:#fff;}
+.lrkf .lrkf_btn:hover{color:#fff;}
+.lrkfshow .lrkf_btn{background:url(lrkf_yellow1/ico.gif) no-repeat -32px -388px;}

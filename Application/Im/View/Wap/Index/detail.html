@@ -1,0 +1,272 @@
+<extend name="$_home_public_layout"/>
+
+<block name="style">
+    <style position="page" type="text/css">
+        .with-picker-modal .views {
+            height:calc(100% - 260px)
+        }
+        #my_messager {
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+            -webkit-user-select: auto;
+            margin: 0 10px;
+            border: 1px solid #c8c8cd;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: none;
+            display: inline-block;
+            padding: 1px 5px 0px;
+            width: 100%;
+            height: 30px;
+            color: #000;
+            font-size: 16px;
+            line-height: 20px;
+        }
+    </style>
+</block>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="{:U('/im')}" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">{$meta_title}</div>
+            <div class="right">
+                <a href="{:U('User/Index/home', array('uid' => $to_user_info['id']), true, true)}" class="link icon-only">
+                    <i class="fa fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page no-toolbar {$_page_name}" data-page="{$_page_name}">
+        <div class="page-content pull-to-refresh-content messages-content">
+            <!-- 默认的下拉刷新层 -->
+            <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+            </div>
+
+            <div class="messages" style="padding-bottom: 60px;">
+                <volist name="talk_list" id="ta">
+                    <?php if ($ta['from_uid'] == is_login()): ?>
+                        <!-- 发送的消息 (默认为绿色背景，在右边) -->
+                        <div class="message message-sent">
+                            <div class="message-text">{$ta.message}</div>
+                        </div>
+                    <?php else: ?>
+                        <!-- 接收的信息(默认为灰色背景，在左边) -->
+                        <div class="message message-with-avatar message-received">
+                            <div class="message-name">{$ta.user.nickname} {$ta.create_time_format}</div>
+
+                            <!-- 文本气泡 -->
+                            <div class="message-text">{$ta.message}</div>
+
+                            <!-- 发送者头像 -->
+                            <div style="background-image:url({$ta['user']['avatar_url']})" class="message-avatar"></div>
+                        </div>
+                    <?php endif; ?>
+                </volist>
+            </div>
+        </div>
+
+        <!-- 发送消息 -->
+        <div class="toolbar messagebar" style="transform: translate3d(0, 0%, 0);-webkit-transform: translate3d(0, 0%, 0);">
+            <div class="toolbar-inner">
+                <a href="#" class="link" id="{$_page_name}_picker" style="font-weight: bold;">＋</a>
+                <a style="margin-left: 10px;" href="#" class="link" id="{$_page_name}_picker_ocface" style="font-weight: bold;">^_^</a>
+                <div contenteditable="true" id="my_messager"></div>
+                <a href="#" class="link" id="{$_page_name}-send">发送</a>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+    <script position="page" type="text/javascript" src="__PUBLIC__/libs/jquery_qqFace/js/jquery.qqFace.js"></script>
+    <script position="page" type="text/javascript">
+        $(function(){
+            // contenteditable在手机上奇怪的点击不弹出键盘问题
+            $(document).off('click', "#my_messager");
+            $(document).on("click", "#my_messager",function(data){
+                $(this).focus();
+            });
+
+            // QQ表情
+            var ocface_list = '';
+            for (i = 1; i <= 75; i++) {
+                ocface_list = ocface_list + '<div class="col-15" style="margin-bottom: 5px;"><img class="add-ocface" src="__PUBLIC__/libs/jquery_qqFace/img/'+i+'.gif"></div>';
+            }
+            var {$_page_name}_picker_ocface = myApp.picker({
+                input: '#{$_page_name}_picker_ocface',
+                rotateEffect: true,
+                toolbarTemplate: 
+                    '<div class="toolbar" style="-webkit-overflow-scrolling: touch;height: 260px;padding: 20px; overflow-y: scroll;">' +
+                        '<div class="row">' +
+                            ocface_list +
+                        '</div>' +
+                    '</div>',
+                cols: [
+                    {
+                        values: ['OpenCMF'],
+                    },
+                ]
+            });
+            $(document).off('click', ".add-ocface");
+            $(document).on("click", ".add-ocface",function(data){
+                $("#my_messager").append('<span class="ocface" style="display: inline-block;width: 24px;height: 24px;background: url('+$(this).attr('src')+ ') no-repeat"></span>');
+            });
+
+            // +号功能
+            var {$_page_name}_picker = myApp.picker({
+                input: '#{$_page_name}_picker',
+                rotateEffect: true,
+                toolbarTemplate: 
+                    '<div class="toolbar" style="height: 260px;padding: 20px;">' +
+                        '<div class="row">' +
+                            '<div class="col-auto text-center" style="padding: 20px;color: #33A8E2;">' +
+                                '<div><i class="ocicon fa-camera" style="font-size: 35px;"></i></div>' +
+                                '<div style="font-size: 14px;">照片</div>' +
+                            '</div>' +
+                            '<div class="col-auto text-center" style="padding: 20px;color: #48B789;">' +
+                                '<div><i class="ocicon fa-file-o" style="font-size: 35px;"></i></div>' +
+                                '<div style="font-size: 14px;">文件</div>' +
+                            '</div>' +
+                            '<div class="col-auto text-center" style="padding: 20px;color: #F15A4A;">' +
+                                '<div><i class="ocicon fa-transfer" style="font-size: 35px;"></i></div>' +
+                                '<div style="font-size: 14px;">转账</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>',
+                cols: [
+                    {
+                        values: ['OpenCMF'],
+                    },
+                ],
+                onOpen: function (picker) {
+                    picker.container.find('.toolbar-randomize-link').on('click', function () {
+                        alert();
+                    });
+                }
+            });
+
+
+            // 会话flag
+            var conversationStarted = false;
+
+            var myMessages = myApp.messages('.messages', {
+                autoLayout: true
+            });
+
+            var myMessagebar = $('#my_messager');
+            conversationStarted = true;
+
+            // 发送消息
+            $$('#{$_page_name}-send').on('click', function () {
+                var messageText = myMessagebar.html().trim();
+                if (messageText.length === 0) {
+                    $.alertMessager('请输入消息', 'danger');
+                    return;
+                };
+
+                $.ajax({
+                    dataType: "json",
+                    url: "{:U('Im/Index/add')}",
+                    data: {to_uid: '{$to_user_info.id}', message: messageText},
+                    type: "post",
+                    success: function(data) {
+                        if (data.status == 1) {
+                            // 更新会话flag
+                            myMessages.addMessage({
+                                text: messageText,
+                                type: 'sent',
+                                name: name,
+                                day: !conversationStarted ? 'Today' : false,
+                                time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
+                            });
+                            myMessagebar.html('');
+                            conversationStarted = true;
+                        } else {
+                            $.alertMessager(data.info, 'danger');
+                        }
+                    }
+                });
+                return false;
+            });
+
+            // 定时获取新消息
+            var interval = window.setInterval(function() {
+                if ($('.view-main').attr('data-page') == 'im_index_detail') {
+                    $.ajax({
+                        dataType: "json",
+                        url: "{:U('Im/Index/get_new_message')}",
+                        data: {to_uid: '{$to_user_info.id}'},
+                        type: "get",
+                        success: function(data) {
+                            if (data.status == 1) {
+                                var list = data.data;
+                                var to_user_info = data.to_user_info;
+                                for (var i = list.length - 1; i >= 0; i--) {
+                                    myMessages.addMessage({
+                                        text: list[i]['message'],
+                                        type: 'received',
+                                        name: to_user_info['nickname'],
+                                        avatar: list[i]['user']['avatar_url'],
+                                        day: !conversationStarted ? 'Today' : false,
+                                        time: list[i]['create_time_format']
+                                    });
+                                };
+                            }
+                        }
+                    });
+                } else {
+                    window.clearInterval(interval);
+                }
+            }, 3000);
+
+            // 下拉刷新页面
+            var ptrContent = $$('.{$_page_name} .pull-to-refresh-content');
+
+            // 添加'refresh'监听器
+            var page = 2;
+            ptrContent.on('refresh', function (e) {
+                $.ajax({
+                    dataType: "json",
+                    url: "{:U('Im/Index/detail')}",
+                    data: {p: page, id: {$to_user_info.id}},
+                    type: "get",
+                    success: function(data) {
+                        if (data.status == 1) {
+                            var list = data.data.talk_list;
+                            var to_user_info = data.data.to_user_info;
+                            for (var i = list.length - 1; i >= 0; i--) {
+                                if (list[i]['from_uid'] === '{$to_user_info.id}') {
+                                    myMessages.prependMessage({
+                                        text: list[i]['message'],
+                                        type: 'received',
+                                        name: to_user_info['nickname'],
+                                        avatar: list[i]['user']['avatar_url'],
+                                        time: list[i]['create_time_format']
+                                    });
+                                } else {
+                                    myMessages.prependMessage({
+                                        text: list[i]['message'],
+                                        type: 'sent',
+                                        time: list[i]['create_time_format']
+                                    });
+                                }
+                            };
+                            page++;
+                        }
+                    }
+                });
+
+                // 加载完毕需要重置
+                myApp.pullToRefreshDone();
+            });
+        });
+    </script>
+</block>

@@ -1,0 +1,30 @@
+<php>if(!empty($config['type'])){</php>
+    <div class="synclogin text-center">
+        <h4 class="form-group">快速登录</h4>
+        <php>if(in_array('Lingyun',$config['type'])):</php>
+            <a target="_blank" class="btn btn-info-outline btn-pill" style="width: 40px;height: 40px;padding: 6px;font-size: 18px;margin-right: 10px;" href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'lingyun'));</php>">
+                <i class="fa fa-cloud"></i>
+            </a>
+        <php>endif;</php>
+        <php>if(in_array('Weixin',$config['type'])):</php>
+            <a target="_blank" class="btn btn-success-outline btn-pill" style="width: 40px;height: 40px;padding: 6px;font-size: 18px;margin-right: 10px;" href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'weixin'));</php>">
+                <i class="fa fa-weixin"></i>
+            </a>
+        <php>endif;</php>
+        <php>if(in_array('Qq',$config['type'])):</php>
+            <a target="_blank" class="btn btn-primary-outline btn-pill" style="width: 40px;height: 40px;padding: 6px;font-size: 18px;margin-right: 10px;" href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'qq'));</php>">
+                <i class="fa fa-qq"></i>
+            </a>
+        <php>endif;</php>
+        <php>if(in_array('Sina',$config['type'])):</php>
+            <a target="_blank" class="btn btn-danger-outline btn-pill" style="width: 40px;height: 40px;padding: 6px;font-size: 18px;margin-right: 10px;" href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'sina'));</php>">
+                <i class="fa fa-weibo"></i>
+            </a>
+        <php>endif;</php>
+        <php>if(in_array('Github',$config['type'])):</php>
+            <a target="_blank" class="btn btn-warning-outline btn-pill" style="width: 40px;height: 40px;padding: 6px;font-size: 18px;" href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'github'));</php>">
+                <i class="fa fa-github"></i>
+            </a>
+        <php>endif;</php>
+    </div>
+<php>}</php>

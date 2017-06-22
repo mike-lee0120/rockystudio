@@ -1,0 +1,204 @@
+<extend name="$_home_public_layout" />
+
+<block name="style">
+    <link rel="stylesheet" type="text/css" href="__CSS__/home.css">
+</block>
+
+<block name="main">
+    <div class="lyask-container-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="lyask-content-wrap clearfix">
+                    <div class="col-sm-12 col-md-9 lyask-main-content">
+                        <!-- 话题推荐bar -->
+                        <!-- 话题推荐bar -->
+                        <!-- 话题bar -->
+                        <div class="lyask-mod lyask-topic-bar" id="question_topic_editor" data-type="question" data-id="31314">
+                            <div class="tag-bar clearfix">
+                                <span class="topic-tag">
+                                    <a href="{:U('Forum/Index/topic', array('id' => $info['plate_info']['id']))}" class="text">{$info['plate_info']['title']}</a>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- end 话题bar -->
+                        <div class="lyask-mod lyask-question-detail lyask-item">
+                            <div class="mod-head">
+                                <h1>{$info.title}</h1>
+                            </div>
+                            <div class="mod-body">
+                                <div class="content markitup-box">
+                                    {$info.content}
+                                </div>
+                            </div>
+                            <div class="mod-footer">
+                                <div class="meta">
+                                    <span class="text-color-999">{$info.create_time|friendly_date}</span>
+                                    <a class="lyask-add-comment text-color-999" href="#comment-form"><i class="fa fa-comment"></i>添加评论</a>
+                                    <div class="pull-right more-operate"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lyask-mod lyask-question-comment">
+                            <div class="mod-head">
+                                <ul class="nav nav-tabs lyask-nav-tabs active">
+                                    <h2 class="hidden-xs">{$info.comment_count} 个回复</h2>
+                                </ul>
+                            </div>
+                            <div class="mod-body lyask-feed-list">
+                                <volist name="info.comment_list" id="vo">
+                                    <div class="lyask-item">
+                                        <div class="mod-head">
+                                            <a class="anchor" name="answer_48479"></a>
+                                            <!-- 用户头像 -->
+                                            <a class="lyask-user-img lyask-border-radius-5" href="{:U('User/Index/home', array('uid' => $vo['uid']), true, true)}">
+                                                <img src="{$vo.user.avatar_url}">
+                                            </a>
+                                            <!-- end 用户头像 -->
+                                            <div class="title">
+                                                <p>
+                                                    <a class="lyask-user-name" href="{:U('User/Index/home', array('uid' => $vo['uid']), true, true)}">
+                                                        <span>{$vo.user.nickname}</span>
+                                                        <notempty name="vo.pid">
+                                                            <span class="reply">
+                                                                <span class="text-muted small"> 回复 </span>
+                                                                <span>{$vo.parent_comment_nickname}</span>
+                                                            </span>
+                                                        </notempty>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="mod-body clearfix">
+                                            <!-- 评论内容 -->
+                                            <div class="markitup-box">{$vo.content}</div>
+                                            <!-- end 评论内容 -->
+                                        </div>
+                                        <div class="mod-footer">
+                                            <!-- 社交操作 -->
+                                            <div class="meta clearfix">
+                                                <span class="text-color-999 pull-right">{$vo.create_time_format}</span>
+                                                <!-- 投票栏 -->
+                                                <!-- <span class="operate">
+                                                    <a class="agree  disabled">
+                                                        <i data-placement="right" title="" data-toggle="tooltip" class="icon icon-agree" data-original-title="赞同回复"></i>
+                                                        <b class="count">0</b>
+                                                    </a>
+                                                </span> -->
+                                                <!-- end 投票栏 -->
+                                                <span class="operate">
+                                                    <a class="lyask-add-comment reply-action" data-id="{$vo.id}" data-nickname="{$vo.user.nickname}" href="javascript:;">
+                                                        <i class="fa fa-comment"></i>
+                                                    </a>
+                                                </span>
+                                                <!-- 可显示/隐藏的操作box -->
+                                                <div class="more-operate"></div>
+                                                <!-- end 可显示/隐藏的操作box -->
+                                            </div>
+                                            <!-- end 社交操作 -->
+                                        </div>
+                                    </div>
+                                </volist>
+                            </div>
+                            <notempty name="page">
+                                <ul class="pagination pagination-sm">{$page}</ul>
+                            </notempty>
+                        </div>
+                        <!-- end 问题详细模块 -->
+                        <!-- 回复编辑器 -->
+                        <div class="lyask-mod lyask-replay-box question">
+                            <notempty name="_user_auth">
+                                <form action="{:U('Forum/Comment/add')}" method="post" class="form comment-form" id="comment-form">
+                                    <div class="form-group">
+                                        <textarea name="content" class="form-control new-comment-text" rows="3" placeholder="评论是一种态度..."></textarea>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <input type="hidden" name="pid" value="0">
+                                        <input type="hidden" name="data_id" value="{$info.id}">
+                                        <a id="submit" type="submit" class="btn btn-primary ajax-post pull-right hidden-xs" target-form="comment-form"><i class="fa fa-comment-o"></i> 发表评论</a>
+                                        <a id="submit" type="submit" class="btn btn-primary btn-block ajax-post margin-top visible-xs" target-form="comment-form"><i class="fa fa-comment-o"></i> 发表评论</a>
+                                    </div>
+                                </form>
+                                <script type="text/javascript">
+                                    $(function() {
+                                        $(document).on('click', '.reply-action', function() {
+                                            $('input[name=pid]').val($(this).attr('data-id'));
+                                            $('.new-comment-text').focus().attr('placeholder', '回复' + $(this).attr('data-nickname'));
+                                        });
+                                    });
+                                </script>
+                            <else />
+                                <a name="answer_form"></a>
+                                <p align="center">
+                                    要回复问题请先
+                                    <a href="{:U('User/User/login', '', true, true)}">登录</a>
+                                    或
+                                    <a href="{:U('User/User/register', '', true, true)}">注册</a>
+                                </p>
+                            </notempty>
+                        </div>
+                        <!-- end 回复编辑器 -->
+                    </div>
+                    <!-- 侧边栏 -->
+                    <div class="col-md-3 lyask-side-bar hidden-xs hidden-sm">
+                        <!-- 发起人 -->
+                        <div class="lyask-mod">
+                            <div class="mod-head">
+                                <h3>发起人</h3>
+                            </div>
+                            <div class="mod-body">
+                                <dl>
+                                    <dt class="pull-left lyask-border-radius-5">
+                                        <a target="_blank" href="{:U('User/Index/home', array('uid' => $info['uid']), true, true)}"><img alt="{$info.user.nickname}" src="{$info.user.avatar_url}"></a>
+                                    </dt>
+                                    <dd class="pull-left">
+                                        <a class="lyask-user-name" href="{:U('User/Index/home', array('uid' => $info['uid']), true, true)}">{$info.user.nickname}</a>
+                                        <p>{$info.user.create_time|friendly_date} 加入组织</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <!-- end 发起人 -->
+                        <!-- 相关问题 -->
+                        <div class="lyask-mod">
+                            <div class="mod-head">
+                                <h3>相关问题</h3>
+                            </div>
+                            <div class="mod-body font-size-12">
+                                <ul>
+                                    <volist name="info.similar_list" id="vo">
+                                        <li>{$vo.title_url}</li>
+                                    </volist>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end 相关问题 -->
+                        <!-- 问题状态 -->
+                        <div class="lyask-mod question-status">
+                            <div class="mod-head">
+                                <h3>问题状态</h3>
+                            </div>
+                            <div class="mod-body">
+                                <ul>
+                                    <li>
+                                        最新活动:
+                                        <span class="lyask-text-color-blue">
+                                            <?php if($info['last_reply_time']): ?>
+                                                {$info.last_reply_time|friendly_date}
+                                            <?php else: ?>
+                                                {$info.create_time|friendly_date}
+                                            <?php endif; ?>
+                                        </span>
+                                    </li>
+                                    <li>浏览: <span class="lyask-text-color-blue">{$info.view_count}</span></li>
+                                    <li>回复: <span class="lyask-text-color-blue">{$info.comment_count}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end 问题状态 -->
+                    </div>
+                    <!-- end 侧边栏 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

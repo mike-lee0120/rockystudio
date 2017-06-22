@@ -1,0 +1,170 @@
+<extend name="$_home_public_layout" />
+
+<block name="style">
+    <link rel="stylesheet" type="text/css" href="__CSS__/home.css">
+</block>
+
+<block name="main">
+    <div class="lyask-container-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="lyask-content-wrap clearfix">
+                    <div class="col-sm-12 col-md-9 lyask-main-content">
+                        <!-- tab切换 -->
+                        <ul class="nav nav-tabs lyask-nav-tabs active hidden-xs">
+                            <h2 class="hidden-xs"><i class="fa fa-comments"></i> 热门话题</h2>
+                        </ul>
+                        <!-- end tab切换 -->
+                        <!-- 话题分类 -->
+                        <div class="lyask-mod lyask-topic-category">
+                            <div class="mod-body clearfix">
+                                <ul>
+                                    <li>
+                                        <a class="active" data-toggle="tab" href="#lyask-plate-tab-all">全部话题</a>
+                                    </li>
+                                    <volist name="data_list_tree" id="vo">
+                                        <li>
+                                            <a data-toggle="tab" href="#lyask-plate-tab-{$vo.id}">{$vo.title}</a>
+                                        </li>
+                                    </volist>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end 话题分类 -->
+                        <!-- 我关注的话题 -->
+                        <div class="lyask-mod lyask-topic-list tab-content">
+                            <div class="mod-body tab-pane clearfix active" id="lyask-plate-tab-all">
+                                <volist name="data_list" id="vo">
+                                    <div class="lyask-item">
+                                        <!-- 话题图片 -->
+                                        <a class="img lyask-border-radius-5" href="{:U('Forum/Index/topic', array('id' => $vo['id']))}" data-id="{$vo['id']}">
+                                            <span style="display: inline-block;width: 50px;height: 50px;padding: 6px 6px 6px 10px;background: #EBEBEB;border-radius: 6px;">
+                                                <i class="fa fa-comment" style="margin-top: 8px;font-size: 28px;color: #ccc;"></i>
+                                            </span>
+                                        </a>
+                                        <!-- end 话题图片 -->
+                                        <p class="clearfix">
+                                            <!-- 话题内容 -->
+                                            <span class="topic-tag">
+                                                <a class="text" href="{:U('Forum/Index/topic', array('id' => $vo['id']))}" data-id="{$vo['id']}">{$vo.title}</a>
+                                            </span>
+                                            <!-- end 话题内容 -->
+                                        </p>
+                                        <p class="text-color-999">
+                                            <span>{$vo.post_num} 个帖子</span>
+                                            <span>{$vo.reply_num} 个回复</span>
+                                        </p>
+                                        <!-- <p class="text-color-999">
+                                            7 天新增 9 个讨论, 30 天新增 11 个讨论
+                                        </p> -->
+                                    </div>
+                                </volist>
+                            </div>
+                            <volist name="data_list_tree" id="vo">
+                                <div class="mod-body tab-pane clearfix" id="lyask-plate-tab-{$vo.id}">
+                                    <div class="lyask-item">
+                                        <!-- 话题图片 -->
+                                        <a class="img lyask-border-radius-5" href="{:U('Forum/Index/topic', array('id' => $vo['id']))}" data-id="{$vo['id']}">
+                                            <span style="display: inline-block;width: 50px;height: 50px;padding: 6px 6px 6px 10px;background: #EBEBEB;border-radius: 6px;">
+                                                <i class="fa fa-comment" style="margin-top: 8px;font-size: 38px;color: #ccc;"></i>
+                                            </span>
+                                        </a>
+                                        <!-- end 话题图片 -->
+                                        <p class="clearfix">
+                                            <!-- 话题内容 -->
+                                            <span class="topic-tag">
+                                                <a class="text" href="{:U('Forum/Index/topic', array('id' => $vo['id']))}" data-id="{$vo['id']}">{$vo.title}</a>
+                                            </span>
+                                            <!-- end 话题内容 -->
+                                        </p>
+                                        <p class="text-color-999">
+                                            <span>{$vo.post_num} 个帖子</span>
+                                            <span>{$vo.reply_num} 个回复</span>
+                                        </p>
+                                        <!-- <p class="text-color-999">
+                                            7 天新增 9 个讨论, 30 天新增 11 个讨论
+                                        </p> -->
+                                    </div>
+                                    <foreach  name="vo._child" item="vo1">
+                                        <div class="lyask-item">
+                                            <!-- 话题图片 -->
+                                            <a class="img lyask-border-radius-5" href="{:U('Forum/Index/topic', array('id' => $vo1['id']))}" data-id="{$vo1['id']}">
+                                                <span style="display: inline-block;width: 50px;height: 50px;padding: 6px 6px 6px 10px;background: #EBEBEB;border-radius: 6px;">
+                                                    <i class="fa fa-comment" style="margin-top: 8px;font-size: 38px;color: #ccc;"></i>
+                                                </span>
+                                            </a>
+                                            <!-- end 话题图片 -->
+                                            <p class="clearfix">
+                                                <!-- 话题内容 -->
+                                                <span class="topic-tag">
+                                                    <a class="text" href="{:U('Forum/Index/topic', array('id' => $vo1['id']))}" data-id="{$vo1['id']}">{$vo1.title}</a>
+                                                </span>
+                                                <!-- end 话题内容 -->
+                                            </p>
+                                            <p class="text-color-999">
+                                                <span>{$vo1.post_num} 个帖子</span>
+                                                <span>{$vo1.reply_num} 个回复</span>
+                                            </p>
+                                            <!-- <p class="text-color-999">
+                                                7 天新增 9 个讨论, 30 天新增 11 个讨论
+                                            </p> -->
+                                        </div>
+                                    </foreach>
+                                </div>
+                            </volist>
+                        </div>
+                        <!-- end 我关注的话题 -->
+                    </div>
+                    <!-- 侧边栏 -->
+                    <div class="col-sm-3 col-md-3 lyask-side-bar hidden-sm hidden-xs">
+                        <!-- 今日话题 -->
+                        <div class="lyask-mod topic-daily hidden-xs">
+                            <div class="mod-head">
+                                <h3>今日话题</h3>
+                            </div>
+                            <div class="mod-body">
+                                <dl>
+                                    <dt class="pull-left">
+                                        <!-- 话题图片 -->
+                                        <a href="#" class="img lyask-border-radius-5">
+                                            <span style="display: inline-block;width: 30px;height: 30px;padding: 6px 6px 6px 10px;background: #EBEBEB;border-radius: 6px;">
+                                                <i class="fa fa-comment" style="font-size: 18px;color: #ccc;"></i>
+                                            </span>
+                                        </a>
+                                        <!-- end 话题图片 -->
+                                    </dt>
+                                    <dd class="pull-left">
+                                        lyask </dd>
+                                </dl>
+                                <!-- 话题描述 -->
+                                <p>
+                                    <span>lyask 是一个类似知乎以问答为基础的完全开源的社交网络建站程序，基于 零云专业版+PHP+MYSQL 应用架构，它集合了问答，digg，wiki 等多个程序的优点，帮助用户轻松搭建专业的知识库和在线问答社区。</span></a></p>
+                                <!-- end 话题描述 -->
+                            </div>
+                        </div>
+                        <!-- end 今日话题 -->
+                        <!-- 新增话题 -->
+                        <div class="lyask-mod new-topic">
+                            <div class="mod-head">
+                                <h3>新增话题</h3>
+                            </div>
+                            <div class="mod-body clearfix">
+                                <div class="lyask-topic-bar">
+                                    <div class="topic-bar clearfix">
+                                        <volist name="data_list_new" id="vo">
+                                            <span class="topic-tag">
+                                                <a class="text" href="{:U('Forum/Index/topic', array('id' => $vo['id']))}" data-id="{$vo['id']}">{$vo['title']}</a>
+                                            </span>
+                                        </volist>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end 新增话题 -->
+                    </div>
+                    <!-- end 侧边栏 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

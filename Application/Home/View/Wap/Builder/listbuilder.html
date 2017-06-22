@@ -1,0 +1,80 @@
+
+<?php if($extra_html['top']): ?>
+    <div class="content-block">
+        <div class="content-block-inner">
+            {$extra_html['top']}
+        </div>
+    </div>
+<?php endif; ?>
+
+<notempty name="tab_nav">
+    <div class="content-block" style="margin:.8em 0 0 .8em">
+    <!-- tabs控制面板 -->
+    <div class="buttons-row">
+        <volist name="tab_nav.tab_list" id="tab">
+            <!-- 关联到第一个tab, 默认激活 -->
+            <a href="{$tab.href}" class="external <?php if($key==$tab_nav['current_tab']) echo "active";?> button">{$tab.title}</a>
+        </volist>
+    </div>
+  </div>
+</notempty>
+
+<div class="content-block-title">点击标题查看详细信息，向左滑动进行操作</div>
+<div class="list-block accordion-list">
+    <ul>
+        <volist name="table_data_list" id="data">
+            <li class="swipeout accordion-item">
+                <a href="#" class="swipeout-content item-content item-link">
+                    <?php if ($table_column_list[0]['name'] === $table_data_list_key) : ?>
+                        <div class="item-media">{$data[$table_column_list[0]['name']]}</div>
+                        <div class="item-inner">{$data[$table_column_list[1]['name']]|html2text}</div>
+                    <?php else: ?>
+                        <div class="item-media"></div>
+                        <div class="item-inner">{$data[$table_column_list[0]['name']]|html2text}</div>
+                    <?php endif; ?>
+                </a>
+                <div class="swipeout-actions-right">
+                    <?php if ($data['right_button']) : ?>
+                        <?php foreach ($data['right_button'] as $rb) :?>
+                            <a data-ignore-cache="true" {$rb['attribute']}>{$rb['title']}</a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+                <div class="accordion-item-content">
+                    <div class="content-block">
+                        <div class="list-block">
+                            <ul>
+                                <?php foreach ($table_column_list as $column) :?>
+                                    <?php if ($column['name'] !== 'right_button') : ?>
+                                        <li class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">{$column.title|htmlspecialchars}</div>
+                                                <div>{$data[$column['name']]}</div>
+                                            </div>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </volist>
+    </ul>
+</div>
+
+<?php if($table_data_page): ?>
+    <div class="content-block">
+        <div class="content-block-inner">
+            <ul class="pagination">{$table_data_page}</ul>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if($extra_html['bottom']): ?>
+    <div class="content-block">
+        <div class="content-block-inner">
+            {$extra_html['bottom']}
+        </div>
+    </div>
+<?php endif; ?>

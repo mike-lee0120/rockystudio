@@ -1,0 +1,79 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+               <form class="col-xs-12 col-md-6 form-horizontal" action="{:U('')}" method="POST" role="form">
+                   <legend>{:C('WEB_SITE_TITLE')}账户余额充值</legend>
+                   <?php if($bonuses_list): ?>
+                       <div class="alert alert-warning">
+                           <p>{$bonuses_title}：</p>
+                           <volist name="bonuses_list" id="b">
+                               <p>充值满{$b.money}元送{$b.bonuses}元</p>
+                           </volist>
+                       </div>
+                   <?php endif; ?>
+                   <div class="form-group">
+                       <label class="col-xs-3">账户余额：</label>
+                       <p class="col-xs-9 text-primary">{$user_info.money|default='0.00'}</p>
+                   </div>
+                   <div class="form-group">
+                       <label class="col-xs-3">充值金额：</label>
+                       <input type="text" class="col-xs-9 form-control" name="money" placeholder="请输入要充值金额" value="{:C('wallet_config.min_recharge')}">
+                   </div>
+                   <div class="form-group">
+                        <label class="col-xs-3">充值方式</label>
+                        <p class="col-xs-9 text-primary">
+                            <volist name="allow_pay_type" id="pt">
+                                <label class="radio" for="pay_type_{$pt.type}">
+                                    <input type="radio" id="pay_type_{$pt.type}" class="radio"name="pay_type"
+                                    value="{$pt.type}" <if condition="$i eq 1">checked="checked"</if>>
+                                    <img src="{$pt.logo}" style="height: 30px;">
+                                </label>
+                            </volist>
+                        </p>
+                   </div>
+                   <div class="form-group">
+                       <button type="submit" class="col-md-offset-3 btn btn-warning ajax-pay" id="pay_submit">立即支付</button>
+                   </div>
+               </form>
+            </div>
+        </div>
+    </div>
+</block>
+
+
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            //ajax pay submit请求
+            $(document).delegate('.ajax-pay', 'click', function() {
+                var form = $(this).closest('form');
+                var target = form.attr('action');
+                var query  = form.serialize();
+                var that = this;
+                $(that).addClass('disabled').attr('autocomplete', 'off').prop('disabled', true);
+                $.ajax({
+                    dataType: "json",
+                    url: target,
+                    async: false,
+                    data: query,
+                    type: "post",
+                    success: function(data) {
+                        if (data.status == 1) {
+                            window.open(data.url);
+                            $(that).removeClass('disabled').prop('disabled', false);
+                        } else {
+                            $.alertMessager(data.info, 'danger');
+                            setTimeout(function() {
+                                $(that).removeClass('disabled').prop('disabled', false);
+                            }, 2000);
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</block>

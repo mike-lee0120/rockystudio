@@ -1,0 +1,37 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="ROOT__/" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">{$meta_title}</div>
+            <div class="right"></div>
+        </div>
+    </div>
+
+    <div class="page" data-page="{$_page_name}">
+        <div class="page-content">
+            <div class="list-block media-list">
+                <ul>
+                    <volist name="data_list" id="vo">
+                        <li>
+                            <a class="item-link item-content" href="{:U('read', array('name' => $vo['name']))}">
+                                <div class="item-media"><img src="{$vo.cover_url}" width="80"></div>
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div class="item-title">{$vo.title}</div>
+                                    </div>
+                                    <div class="item-subtitle">{$vo.user.nickname}</div>
+                                </div>
+                            </a>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+    </div>
+</block>

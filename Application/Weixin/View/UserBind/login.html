@@ -1,0 +1,60 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <!-- 提示信息 -->
+                <div class="alert alert-danger">
+                    如果您看到此页面，说明您是第一次通过微信访问本站点，接下来完成简单的设置，以后即可用微信自动登录。
+                </div>
+
+                <!--登录信息-->
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="{$weixin_user_info.headimgurl}" width="50" height="50" />
+                    </a>
+                    <div class="media-body">
+                        <h5 class="media-heading">恭喜您，{$weixin_user_info.nickname}</h5>
+                        <p>您的微信授权成功，接下来完成简单的设置，即可用微信直接登录。</p>
+                    </div>
+                </div>
+
+                <!--创建新账号-->
+                <div>
+                    <form class="form bind-form-reg" action="{:U('register')}" method="post">
+                        <div class="form-group">
+                            <input type="hidden" name="avatar" value="{$weixin_user_info.headimgurl}">
+                            <button type="submit" class="btn btn-success btn-block btn-lg ajax-post" target-form="bind-form-reg">立即创建新账号</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!--绑定已有帐号-->
+                <button class="btn btn-warning btn-block btn-lg " type="button" data-toggle="collapse" data-target="#collapse-bind">
+                    绑定已有帐号
+                </button>
+                <div class="collapse" id="collapse-bind">
+                    <form class="bind-form-login" action="{:U('bind')}" method="post">
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            <div class="controls">
+                                <input type="text" class="form-control input-lg" placeholder="请输入邮箱/手机号/用户名" name="username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="controls">
+                                <input type="password" class="form-control input-lg" placeholder="请输入密码" name="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="controls">
+                                <button type="submit" class="btn btn-info btn-block btn-lg ajax-post" target-form="bind-form-login">确认绑定</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

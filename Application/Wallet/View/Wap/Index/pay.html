@@ -1,0 +1,178 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="__ROOT__/" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">{$meta_title}</div>
+            <div class="right">
+                <a href="{:U('Wallet/recharge/index')}" class="link">
+                    <span>支付</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page no-toolbar" data-page="{$_page_name}">
+        <div class="page-content">
+            <form class="form-pay" action="{:U('Wallet/Index/dopay')}" method="POST" role="form">
+                <div class="list-block">
+                    <ul>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">订单标题</div>
+                                    <div class="item-after">{$pay_data.title}</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <label class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">应付金额</div>
+                                    <div class="item-after original-money">¥ {$pay_data.money}</div>
+                                </div>
+                            </label>
+                        </li>
+                        <?php if($redbag_list): ?>
+                            <li>
+                                <a href="#" class="item-link smart-select" data-back-on-select="true" data-back-text="返回">
+                                    <select name="redbag_id">
+                                        <option value="" data-price="0">选择可用红包</option>
+                                        <volist name="redbag_list" id="rl">
+                                            <option value="{$rl.id}" data-price="{$rl.money}">{$rl.money}元红包－满{$rl.limit}可用－{$rl.title}</option>
+                                        </volist>
+                                    </select>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">使用红包</div>
+                                            <div class="item-after"></div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if($redbag_list): ?>
+                            <li>
+                                <a href="#" class="item-link smart-select" data-back-on-select="true" data-back-text="返回">
+                                    <select name="coupon_id">
+                                        <option value="" data-price="0">选择可用折扣券</option>
+                                        <volist name="coupon_list" id="cl">
+                                            <option value="{$cl.id}" data-price="{$cl.coupon}">{$cl.coupon}折扣券－满{$cl.limit}可用－{$cl.title}</option>
+                                        </volist>
+                                    </select>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">使用折扣券</div>
+                                            <div class="item-after"></div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <li>
+                            <label class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">实际需付</div>
+                                    <div class="item-after">¥ <span class="actual-money">{$pay_data.money}</span></div>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <?php if($pay_data['allow_third']): ?>
+                    <div class="list-block" id="allow_pay_type">
+                        <ul>
+                            <?php if($pay_data['allow_money']): ?>
+                                <li>
+                                    <label class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">余额支付</div>
+                                            <?php if($pay_data['allow_third']): ?>  <!-- 只有在允许第三方支付的情况下才可以开关余额支付，否则应该强制余额支付 -->
+                                                <div class="item-input">
+                                                    <label class="label-switch">
+                                                        <input id="allow_money_toggle" type="checkbox" checked="checked">
+                                                        <div class="checkbox"></div>
+                                                    </label>
+                                                </div>
+                                            <?php endif; ?>
+                                            <div class="item-after" style="font-size: 13px;">
+                                                <span>钱包余额¥</span>
+                                                <span id="user-money">{$user_info.money}</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <input id="allow_money" type="hidden" name="allow_money" value="1">
+                                </li>
+                            <?php endif; ?>
+                            <volist name="allow_pay_type" id="pt">
+                                <li>
+                                    <label class="label-radio item-content">
+                                        <input type="radio" id="pay_type_{$pt.type}" name="pay_type" value="{$pt.type}" <if condition="$i eq 1">checked="checked"</if>>
+                                        <div class="item-media">
+                                            <i class="icon icon-form-radio"></i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title"><img src="{$pt.logo}" style="height: 20px;"></div>
+                                        </div>
+                                    </label>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+                <div class="content-block row">
+                    <p class="col-100">
+                        <input type="hidden" id="pay_password" name="password">
+                        <input type="hidden" class="form-control" name="out_trade_no" value="{$pay_data.out_trade_no}">
+                        <button type="button" id="pay_submit_model" class="col-100 button button-fill button-big color-green">立即支付</button>
+                        <button type="submit" class="hidden ajax-post" id="pay_submit" target-form="form-pay">确认支付</button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+    <script position="page" type="text/javascript">
+        $('#pay_submit_model').on('click', function(){
+            myApp.modalPassword('请输入您的用户密码', '确认付款', function(value){
+                $('#pay_password').val(value);
+                $('#pay_submit').click();
+            });
+        });
+
+        // 应付款计算
+        $('.form-pay select[name="redbag_id"]').change(function(){
+            var total_price = parseFloat($(".original-money").text()) - parseFloat($('.form-pay select[name="redbag_id"]').find("option:selected").attr('data-price'));
+            $('.actual-money').text(total_price.toFixed(2));
+        });
+
+        // 是否使用余额支付
+        <?php if($allow_pay_type): ?>
+            $(document).on('click', '#allow_money_toggle', function() {
+                var ch = $(this).is(':checked');
+                if (ch == true) {
+                    // 如果开启余额支付时足够支付则隐藏三方支付选项
+                    if (parseFloat($('#user-money').text()) >= parseFloat($('.actual-money').text())) {
+                        $('#allow_pay_type').addClass('hidden');
+                    }
+
+                    // 设置允许余额标记
+                    $('#allow_money').val('1');
+                } else {
+                    // 关闭余额支付则显示三方支付选项
+                    $('#allow_pay_type').removeClass('hidden');
+
+                    // 设置允许余额标记
+                    $('#allow_money').val('0');
+                }
+            });
+        <?php endif; ?>
+    </script>
+</block>

@@ -1,0 +1,74 @@
+<extend name="$_home_public_layout"/>
+
+<block name="style">
+    <style position="page" type="text/css">
+        .login-logo .logo {
+            width: 180px;
+        }
+    </style>
+</block>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="__ROOT__/" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">{$meta_title}</div>
+            <div class="right">
+                <a href="{:U('User/User/register')}" class="link">
+                    <span>注册</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page {$_page_name}" data-page="{$_page_name}">
+        <div class="page-content">
+            <div class="list-block">
+                <div class="text-center login-logo">
+                    <php>if(C('WEB_SITE_LOGO')):</php>
+                        <img class="logo" src="<?php echo get_cover(C('WEB_SITE_LOGO')); ?>">
+                    <php>else:</php>
+                        {:C('LOGO_DEFAULT')}
+                    <php>endif;</php>
+                </div>
+            </div>
+            <form action="{:U('User/User/login')}" method="post" class="login-form">
+                <div class="list-block">
+                    <ul>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="text" name="account" placeholder="用户名/邮箱/手机号">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="password" name="password" placeholder="密码">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-block">
+                    <ul>
+                        <li><a href="#" type="submit" class="submit item-link list-button ajax-post" target-form="login-form">登录</a></li>
+                        <li><a href="{:U('User/User/reset_password')}" class="item-link list-button">忘记密码？</a></li>
+                    </ul>
+                </div>
+            </form>
+            <?php if(!C('IS_API')): ?>
+                {:hook('SyncLogin')} <!-- 第三方登陆钩子 -->
+            <?php endif; ?>
+        </div>
+    </div>
+</block>

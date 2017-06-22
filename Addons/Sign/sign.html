@@ -1,0 +1,72 @@
+<?php if ($sign_config['type'] == 'rl'): ?>
+    <link rel="stylesheet" href="__ADDONROOT__/calendar/css/calendar.css">
+    <style type="text/css" media="screen">
+        .signed {
+            position: absolute;
+            left: 8px;
+            bottom: 2px;
+            font-size: 12px;
+            color:gray;
+        }
+        .cal-year-box [class*="span"],
+        .cal-month-box [class*="cal-cell"] {
+            min-height: 40px;
+        }
+        .cal-month-day {
+            height: 40px;
+            padding-right: 5px;
+            padding-top: 3px;
+        }
+        span[data-cal-date] {
+            margin-right: auto;
+            margin-top: auto;
+        }
+        .cal-month-box .cal-day-today {
+            background-color: pink;
+        }
+        .cal-month-box .cal-day-today span[data-cal-date] {
+            font-size: 1.3em;
+        }
+    </style>
+    <div class="sign-calendar">
+        <div class="calendar-box"></div>
+        <div class="sign-btn m-t-sm">
+            <?php if($is_signed > 0): ?>
+                <button class="btn btn-info btn-block btn-pill ajax-get" disabled href="<php>echo addons_url('Sign://Sign/sign');</php>">已签到</button>
+            <?php else: ?>
+                <button class="btn btn-info btn-block btn-pill ajax-get" href="<php>echo addons_url('Sign://Sign/sign');</php>">每日签到</button>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <script src="__ADDONROOT__/calendar/js/underscore-min.js"></script>
+    <script src="__ADDONROOT__/calendar/js/calendar.js"></script>
+    <script type="text/javascript" src="__ADDONROOT__/calendar/js/language/zh-CN.js"></script>
+    <script type="text/javascript">
+        // 初始化日历
+        var calendar = $(".calendar-box").calendar({
+            language: 'zh-CN',
+            tmpl_path: "__ADDONROOT__/calendar/tmpls/",
+            events_source: function () { return []; }
+        });
+        // 将已签到时间标出
+        var inner = '<span class="signed fa fa-check"></span>'
+        var date_list = {$date_list};
+        for(var i in date_list) {
+            $('.cal-cell').each(function(index, el) {
+                if($(this).find('.pull-right').attr('data-cal-date') == date_list[i]) {
+                    $(this).css('background-color', '#e8fde7');
+                    $(this).append(inner);
+                }
+            });
+        }
+    </script>
+<?php else: ?>
+    <span class="sign-btn">
+        <?php if($is_signed > 0): ?>
+            <span class="{$sign_config.btn_class} ajax-get" style="background-color: #aaa;border-color: #aaa;">已签到</span>
+        <?php else: ?>
+            <span class="{$sign_config.btn_class} ajax-get" href="<php>echo addons_url('Sign://Sign/sign');</php>">每日签到</span>
+        <?php endif; ?>
+    </span>
+<?php endif; ?>

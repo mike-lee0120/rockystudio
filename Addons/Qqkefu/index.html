@@ -1,0 +1,28 @@
+<script type="text/javascript" src="__ADDONROOT__/lrkf/lrkf.js"></script>
+<script type="text/javascript">
+    $(function(){
+        /*
+         * 皮肤编号 lrkf_blue1 无图版，lrkf_blue2 图片版，更多皮肤敬请期待 懒人qq客服 - http://www.51xuediannao.com/qqkefu/
+         * 参数配置参考正文中的参数配置说明
+         */
+        $("#lrkfwarp").lrkf({
+            root: '__ADDONROOT__/lrkf/',
+            skin:'lrkf_{$addons_config.skin}',
+            kfTop:'140',
+            defShow:false,
+            qqs:[
+                { 'name':'{$addons_config.qq1_title}','qq': "{$addons_config.qq1}" },
+                { 'name':'{$addons_config.qq2_title}','qq':'{$addons_config.qq2}' },
+                { 'name':'{$addons_config.qq3_title}','qq':'{$addons_config.qq3}' },
+                { 'name':'{$addons_config.qq4_title}','qq':'{$addons_config.qq4}' }
+            ],
+            tel:[
+                { 'name':'售前','tel':'{$addons_config.tel1}' },
+                { 'name':'售后','tel':'{$addons_config.tel2}' }
+            ],
+            qrCode:'{$addons_config.qr_code|get_cover="default"}',
+            more:"{$addons_config.more}",
+            foot:"{$addons_config.foot}"
+        });
+    });
+</script>

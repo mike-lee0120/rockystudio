@@ -1,0 +1,61 @@
+<extend name="$_home_public_layout" />
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="__ROOT__/" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">{$meta_title}</div>
+            <div class="right"></div>
+        </div>
+    </div>
+    <div class="page no-toolbar" data-page="{$_page_name}">
+        <div class="page-content">
+            <div class="list-block user-center-header m-t-sm m-b-sm media-list">
+                <ul>
+                    <volist name="table_data_list" id="vo">
+                    <li>
+                        <div class="item-content">
+                            <?php if($vo['status'] == 1): ?>
+                                <div class="item-media">
+                                    <div style="width: 100px; height: 48px; border-right: 1px dashed #ddd; font-size: 12px; color: red; padding-top: 12px; font-weight: 700;">
+                                        <div>
+                                            <span>￥</span>
+                                            <span style="font-size: 18px;">{$vo.money}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php else: ?>
+                                <div class="item-media">
+                                    <div style="width: 100px; height: 48px; border-right: 1px dashed #ddd; font-size: 12px; color: #888; padding-top: 12px; font-weight: 700;">
+                                        <div>
+                                            <span>￥</span>
+                                            <span style="font-size: 18px;"><del>{$vo.money}</del></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">{$vo.title}</div>
+                                    <div class="item-after">{$vo.status_text}</div>
+                                </div>
+                                <div style="font-size: 12px; color: rgb(119, 119, 119);">
+                                    <ul class="p-l-0" style="list-style-type: disc;">
+                                        <li>满{$vo.limit}元可用</li>
+                                        <li class="">{$vo.expire_format}到期</li>
+                                        <li>仅限手机号为{$vo.acccount}的帐号使用</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+    </div>
+</block>

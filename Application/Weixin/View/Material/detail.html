@@ -1,0 +1,91 @@
+<extend name="$_home_public_layout"/>
+
+<block name="header"></block>
+<block name="footer"></block>
+<block name="main"></block>
+
+<block name="style">
+    <style type="text/css">
+        body {
+            padding: 0;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 0;
+            }
+        }
+        .wx-post {
+            padding: 20px 15px 15px;
+            background-color: #fff
+        }
+        .wx-post .wx-header h3 {
+            line-height: 1.4;
+            font-weight: 400;
+            font-size: 24px;
+            margin: 0;
+            padding: 0;
+        }
+        .wx-post .wx-info {
+            margin-top: 10px;
+            margin-bottom: 18px;
+            line-height: 20px;
+            font-size: 0;
+        }
+        .wx-post .wx-info li {
+            margin-right: 8px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #8c8c8c;
+        }
+        .wx-post .wx-content {
+            padding: 20px 0;
+            min-height: 380px;
+        }
+        .wx-post .wx-footer li {
+            margin-right: 8px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #8c8c8c;
+        }
+    </style>
+</block>
+
+<block name="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- 文章内容 -->
+                <article class="wx-post">
+                    <!-- 文章标题 -->
+                    <div class="wx-header">
+                        <h3>{$info.title}</h3>
+                    </div>
+                    <!-- 文章信息 -->
+                    <div class="wx-info">
+                        <ul class="list-unstyled list-inline">
+                            <li>{$info.create_time|time_format='Y-m-d'}</li>
+                            <li><a href="#">{$info.author}</a></li>
+                        </ul>
+                    </div>
+                    <!-- 文章正文 -->
+                    <div class="wx-content">
+                        {$info.content|parse_content}
+                    </div>
+                    <!-- 文章底部 -->
+                    <div class="wx-footer">
+                        <ul class="list-unstyled list-inline">
+                            <notempty name="info.url">
+                                <li><a href="{$info.url}">阅读原文</a></li>
+                            </notempty>
+                            <li>阅读：{$info.view_count|default=0}</li>
+                            <li><a href="#"><i class="fa fa-thumbs-o-up"></i> </a>{$info.good_count|default=0}</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="bar-footer"></block>

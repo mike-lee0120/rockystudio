@@ -1,0 +1,125 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="__ROOT__/" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">{$meta_title}</div>
+            <div class="right"></div>
+        </div>
+    </div>
+
+    <div class="page no-toolbar {$_page_name}" data-page="{$_page_name}">
+        <div class="page-content">
+            <div class="content-block-title">注意：VIP会员计费周期采用非自然月计算，即每月都按30天计算。</div>
+            <form action="{:U('')}" method="post" class="login-form">
+                <div class="list-block">
+                    <ul>
+                        <li>
+                            <a href="#" class="item-link smart-select" data-back-on-select="true" data-back-text="返回">
+                                <select name="vip_type" class="vip_type_select">
+                                    <volist name="vip_type_list" id="type">
+                                        <option data-price="{$type.price}" data-content="{$type.content}" value="{$type.id}">{$type.title}（¥{$type.price}）</option>
+                                    </volist>
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">会员类型</div>
+                                        <div class="item-after">初级会员</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">VIP特权</div>
+                                <div class="item-after vip-content">{$vip_type_list[0]['content']}</div>
+                            </div>
+                        </li>
+                        <div class="vip_pay_month">
+                            <li>
+                                <label class="label-radio item-content">
+                                    <input type="radio" name="buy_period" value="1">
+                                    <div class="item-media">
+                                        <i class="icon icon-form-radio"></i>
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-title">1个月</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="label-radio item-content">
+                                    <input type="radio" name="buy_period" value="3" checked="checked">
+                                    <div class="item-media">
+                                        <i class="icon icon-form-radio"></i>
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-title">3个月</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="label-radio item-content">
+                                    <input type="radio" name="buy_period" value="4">
+                                    <div class="item-media">
+                                        <i class="icon icon-form-radio"></i>
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-title">6个月</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="label-radio item-content">
+                                    <input type="radio" name="buy_period" value="12">
+                                    <div class="item-media">
+                                        <i class="icon icon-form-radio"></i>
+                                    </div>
+                                    <div class="item-inner">
+                                        <div class="item-title">12个月</div>
+                                    </div>
+                                </label>
+                            </li>
+                        </div>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">需支付</div>
+                                <div class="item-after"> ¥ <span class="color-red total_price"></span> 元</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="content-block row">
+                    <p class="col-100">
+                        <button type="submit" class="col-100 button button-fill button-big color-red">立即开通</button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</block>
+
+<block name="script">
+    <script position="page" type="text/javascript">
+        $(function(){
+            var total_price = parseFloat($(".vip_type_select").find("option:selected").attr('data-price')) * ($('input:radio[name=buy_period]:checked').val());
+            $('.total_price').text(total_price.toFixed(2));
+
+            $('.vip_type_select').change(function(){
+                var total_price = parseFloat($(".vip_type_select").find("option:selected").attr('data-price')) * ($('input:radio[name=buy_period]:checked').val());
+                $('.total_price').text(total_price);
+                $('.vip-content').text($(".vip_type_select").find("option:selected").attr('data-content'));
+            });
+
+            $('input:radio[name="buy_period"]').change(function(){
+                var total_price = parseFloat($(".vip_type_select").find("option:selected").attr('data-price')) * ($('input:radio[name=buy_period]:checked').val());
+                $('.total_price').text(total_price);
+            });
+        });
+    </script>
+</block>

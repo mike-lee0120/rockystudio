@@ -1,0 +1,34 @@
+<php>if(!empty($config['type'])){</php>
+    <div class="synclogin text-center">
+        <h3>快速登录</h3>
+        <div class="row">
+            <div class="col-20"></div>
+            <php>if(in_array('Lingyun',$config['type'])):</php>
+                <a target="_blank" class="button button-fill color-lightblue button-round external col-15" style="width: 38px;height: 38px;padding: 6px;" href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'lingyun'));</php>">
+                    <i class="fa fa-cloud" style="font-size: 20px;"></i>
+                </a>
+            <php>endif;</php>
+            <php>if(in_array('Weixin',$config['type'])):</php>
+                <a target="_blank" class="button button-fill color-green button-round external col-15" style="width: 38px;height: 38px;padding: 6px;" href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'weixin'));</php>">
+                    <i class="fa fa-weixin" style="font-size: 20px;"></i>
+                </a>
+            <php>endif;</php>
+            <php>if(in_array('Qq',$config['type'])):</php>
+                <a target="_blank" class="button button-fill color-default button-round external col-15" style="width: 38px;height: 38px;padding: 6px;" href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'qq'));</php>">
+                    <i class="fa fa-qq" style="font-size: 20px;"></i>
+                </a>
+            <php>endif;</php>
+            <php>if(in_array('Sina',$config['type'])):</php>
+                <a target="_blank" class="button button-fill color-red button-round external col-15" style="width: 38px;height: 38px;padding: 6px;" href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'sina'));</php>">
+                    <i class="fa fa-weibo" style="font-size: 20px;"></i>
+                </a>
+            <php>endif;</php>
+            <php>if(in_array('Github',$config['type'])):</php>
+                <a target="_blank" class="button button-fill color-yellow button-round external col-15" style="width: 38px;height: 38px;padding: 6px;" href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'github'));</php>">
+                    <i class="fa fa-github" style="font-size: 20px;"></i>
+                </a>
+            <php>endif;</php>
+            <div class="col-20"></div>
+        </div>
+    </div>
+<php>}</php>

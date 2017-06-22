@@ -1,0 +1,35 @@
+<extend name="$_admin_public_layout"/>
+
+<block name="main">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel-body">
+                <div class="alert alert-danger" role="alert">
+                    <h4>您现在访问的是OpenCMF微信模块：</h4>
+                    <p>该模块功能是为微信公众平台提供接口，并不具备网站前台访问功能，请您前往微信体验功能！</p>
+                </div>
+                <div class="alert alert-success" role="alert">
+                    <h4>微信接口配置步骤：</h4>
+                    <p>
+                        <ol>
+                            <li>前往微信官网申请微信公众号</li>
+                            <li>登录微信公众号后台</li>
+                            <li>在左侧导航找到开发者中心</li>
+                            <li>页面右侧找到AppID和AppSecret</li>
+                            <li>登录OpenCMF后台</li>
+                            <li>在公众号列表里添加新的公众账号（填写AppID和AppSecret，Token自己随便设置）</li>
+                            <li>登录微信公众号后台</li>
+                            <li>在左侧导航找到开发者中心</li>
+                            <li>在页面右侧找到修改配置按钮并点击</li>
+                            <li>URL填写格式类似：http://www.opencmf.cn/index.php/weixin/index/api.html</li>
+                            <li>Token和EncodingAESKey与OpenCMF后台信息保持一致即可</li>
+                            <li>点击提交，如果微信服务器与OpenCMF微信模块通信成功则可以正确提交，否则微信报错</li>
+                            <li>点击启用按钮</li>
+                            <li>再次登录OpenCMF后台进行相关设置即可体验OpenCMF微信模块功能</li>
+                        </ol>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

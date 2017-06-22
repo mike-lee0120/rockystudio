@@ -1,0 +1,187 @@
+<extend name="$_home_public_layout"/>
+
+<block name="style">
+    <link rel="stylesheet" type="text/css" href="__CSS__/home.css">
+</block>
+
+<block name="main">
+    <div class="lyask-container-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="lyask-content-wrap clearfix">
+                    <div class="col-sm-12 col-md-9 lyask-main-content">
+                        <!-- tab切换 -->
+                        <ul class="nav nav-tabs lyask-nav-tabs active hidden-xs">
+                            <li class="<?php if(I('get.type') === 'nonereply') echo 'active'; ?>">
+                                <a href="{:U('Forum/Index/index', array('type' => 'nonereply'))}">
+                                    等待回复
+                                </a>
+                            </li>
+                            <li class="<?php if(I('get.sort') === 'view') echo 'active'; ?>">
+                                <a href="{:U('Forum/Index/index', array('sort' => 'view'))}" id="sort_control_hot">
+                                    热门
+                                </a>
+                            </li>
+                            <li class="<?php if(I('get.type') === 'recommend') echo 'active'; ?>">
+                                <a href="{:U('Forum/Index/index', array('type' => 'recommend'))}">
+                                    推荐
+                                </a>
+                            </li>
+                            <li class="<?php if(!I('get.type') && !I('get.sort')) echo 'active'; ?>">
+                                <a href="{:U('Forum/Index/index')}">
+                                    最新
+                                </a>
+                            </li>
+                            <h2 class="hidden-xs">
+                                <i class="fa fa-list">
+                                </i>
+                                发现
+                            </h2>
+                        </ul>
+                        <!-- end tab切换 -->
+                        <div class="lyask-mod lyask-explore-list">
+                            <div class="mod-body">
+                                <div class="lyask-common-list">
+                                    <volist name="top_list" id="vo">
+                                        <div class="lyask-item active" data-id="{$vo.id}">
+                                            <a class="lyask-user-name hidden-xs" data-id="{$vo['user']['id']}" href="{:U('User/Index/home', array('uid' => $vo['user']['id']), true, true)}">
+                                                <img src="{$vo.user.avatar_url}">
+                                            </a>
+                                            <div class="lyask-question-content">
+                                                <h4>
+                                                    {$vo.title_url}
+                                                    <span class="label label-warning-outline label-pill">置顶</span>
+                                                </h4>
+                                                <a href="{$vo.title_href}" class="pull-right text-color-999">
+                                                    回复
+                                                </a>
+                                                <p>
+                                                    <a href="{:U('User/Index/home', array('uid' => $vo['user']['id']), true, true)}" class="lyask-user-name">
+                                                        {$vo.user.nickname}
+                                                    </a>
+                                                    <span class="text-color-999">
+                                                        发表了帖子 • {$vo.comment_count|default=0} 个回复 • {$vo.view_count|default=0} 次浏览 • {$vo.create_time|friendly_date}
+                                                    </span>
+                                                    <span class="text-color-999 related-topic collapse">
+                                                        • 来自相关话题
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </volist>
+                                    <volist name="data_list" id="vo">
+                                        <div class="lyask-item active" data-id="{$vo.id}">
+                                            <a class="lyask-user-name hidden-xs" data-id="{$vo['user']['id']}" href="{:U('User/Index/home', array('uid' => $vo['user']['id']), true, true)}">
+                                                <img src="{$vo.user.avatar_url}">
+                                            </a>
+                                            <div class="lyask-question-content">
+                                                <h4>
+                                                    {$vo.title_url}
+                                                </h4>
+                                                <a href="{$vo.title_href}" class="pull-right text-color-999">
+                                                    回复
+                                                </a>
+                                                <p>
+                                                    <a href="{:U('User/Index/home', array('uid' => $vo['user']['id']), true, true)}" class="lyask-user-name">
+                                                        {$vo.user.nickname}
+                                                    </a>
+                                                    <span class="text-color-999">
+                                                        发表了帖子 • {$vo.comment_count|default=0} 个回复 • {$vo.view_count|default=0} 次浏览 • {$vo.create_time|friendly_date}
+                                                    </span>
+                                                    <span class="text-color-999 related-topic collapse">
+                                                        • 来自相关话题
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </volist>
+                                </div>
+                            </div>
+                            <div class="mod-footer">
+                                <div class="page-control">
+                                    <notempty name="page">
+                                        <ul class="pagination pull-right">{$page}</ul>
+                                    </notempty>
+                                    <empty name="data_list">
+                                        <div class="text-center clearfix m-t-lg">暂时没有帖子～</div>
+                                    </empty>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 侧边栏 -->
+                    <div class="col-sm-12 col-md-3 lyask-side-bar hidden-xs hidden-sm">
+                        <div class="lyask-mod lyask-text-align-justify">
+                            <div class="mod-head">
+                                <a href="{:U('Forum/Index/plate')}" class="pull-right">
+                                    更多 &gt;
+                                </a>
+                                <h3>
+                                    热门话题
+                                </h3>
+                            </div>
+                            <div class="mod-body">
+                                <volist name="plate_list" id="vo">
+                                    <dl>
+                                        <dt class="pull-left lyask-border-radius-5">
+                                            <a href="" >
+                                                <span style="display: inline-block;width: 36px;height: 36px;padding: 6px 6px 6px 10px;background: #EBEBEB;border-radius: 6px;">
+                                                    <i class="fa fa-comment" style="font-size: 18px;color: #ccc;"></i>
+                                                </span>
+                                            </a>
+                                        </dt>
+                                        <dd class="pull-left">
+                                            <p class="clearfix">
+                                                <span class="topic-tag">
+                                                    <a href="{:U('Forum/Index/topic', array('id' => $vo['id']))}" class="text" data-id="{$vo.id}">
+                                                        {$vo.title}
+                                                    </a>
+                                                </span>
+                                            </p>
+                                            <p>
+                                                <b>{$vo.post_num}</b>个帖子,<b>{$vo.reply_num}</b>个回复
+                                            </p>
+                                        </dd>
+                                    </dl>
+                                </volist>
+                            </div>
+                        </div>
+                        <div class="lyask-mod lyask-text-align-justify">
+                            <div class="mod-head">
+                                <!-- <a href="#" class="pull-right">
+                                    更多 &gt;
+                                </a> -->
+                                <h3>
+                                    热门用户
+                                </h3>
+                            </div>
+                            <div class="mod-body">
+                                <volist name="hot_user" id="vo">
+                                    <dl>
+                                        <dt class="pull-left lyask-border-radius-5">
+                                            <a target="_blank" href="{:U('User/Index/home', array('uid' => $vo['id']), true, true)}">
+                                                <img src="{$vo.avatar_url}" />
+                                            </a>
+                                        </dt>
+                                        <dd class="pull-left">
+                                            <a target="_blank" href="{:U('User/Index/home', array('uid' => $vo['id']), true, true)}" data-id="{$vo.id}" class="lyask-user-name">
+                                                {$vo.nickname}
+                                            </a>
+                                            <p class="signature">
+                                            </p>
+                                            <p>
+                                                <b>{$vo.post_count}</b>个帖子,
+                                                <b>{$vo.reply_count}</b>个回复
+                                            </p>
+                                        </dd>
+                                    </dl>
+                                </volist>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end 侧边栏 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

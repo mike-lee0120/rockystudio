@@ -1,0 +1,115 @@
+<extend name="$_home_public_layout"/>
+
+<block name="style">
+    <style type="text/css">
+        .redbag-share-box {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+        .redbag-share-box .redbag-share-header {
+            height: 100px;
+        }
+        .redbag-share-box .redbag-share-body {
+            height: auto;
+            position: relative;
+        }
+        .redbag-share-box .redbag-share-body .redbag-title {
+            position: absolute;
+            top: 52px;
+            left: 10px;
+            right: 10px;
+            color: #fff;
+            text-align: center;
+        }
+        .redbag-share-box .redbag-share-body .redbag-form {
+            position: absolute;
+            top: 200px;
+            left: 90px;
+            right: 90px;
+        }
+        .redbag-share-box .redbag-share-body .redbag-form .agree {
+            font-size: 10px;
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .redbag-share-box .redbag-share-body .redbag-form .agree a {
+            color: #ffd0d0;
+        }
+        .redbag-share-box .redbag-share-footer {
+            height: 200px;
+            text-align: center;
+            padding: 30px 0;
+        }
+        .redbag-share-box .redbag-share-footer .logo {
+            font-size: 38px;
+        }
+        .redbag-share-box .redbag-share-footer .copyright {
+            color: #999;
+            font-size: 12px;
+            padding: 5px 0;
+        }
+    </style>
+</block>
+
+<block name="full_wrap">
+    <div class="redbag-share-box">
+        <div class="redbag-share-header"></div>
+        <div class="redbag-share-body">
+            <img src="__IMG__/bag.png" style="width:100%;">
+            <div style="background-color: #f4471e;height: 70px;"></div>
+            <img src="__IMG__/bag-footer.jpg" style="width:100%;">
+            <div class="redbag-title">
+                <h4>
+                    {$info.title}
+                </h4>
+                <p>{:C('WEB_SITE_SLOGAN')}</p>
+            </div>
+            <div class="redbag-form">
+                <form method="post" action="{:U('')}" class="regbag-form">
+                    <?php if($coupon_share): ?>
+                        <div class="form-group text-center">
+                            <?php if($error):?>
+                                <h3>{$error}</h3>
+                            <?php else: ?>
+                                <p style="color:#eee;">您已领取折扣券</p>
+                                <h1 style="color:#F8C12D;">{$coupon_share.coupon}折</h1>
+                                <p>有效期：{$coupon_share.expire}天</p>
+                            <?php endif; ?>
+                        </div>
+                    <?php else: ?>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="account" placeholder="输入手机号，领取折扣券">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="id" value="{$info.id}">
+                            <input type="submit" class="btn btn-warning btn-block ajax-post" value="领取折扣券" target-form="regbag-form">
+                        </div>
+                    <?php endif; ?>
+                </form>
+                <div class="agree">
+                    <i class="fa fa-check text-success"></i>
+                    我已同意{:C('WEB_SITE_TITLE')}的折扣券活动规则
+                </div>
+            </div>
+        </div>
+        <div class="redbag-share-footer">
+            <div class="alert alert-warning small">
+                <h4>活动规则：</h4>
+                {$info.rule}
+            </div>
+            <php>if(C('WEB_SITE_LOGO')):</php>
+                <a class="logo" href="{:C('HOME_PAGE')}">
+                    <img alt="logo" src="{$Think.config.WEB_SITE_LOGO|get_cover}" width="200">
+                </a>
+            <php>else:</php>
+                <a class="logo" href="{:C('HOME_PAGE')}">
+                    <span>{:C('LOGO_DEFAULT')}</span>
+                </a>
+            <php>endif;</php>
+            <div class="form-group"></div>
+            <p class="copyright">{:C('WEB_SITE_COPYRIGHT')}</p>
+        </div>
+    </div>
+</block>

@@ -1,0 +1,47 @@
+<div class="container m-t">
+    <?php
+        // 获取用户信息
+        $user_info = D('User/User')->detail(is_login());
+    ?>
+    <div class="panel panel-default m-b"  style="border-top: 0;">
+        <div class="panel-body">
+            <div class="col-xs-4 col-sm-2">
+                <div style="width: 60%;border:5px solid #fff;box-shadow: 0px 0px 2px #aaa;border-radius: 50%;box-sizing: border-box;">
+                    <a href="{:U('User/Center/avatar', '', true, true)}">
+                        <img class="img-responsive img-circle" src="{$user_info.avatar|get_cover='avatar'}">
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-8 col-sm-5">
+                <h4>
+                    {$user_info.nickname}
+
+                    <!-- 实名认证 -->
+                    <?php if($user_info['cert_info']): ?>
+                        <span class="badge badge-success badge-vip">{$user_info['cert_info']['cert_title']}</span>
+                    <?php else: ?>
+                        <a class="badge badge-warning badge-vip" href="{:U('User/Cert/add', '', true, true)}">未实名认证</a>
+                    <?php endif; ?>
+
+                    <!-- VIP会员 -->
+                    <?php if($user_info['vip']['is_expired']): ?>
+                        <a href="{:U('Vip/Order/index', '', true, true)}" class="badge badge-default badge-vip" title="已过期">{$user_info.vip.type_info.title}</a>
+                    <?php else: ?>
+                        <a href="{:U('Vip/Index/index', '', true, true)}" class="badge badge-danger badge-vip" title="{$user_info.vip.type_info.title}">{$user_info.vip.type_info.title}</a>
+                    <?php endif; ?>
+                </h4>
+                <div>
+                    <p>粉丝：{$user_info.fans_count|default='0'} ｜ 关注：{$user_info.follow_count|default='0'}</p>
+                    <p>个性签名：{$user_info.summary|default="这个人太懒，什么也没写！"}</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-5">
+                <p style="margin-top: 38px;">积分：{$user_info.score|default=0}</p>
+                <p>
+                    余额：¥{$user_info.money|default=0.00}
+                    <a target="_blank" class="label label-danger" href="{:U('Wallet/Recharge/index', '', true, true)}" title="点击充值">点击充值</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

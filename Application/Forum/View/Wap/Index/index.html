@@ -1,0 +1,94 @@
+<extend name="$_home_public_layout"/>
+
+<block name="main">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="ROOT__/" class="link back icon-only">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </div>
+            <div class="center">{$meta_title}</div>
+            <div class="right">
+                <a href="{:U('Forum/Index/add')}" class="link">
+                    <i class="icon icon-only fa fa-plus" style="font-size: 20px;padding-right: 5px;"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" data-page="{$_page_name}">
+        <!-- Search bar -->
+        <form class="searchbar" action="{:U('')}" data-custom-search = 'true'>
+            <div class="searchbar-input">
+                <input type="search" placeholder="搜索" class="search-input" name="keyword" value="{$_GET['keyword']}">
+                <a href="#" type="submit" class="searchbar-clear search-btn"></a>
+            </div>
+            <a href="#" class="searchbar-cancel">Cancel</a>
+        </form>
+
+        <div class="searchbar-overlay"></div>
+
+        <div class="page-content">
+            <div class="list-block media-list no-margin">
+                <ul>
+                    <volist name="top_list" id="vo">
+                        <li>
+                            <a href="{:U('detail', array('id' => $vo['id']))}" class="item-link item-content">
+                                <div class="item-media">
+                                    <img src="{$vo.user.avatar_url}" style='border-radius: 50px;width: 50px;'>
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div style="font-size: 16px;">
+                                            <span>{$vo.title}</span>
+                                            <span class="badge bg-yellow">置顶</span>
+                                        </div>
+                                    </div>
+                                    <div class="item-text">
+                                        <div style="font-size: 12px;">楼主：{$vo.user.nickname}</div>
+                                        <div style="font-size: 12px;">
+                                            <span style="margin-right: 5px;"><i class="fa fa-eye"></i> 浏览:{$vo.view_count|default=0}</span>
+                                            <span><i class="fa fa-reply"></i> 回复:{$vo.comment_count|default=0}</span>
+                                            <span class="pull-right">{$vo.create_time|friendly_date}发布</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </volist>
+                    <volist name="data_list" id="vo">
+                        <li>
+                            <a href="{:U('detail', array('id' => $vo['id']))}" class="item-link item-content">
+                                <div class="item-media">
+                                    <img src="{$vo.user.avatar_url}" style='border-radius: 50px;width: 50px;'>
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div style="font-size: 16px;">{$vo.title}</div>
+                                    </div>
+                                    <div class="item-text">
+                                        <div style="font-size: 12px;">楼主：{$vo.user.nickname}</div>
+                                        <div style="font-size: 12px;">
+                                            <span style="margin-right: 5px;"><i class="fa fa-eye"></i> 浏览:{$vo.view_count|default=0}</span>
+                                            <span><i class="fa fa-reply"></i> 回复:{$vo.comment_count|default=0}</span>
+                                            <span class="pull-right">{$vo.create_time|friendly_date}发布</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+
+            <?php if($page): ?>
+                <div class="content-block">
+                    <div class="content-block-inner">
+                        <ul class="pagination">{$page}</ul>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</block>
