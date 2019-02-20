@@ -1,8 +1,0 @@
-Thumbs.db
-.idea
-*.log
-node_modules
-/Runtime/
-/Uploads/
-!*.md
-!/vendor
